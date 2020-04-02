@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE configuration PUBLIC '-//mybatis.org//DTD Config 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-config.dtd'>
+<configuration>
+
+	<properties resource='jdbc.properties' />
+	
+	<typeAliases>
+		<typeAlias type='modelo.pojo.Circuito' alias='Circuito'></typeAlias>
+		<typeAlias type='modelo.pojo.Motocicleta' alias='Motocicleta'></typeAlias>
+		<typeAlias type='modelo.pojo.Participacion' alias='Participacion'></typeAlias>
+		<typeAlias type='modelo.pojo.Piloto' alias='Piloto'></typeAlias>
+		<typeAlias type='modelo.pojo.Torneo' alias='Torneo'></typeAlias>
+	</typeAliases>
+	
+	<environments default='development'>
+		<environment id='development'>
+			<transactionManager type='JDBC' />
+			<dataSource type='POOLED'>
+				<property name='driver' value='${driverClassName}' />
+				<property name='url' value='${url}' />
+				<property name='username' value='${username}' />
+				<property name='password' value='${password}' />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource='modelo/dao/mapper/BaseMapper.xml' />
+	</mappers>
+	
+</configuration>

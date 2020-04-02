@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#header{
+	border-bottom: 1px solid black;
+}
+#header{
+	text-align: center;
+}
+
+#navigator{
+	border-bottom: 1px solid black;
+}
+
+#body{
+	padding-bottom: 50px;
+}
+
+#footer{
+	border-top: 1px solid black;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	text-align: center;
+}
