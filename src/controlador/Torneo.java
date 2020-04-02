@@ -30,6 +30,8 @@ public class Torneo extends HttpServlet {
 		
 		try {
 			
+			//pongo una prueba para el pull request
+			
 			//guardamos en un array todos los torneos disponibles:
 			ArrayList<modelo.pojo.Torneo> torneos = baseEjb.getTorneos();
 			
