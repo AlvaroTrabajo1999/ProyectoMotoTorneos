@@ -10,6 +10,9 @@
 		<typeAlias type='modelo.pojo.Participacion' alias='Participacion'></typeAlias>
 		<typeAlias type='modelo.pojo.Piloto' alias='Piloto'></typeAlias>
 		<typeAlias type='modelo.pojo.Torneo' alias='Torneo'></typeAlias>
+		<typeAlias type='modelo.pojo.MultimediaPiloto' alias='MultimediaPiloto'></typeAlias>
+		<typeAlias type='modelo.pojo.MultimediaCircuito' alias='MultimediaCircuito'></typeAlias>
+		<typeAlias type='modelo.pojo.MultimediaMotocicleta' alias='MultimediaMotocicleta'></typeAlias>
 	</typeAliases>
 	
 	<environments default='development'>
