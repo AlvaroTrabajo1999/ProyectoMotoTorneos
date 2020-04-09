@@ -1,6 +1,6 @@
 package modelo.pojo;
 
-public class Motocileta {
+public class Motocicleta {
 
 	private String MATRICULA;
 	private String marca;
@@ -8,11 +8,11 @@ public class Motocileta {
 	
 	//CONSTUCTORES
 	
-	public Motocileta() {
+	public Motocicleta() {
 		
 	}
 	
-	public Motocileta(String mATRICULA, String marca, String tuboEscape) {
+	public Motocicleta(String mATRICULA, String marca, String tuboEscape) {
 		super();
 		MATRICULA = mATRICULA;
 		this.marca = marca;
