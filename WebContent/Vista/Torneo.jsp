@@ -18,6 +18,7 @@
 		<div id="navigator">
 			<a href="Princial">Home</a>
 			<a href="Torneo">Torneo</a>
+			<a href="CrearTorneo">Crear torneo</a>
 		</div>
 	
 		<div id="body">

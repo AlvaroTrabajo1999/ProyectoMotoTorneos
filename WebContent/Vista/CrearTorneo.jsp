@@ -19,7 +19,16 @@
 		</div>
 	
 		<div id="body">
-			<h1>Home</h1>
+			<form action="CrearTorneo" method="post">
+				<fieldset>
+					<legend>Crear Torneo</legend>
+					
+					<lablel>Nombre del Torneo</lablel>
+					<input type="text" placeholder="Nombre Torneo">
+					
+					<br><br><input type="text" value="Crear">
+				</fieldset>
+			</form>
 		</div>
 	
 		<div id="footer">
