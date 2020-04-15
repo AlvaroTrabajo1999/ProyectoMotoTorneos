@@ -14,16 +14,14 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
 
 /**
- * Servlet implementation class CrearTorneo
+ * Servlet implementation class ParticipanteNuevo
  */
-@WebServlet("/CrearTorneo")
-public class CrearTorneo extends HttpServlet {
+@WebServlet("/ParticipanteNuevo")
+public class ParticipanteNuevo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+
 	//creamos el logger
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(CrearTorneo.class);
-	
-	
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(ParticipanteNuevo.class);
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -33,7 +31,7 @@ public class CrearTorneo extends HttpServlet {
 			
 		} finally {
 			//reenviamos al servlet deseado
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/CrearTorneo.jsp");
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/ParticipanteNuevo.jsp");
 			rs.forward(request, response);
 		}
 		
