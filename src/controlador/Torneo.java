@@ -30,8 +30,6 @@ public class Torneo extends HttpServlet {
 		
 		try {
 			
-			//pongo una prueba para el pull request
-			
 			//guardamos en un array todos los torneos disponibles:
 			ArrayList<modelo.pojo.Torneo> torneos = baseEjb.getTorneos();
 			
@@ -40,7 +38,7 @@ public class Torneo extends HttpServlet {
 			
 		} catch (Exception e) {
 			//en caso de que salte algun error lo guardaremos en el logger:
-			logger.error("error en el controlador Torneo, al guardar los datos de los torneos de la base de datos");
+			logger.error("error en el controlador Torneo, al tomar los datos de los torneos de la base de datos");
 		} finally {
 			//reenviamos al servlet deseado
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Torneo.jsp");

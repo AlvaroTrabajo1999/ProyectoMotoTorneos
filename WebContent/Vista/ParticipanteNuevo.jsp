@@ -1,3 +1,5 @@
+<%@page import="modelo.pojo.Piloto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +24,23 @@
 			<h1>Crear un nuevo participante</h1>
 			
 			<!-- Mostrar Todos Los Piloto En Un Select Si Selecciona La Opcion Crear Piloto Muestra El Formulario -->
+			
+			<select>
+			<option value="crear">Crear Piloto Nuevo</option>
+			<%
+			
+				// tomamos el atributo de los torneos:
+				ArrayList<Piloto> pilotos = (ArrayList<Piloto>) request.getAttribute("pilotos");
+			
+				//comprobamos que tenga algun contenido, y pintamos segun tenga este contenido
+				if (pilotos != null){
+					for (Piloto p : pilotos){
+						out.print("<option value='"+p.getDNI()+"'>"+p.getNombre()+" "+p.getApellido()+"</option>");
+					}
+				}
+			
+			%>
+			</select>
 			
 			<form action="">
 				<fieldset>
@@ -48,7 +67,8 @@
 					<legend>Motocicleta</legend>
 					
 					<label>Matricula: </label><input type="text">
-					
+					<label>Marca: </label><input type="text">
+					<label>Escape: </label><input type="text">
 				</fieldset>
 			</form>
 			
