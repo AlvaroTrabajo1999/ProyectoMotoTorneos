@@ -15,4 +15,31 @@
 		select * from torneo;
 	</select>
 	
+	
+	
+	<resultMap type='Motocicleta' id='MotocicletaResult'>
+		<id property='MATRICULA' column='MATICULA' />
+		<result property='marca' column='marca' />
+		<result property='tuboEscape' column='tuboEscape' />
+	</resultMap>
+	
+	<select id='getMotocicletas' resultMap='MotocicletaResult'>
+		select * from motocicleta;
+	</select>
+	
+	
+	
+	<resultMap type='Piloto' id='PilotoResult'>
+		<id property='DNI' column='DNI' />
+		<result property='nombre' column='nombre' />
+		<result property='apellido' column='apellido' />
+		<result property='edad' column='edad' />
+		<result property='peso' column='peso' />
+		<result property='sexo' column='sexo' />
+		<result property='altura' column='altura' />
+	</resultMap>
+	
+	<select id='getPilotos' resultMap='PilotoResult'>
+		select * from piloto;
+	</select>
 </mapper>
