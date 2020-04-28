@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 
 import modelo.dao.BaseDao;
 import modelo.pojo.Motocicleta;
+import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
 
@@ -24,9 +25,24 @@ public class BaseEjb {
 		return dao.getMotocicletas();
 	}
 	
+	public Motocicleta getMotocicletaFromMatricula(String matricula){
+		BaseDao dao = new BaseDao();
+		return dao.getMotocicletaFromMatricula(matricula);
+	}
+	
 	public ArrayList<Piloto> getPilotos(){
 		BaseDao dao = new BaseDao();
 		return dao.getPilotos();
+	}
+	
+	public Piloto getPilotoFromDni(String dni){
+		BaseDao dao = new BaseDao();
+		return dao.getPilotoFromDni(dni);
+	}
+	
+	public void insertParticipante(Participacion part) {
+		BaseDao dao = new BaseDao();
+		dao.insertParticipante(part);
 	}
 	
 }

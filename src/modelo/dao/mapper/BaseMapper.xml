@@ -27,6 +27,10 @@
 		select * from motocicleta;
 	</select>
 	
+	<select id='getMotocicletaFromMatricula' resultMap='MotocicletaResult'>
+		select * from motocicleta where MATRICULA = #{matricula};
+	</select>
+	
 	
 	
 	<resultMap type='Piloto' id='PilotoResult'>
@@ -42,4 +46,19 @@
 	<select id='getPilotos' resultMap='PilotoResult'>
 		select * from piloto;
 	</select>
+	
+	<select id='getPilotoFromDni' resultMap='PilotoResult'>
+		select * from piloto where DNI = #{dni};
+	</select>
+	
+	
+	
+	
+	
+	<insert id="insertParticipante">
+		insert into
+			participacion(id_moto,id_piloto)
+		values
+			(#{id_moto},#{id_piloto});
+	</insert>
 </mapper>
