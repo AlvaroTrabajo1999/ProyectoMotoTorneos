@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
 import modelo.ejb.BaseEjb;
 import modelo.pojo.Motocicleta;
+import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 
 /**
@@ -58,7 +59,44 @@ public class ParticipanteNuevo extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Creamos las variables que seran el piloto y su moto definitivas
+		Piloto pilotoFinal = null;
+		Motocicleta motoFinal = null;
+
+		Participacion part = null;
 		
+		//tomamos los datos que deseamos
+		String PilotoFormulario = request.getParameter("PilotoFormulario");
+		String MotoFormulario = request.getParameter("MotoFormulario");
+		
+		//Comprobamos si quiere un piloto ya existente o uno nuevo
+		if (PilotoFormulario == "crearPiloto") {
+			
+		} else {
+			try {
+				pilotoFinal = baseEjb.getPilotoFromDni(PilotoFormulario);
+			} catch (Exception e) {
+				logger.error("error en el controlador ParticipadorNuevo, en el post al tomar un piloto por su dni");
+			}
+		}
+		
+		
+		
+		//Comprobamos si quiere una moto ya existente o una nueva
+		if (MotoFormulario == "MotoFormulario") {
+			
+		} else {
+			motoFinal = baseEjb.getMotocicletaFromMatricula(MotoFormulario);
+		}
+		
+		
+		
+		if (motoFinal != null && pilotoFinal != null) {
+			part.setId_moto(motoFinal.getMATRICULA());
+			part.setId_piloto(pilotoFinal.getDNI());
+			
+			baseEjb.insertParticipante(part);
+		}
 		
 	}
 
