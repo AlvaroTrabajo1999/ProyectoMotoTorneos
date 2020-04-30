@@ -61,4 +61,18 @@
 		values
 			(#{id_moto},#{id_piloto});
 	</insert>
+	
+	<insert id="insertMotocicleta">
+		INSERT INTO 
+			motocicleta (MATRICULA,marca,tuboEscape) 
+		VALUES 
+			(#{MATRICULA},#{marca},#{tuboEscape});
+	</insert>
+	
+	<insert id="insertPiloto">
+		INSERT INTO 
+			piloto (DNI,nombre,apellido,edad,peso,sexo,altura) 
+		VALUES 
+			(#{DNI},#{nombre},#{apellido},#{edad},#{peso},#{sexo},#{altura});
+	</insert>
 </mapper>

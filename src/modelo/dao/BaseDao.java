@@ -72,4 +72,26 @@ public class BaseDao {
 			sqlSession.close();
 		}
 	}
+	
+	public void insertMotocicleta(Motocicleta moto) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			maper.insertMotocicleta(moto);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public void insertPiloto(Piloto pilot) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			maper.insertPiloto(pilot);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

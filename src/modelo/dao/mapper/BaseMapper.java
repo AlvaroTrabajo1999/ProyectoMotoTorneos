@@ -22,4 +22,8 @@ public interface BaseMapper {
 	public Piloto getPilotoFromDni(@Param("dni") String dni);
 	
 	public Integer insertParticipante(@Param("part") Participacion part);
+
+	public Integer insertMotocicleta(@Param("moto") Motocicleta moto);
+	
+	public Integer insertPiloto(@Param("piloto") Piloto pilot);
 }
