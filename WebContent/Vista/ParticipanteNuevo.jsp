@@ -47,13 +47,13 @@
 				<fieldset>
 					<legend>Piloto</legend>
 					
-					<label>DNI: </label><input type="text">
-					<label>Nombre: </label><input type="text">
-					<label>Apellido: </label><input type="text">
-					<label>Edad: </label><input type="number" min="18" max="110">
-					<label>Peso(kg): </label><input type="number" min="0" max="300">
-					<label>Altura(cm): </label><input type="text" min="0" max="300">
-					<label>Sexo</label><select>
+					<label>DNI: </label><input type="text" name="dni">
+					<label>Nombre: </label><input type="text" name="nom">
+					<label>Apellido: </label><input type="text" name="apellido">
+					<label>Edad: </label><input type="number" min="18" max="110" name="edad">
+					<label>Peso(kg): </label><input type="number" min="0" max="300" name="peso">
+					<label>Altura(cm): </label><input type="text" min="0" max="300" name="altura">
+					<label>Sexo</label><select name="sexo">
 						<option value="Hombre">Hombre</option>
 						<option value="Mujer">Mujer</option>
 						<option value="Otro">Otro</option>
@@ -80,9 +80,9 @@
 				<fieldset>
 					<legend>Motocicleta</legend>
 					
-					<label>Matricula: </label><input type="text">
-					<label>Marca: </label><input type="text">
-					<label>Escape: </label><input type="text">
+					<label>Matricula: </label><input type="text" name="Matriculs">
+					<label>Marca: </label><input type="text" name="Marcs">
+					<label>Escape: </label><input type="text" name="Escaps">
 				</fieldset><br>
 				
 				<input type="submit" formaction="CrearTorneo" value="Cancelar"><input type="submit" value="Crear Participante">

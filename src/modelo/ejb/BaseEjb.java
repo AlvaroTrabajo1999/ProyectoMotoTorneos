@@ -45,4 +45,14 @@ public class BaseEjb {
 		dao.insertParticipante(part);
 	}
 	
+	public void insertMotocicleta(Motocicleta moto) {
+		BaseDao dao = new BaseDao();
+		dao.insertMotocicleta(moto);
+	}
+	
+	public void insertPiloto(Piloto pilot) {
+		BaseDao dao = new BaseDao();
+		dao.insertPiloto(pilot);
+	}
+  
 }
