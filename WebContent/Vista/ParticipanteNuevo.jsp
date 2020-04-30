@@ -9,6 +9,28 @@
 		<meta charset="UTF-8">
 		<title>Torneo Motos</title>
 		<link rel="stylesheet" type="text/css" href="Vista/General.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+			  	$("#cambioPiloto").change(function(){
+			  		var valor = $(this).val();
+			    	if (valor=="crearPiloto") {
+			    		$("#pilotoExtra").show();
+			    	} else {
+			    		$("#pilotoExtra").hide();
+			    	}
+			  	});
+			  	
+			  	$("#cambioMoto").change(function(){
+			  		var valor = $(this).val();
+			    	if (valor=="crearMoto") {
+			    		$("#motoExtra").show();
+			    	} else {
+			    		$("#motoExtra").hide();
+			    	}
+			  	});
+			});
+		</script>
 	</head>
 	<body>
 	
@@ -29,8 +51,8 @@
 				
 				<!-- Mostrar Todos Los Piloto En Un Select Si Selecciona La Opcion Crear Piloto Muestra El Formulario -->
 			
-				<select name="PilotoFormulario">
-				<option value="crearPiloto">Crear Piloto Nuevo</option>
+				<select name="PilotoFormulario" id="cambioPiloto">
+				<option value="crearPiloto" selected="selected">Crear Piloto Nuevo</option>
 				<%
 					// tomamos el atributo de los pilotos:
 					ArrayList<Piloto> pilotos = (ArrayList<Piloto>) request.getAttribute("pilotos");
@@ -44,7 +66,7 @@
 				%>
 				</select>
 				
-				<fieldset>
+				<fieldset id="pilotoExtra">
 					<legend>Piloto</legend>
 					
 					<label>DNI: </label><input type="text" name="dni">
@@ -62,8 +84,8 @@
 				
 				<!-- Mostrar Todas Las Motos En Un Select Si Selecciona La Opcion Crear Moto Muestra el Formulario -->
 				
-				<select name="MotoFormulario">
-				<option value="crearMoto">Crear Moto Nueva</option>
+				<select name="MotoFormulario" id="cambioMoto">
+				<option value="crearMoto" selected="selected">Crear Moto Nueva</option>
 				<%
 					// tomamos el atributo de las motos:
 					ArrayList<Motocicleta> motos = (ArrayList<Motocicleta>) request.getAttribute("motociletas");
@@ -77,7 +99,7 @@
 				%>
 				</select>
 				
-				<fieldset>
+				<fieldset id="motoExtra">
 					<legend>Motocicleta</legend>
 					
 					<label>Matricula: </label><input type="text" name="Matriculs">
