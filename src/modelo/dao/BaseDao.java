@@ -72,7 +72,7 @@ public class BaseDao {
 			sqlSession.close();
 		}
 	}
-	
+  
 	public void insertMotocicleta(Motocicleta moto) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -94,4 +94,5 @@ public class BaseDao {
 			sqlSession.close();
 		}
 	}
+
 }

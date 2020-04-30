@@ -54,4 +54,5 @@ public class BaseEjb {
 		BaseDao dao = new BaseDao();
 		dao.insertPiloto(pilot);
 	}
+  
 }

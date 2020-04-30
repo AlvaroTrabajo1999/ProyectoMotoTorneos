@@ -75,4 +75,5 @@
 		VALUES 
 			(#{DNI},#{nombre},#{apellido},#{edad},#{peso},#{sexo},#{altura});
 	</insert>
+
 </mapper>

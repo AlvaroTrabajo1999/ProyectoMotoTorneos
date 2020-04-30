@@ -26,4 +26,5 @@ public interface BaseMapper {
 	public Integer insertMotocicleta(@Param("moto") Motocicleta moto);
 	
 	public Integer insertPiloto(@Param("piloto") Piloto pilot);
+
 }
