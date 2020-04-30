@@ -59,6 +59,11 @@ public class ParticipanteNuevo extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ArrayList<Participacion> participantesTotales = (ArrayList<Participacion>) request.getAttribute("participantesTotales");
+		if (participantesTotales == null) {
+			participantesTotales = new ArrayList<Participacion>();
+		}
+		
 		//Creamos las variables que seran el piloto y su moto definitivas
 		Piloto pilotoFinal = new Piloto();
 		Motocicleta motoFinal = new Motocicleta();
@@ -115,7 +120,12 @@ public class ParticipanteNuevo extends HttpServlet {
 			part.setId_moto(motoFinal.getMATRICULA());
 			part.setId_piloto(pilotoFinal.getDNI());
 			
-			baseEjb.insertParticipante(part);
+//			baseEjb.insertParticipante(part);
+			participantesTotales.add(part);
+			request.setAttribute("participantesTotales", participantesTotales);
+			
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/CrearTorneo.jsp");
+			rs.forward(request, response);
 		}
 		
 	}
