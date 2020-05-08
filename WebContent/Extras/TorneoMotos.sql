@@ -1,8 +1,8 @@
 create Database if not exists TorneoMotos;
 use TorneoMotos;
 
-CREATE USER if not exists 'proyectofinal'@'%' IDENTIFIED BY 'Ageofempires2';
-GRANT ALL ON TorneoMotos.* TO 'proyectofinal'@'%';
+/*CREATE USER if not exists 'proyectofinal'@'%' IDENTIFIED BY 'Ageofempires2';
+GRANT ALL ON TorneoMotos.* TO 'proyectofinal'@'%';*/
 
 create table if not exists piloto ( 
 DNI varchar(32) not null , 
@@ -28,7 +28,7 @@ foreign key (piloto) references piloto(DNI)
 INSERT INTO piloto VALUES ( '43473749T', 'Alvaro', 'DelCampo', 20, 115.4, 'Hombre', 1.95);
 
 create table if not exists motocicleta ( 
-MATRICULA varchar(32) not null , 
+matricula varchar(32) not null , 
 marca varchar(32) not null,
 tuboEscape varchar(32) not null,
 
@@ -105,8 +105,19 @@ foreign key (id_carrera) references carrera(ID)
 
 INSERT INTO participacion (id_moto,id_piloto,id_carrera,mejorVuelta) VALUES ("8565BVV",'43473749T',1,58.57);
 
+create table if not exists usuario (
+ID int not null auto_increment,
+nombre varchar(32) not null,
+apellidos varchar(100) not null,
+usuario varchar(32) not null,
+contrasena varchar(32) not null,
+piloto varchar(32),
 
+primary key (ID),
+foreign key (piloto) references piloto(DNI)
+);
 
+INSERT INTO usuario (nombre,apellidos,usuario,contrasena) VALUES ("Alvaro",'Del Campo','Castle990','contraseña123');
 
 
 

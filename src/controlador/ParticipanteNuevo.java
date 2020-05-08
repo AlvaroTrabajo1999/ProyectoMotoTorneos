@@ -120,7 +120,7 @@ public class ParticipanteNuevo extends HttpServlet {
 			String MotoMarca = request.getParameter("Marcs");
 			String MotoEscape = request.getParameter("Escaps");
 			
-			motoFinal.setMATRICULA(MotoMatricula);
+			motoFinal.setMatricula(MotoMatricula);
 			motoFinal.setMarca(MotoMarca);
 			motoFinal.setTuboEscape(MotoEscape);
 			
@@ -133,10 +133,10 @@ public class ParticipanteNuevo extends HttpServlet {
 		
 		
 		if (motoFinal != null && pilotoFinal != null) {
-			part.setId_moto(motoFinal.getMATRICULA());
+			part.setId_moto(motoFinal.getMatricula());
 			part.setId_piloto(pilotoFinal.getDNI());
 			
-//			baseEjb.insertParticipante(part);
+			baseEjb.insertParticipante(part);
 			participantesTotales.add(part);
 			request.setAttribute("participantesTotales", participantesTotales);
 			
