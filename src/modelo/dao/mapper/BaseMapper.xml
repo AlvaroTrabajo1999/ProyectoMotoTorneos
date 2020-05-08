@@ -18,7 +18,7 @@
 	
 	
 	<resultMap type='Motocicleta' id='MotocicletaResult'>
-		<id property='MATRICULA' column='MATICULA' />
+		<id property='matricula' column='matricula' />
 		<result property='marca' column='marca' />
 		<result property='tuboEscape' column='tuboEscape' />
 	</resultMap>
@@ -28,7 +28,7 @@
 	</select>
 	
 	<select id='getMotocicletaFromMatricula' resultMap='MotocicletaResult'>
-		select * from motocicleta where MATRICULA = #{matricula};
+		select * from motocicleta where matricula = #{matricula};
 	</select>
 	
 	
@@ -64,9 +64,9 @@
 	
 	<insert id="insertMotocicleta">
 		INSERT INTO 
-			motocicleta (MATRICULA,marca,tuboEscape) 
+			motocicleta (matricula,marca,tuboEscape) 
 		VALUES 
-			(#{MATRICULA},#{marca},#{tuboEscape});
+			(#{moto.matricula},#{moto.marca},#{moto.tuboEscape});
 	</insert>
 	
 	<insert id="insertPiloto">

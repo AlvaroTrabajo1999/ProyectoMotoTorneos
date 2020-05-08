@@ -2,7 +2,7 @@ package modelo.pojo;
 
 public class Motocicleta {
 
-	private String MATRICULA;
+	private String matricula;
 	private String marca;
 	private String tuboEscape;
 	
@@ -12,17 +12,17 @@ public class Motocicleta {
 		
 	}
 	
-	public Motocicleta(String mATRICULA, String marca, String tuboEscape) {
+	public Motocicleta(String matricula, String marca, String tuboEscape) {
 		super();
-		MATRICULA = mATRICULA;
+		this.matricula = matricula;
 		this.marca = marca;
 		this.tuboEscape = tuboEscape;
 	}
 
 	//GETTERS
 	
-	public String getMATRICULA() {
-		return MATRICULA;
+	public String getMatricula() {
+		return matricula;
 	}
 
 	public String getMarca() {
@@ -35,8 +35,8 @@ public class Motocicleta {
 
 	//SETTERS
 	
-	public void setMATRICULA(String mATRICULA) {
-		MATRICULA = mATRICULA;
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 	public void setMarca(String marca) {
