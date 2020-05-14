@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='modelo.dao.mapper.MultimediaMapper'>
+
+	<resultMap type='MultimediaCircuito' id='MultimediaCircuitoMap'>
+		<id property='circuito' column='circuito' />
+		<result property='fotoZenital' column='fotoZenital' />
+	</resultMap>
+	
+	<select id='getMultimediaCircuitos' resultMap='MultimediaCircuitoMap'>
+		select * from multimedia_circuito
+	</select>
+	
+	
+	<resultMap type='MultimediaMotocicleta' id='MultimediaMotocicletaMap'>
+		<id property='motocicleta' column='motocicleta' />
+		<result property='fotoFrontal' column='fotoFrontal' />
+		<result property='fotoPerfil' column='fotoPerfil' />
+		<result property='fotoTrasera' column='fotoTrasera' />
+	</resultMap>
+	
+	<select id='getMultimediaMotocicletas' resultMap='MultimediaMotocicletaMap'>
+		select * from multimedia_motocicleta
+	</select>
+	
+	
+	<resultMap type='MultimediaPiloto' id='MultimediaPilotoMap'>
+		<id property='piloto' column='piloto' />
+		<result property='fotoPerfil' column='fotoPerfil' />
+		<result property='fotoGeneral' column='fotoGeneral' />
+	</resultMap>
+	
+	<select id='getMultimediaPilotos' resultMap='MultimediaPilotoMap'>
+		select * from multimedia_piloto
+	</select>
+	
+</mapper>

@@ -4,22 +4,30 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Torneo Motos</title>
+		<title>MoTorneos</title>
 		<link rel="stylesheet" type="text/css" href="Vista/General.css"/>
 	</head>
 	<body>
 	
 		<div id="header">
-			<h1>Moto Torneos</h1>
+			<img src="img/Logo.png" width="75">
+			<h1>HOME</h1>
 		</div>
 	
 		<div id="navigator">
 			<a href="Princial">Home</a>
+			<a href="Records">Records</a>
+			<a href="MultimediaGeneral">Multimedia</a>
 			<a href="Torneo">Torneo</a>
+			<a href="Register">Registro</a>
 		</div>
 	
 		<div id="body">
-			<h1>Home</h1>
+			<div>
+				<img>
+				<h2></h2>
+				<p></p>
+			</div>
 		</div>
 	
 		<div id="footer">

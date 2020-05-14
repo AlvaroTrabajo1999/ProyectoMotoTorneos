@@ -1,4 +1,5 @@
-<%@page import="modelo.pojo.Torneo"%>
+<%@page import="modelo.ejb.RecordsEjb"%>
+<%@page import="modelo.pojo.MejoresVueltasRecord"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,13 +7,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Torneos</title>
+		<title>MoTorneos</title>
 		<link rel="stylesheet" type="text/css" href="Vista/General.css"/>
-</head>
+	</head>
 	<body>
 	
 		<div id="header">
-			<h1>Crear Torneos</h1>
+			<img src="img/Logo.png" width="75">
+			<h1>Records</h1>
 		</div>
 	
 		<div id="navigator">
@@ -24,22 +26,24 @@
 		</div>
 	
 		<div id="body">
-			<h1>Torneo</h1>
-			
 			<%
-				// tomamos el atributo de los torneos:
-				ArrayList<Torneo> torneos = (ArrayList<Torneo>) request.getAttribute("torneos");
+				//llamamos al ejb que utilizaremos
+				RecordsEjb recordsEjb = new RecordsEjb();
+			
+				// tomamos las mejores vueltas registradas
+				ArrayList<MejoresVueltasRecord> mejoresVueltas = (ArrayList<MejoresVueltasRecord>) request.getAttribute("mejoresVueltas");
 			
 				//comprobamos que tenga algun contenido, y pintamos segun tenga este contenido
-				if (torneos != null){
-					out.print("<table>");
-					out.print("<tr><th>Identificador</th>  <th>Rondas</th>  <th>Circuito</th>  <th>Nombre</th></tr>");
-					
-					for (Torneo t : torneos){
-						out.print("<tr><td>"+t.getID()+"</td>  <td>"+t.getRondas()+"</td>  <td>"+t.getId_circuito()+"</td>  <td>"+t.getNombre()+"</td></tr>");
+				if (mejoresVueltas != null){
+					for (MejoresVueltasRecord m : mejoresVueltas){
+						out.print("<div>");
+						if (recordsEjb.getMultimediaCircuitoById(m.getId_circuito()) != null){
+							out.print("		<img src='"+recordsEjb.getMultimediaCircuitoById(m.getId_circuito()).getFotoZenital()+"' width='100'>");
+						}
+						out.print("		<h2>"+recordsEjb.getCircuitoById(m.getId_circuito()).getLocalidad()+"  "+m.getMejorVuelta()+"</h2>");
+						out.print("		<h3></h3>");
+						out.print("</div>");
 					}
-					
-					out.print("</table>");
 				} else {
 					out.print("<table>");
 					out.print("<tr><th>Identificador</th>  <th>Rondas</th>  <th>Circuito</th>  <th>Nombre</th></tr>");
@@ -47,7 +51,6 @@
 					out.print("</table>");
 				}
 			%>
-			
 		</div>
 	
 		<div id="footer">

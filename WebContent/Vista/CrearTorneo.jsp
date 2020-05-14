@@ -54,8 +54,11 @@
 		</div>
 	
 		<div id="navigator">
-			<a href="Principal">Home</a>
+			<a href="Princial">Home</a>
+			<a href="Records">Records</a>
+			<a href="MultimediaGeneral">Multimedia</a>
 			<a href="Torneo">Torneo</a>
+			<a href="Register">Registro</a>
 		</div>
 	
 		<div id="body">

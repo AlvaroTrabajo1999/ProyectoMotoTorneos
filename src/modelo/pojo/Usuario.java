@@ -1,6 +1,6 @@
 package modelo.pojo;
 
-public class usuario {
+public class Usuario {
 
 	private int ID;
 	private String nombre;
@@ -8,21 +8,21 @@ public class usuario {
 	private String usuario;
 	private String contrasena;
 	private String piloto;
+	private String mail;
 	
 	//CONSTRUCTORES
 	
-	public usuario() {
+	public Usuario() {
 		
 	}
 	
-	public usuario(int iD, String nombre, String apellidos, String usuario, String contrasena, String piloto) {
+	public Usuario(String nombre, String apellidos, String usuario, String contrasena, String mail) {
 		super();
-		ID = iD;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.usuario = usuario;
 		this.contrasena = contrasena;
-		this.piloto = piloto;
+		this.mail = mail;
 	}
 
 	//GETTERS
@@ -50,12 +50,12 @@ public class usuario {
 	public String getPiloto() {
 		return piloto;
 	}
+	
+	public String getMail() {
+		return mail;
+	}
 
 	//SETTERS
-	
-	public void setID(int iD) {
-		ID = iD;
-	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -77,6 +77,8 @@ public class usuario {
 		this.piloto = piloto;
 	}
 	
-	
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 	
 }
