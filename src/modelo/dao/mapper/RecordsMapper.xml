@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='modelo.dao.mapper.RecordsMapper'>
+
+	<resultMap type='MultimediaCircuito' id='MultimediaCircuito'>
+		<id property='circuito' column='circuito' />
+		<result property='fotoZenital' column='fotoZenital' />
+	</resultMap>
+	
+	<select id='getMultimediaCircuitoById' resultMap='MultimediaCircuito'>
+		select * from multimedia_circuito where circuito = #{idCircuito}
+	</select>
+	
+	<resultMap type='MejoresVueltasRecord' id='MejorVueltaResult'>
+		<id property='id_participacion' column='id_participacion' />
+		<result property='mejorVuelta' column='mejorVuelta' />
+		<result property='localidad' column='localidad' />
+		<result property='id_circuito' column='id_circuito' />
+	</resultMap>
+	
+	<select id='getMejoresVueltasRecords' resultMap='MejorVueltaResult'>
+		select participacion.ID as id_participacion, participacion.mejorVuelta, circuito.localidad, circuito.ID as id_circuito
+		from participacion
+		inner join carrera on participacion.id_carrera = carrera.ID
+		inner join torneo on carrera.id_torneo = torneo.ID
+		inner join circuito on torneo.id_circuito = circuito.ID
+		group by circuito.ID
+		order by participacion.mejorVuelta desc;
+	</select>
+	
+	
+	<resultMap type='Circuito' id='CircuitoResult'>
+		<id property='ID' column='ID' />
+		<result property='localidad' column='localidad' />
+		<result property='distancia' column='distancia' />
+		<result property='recta' column='recta' />
+	</resultMap>
+	
+	<select id='getCircuitoById' resultMap='CircuitoResult'>
+		select * from circuito where ID = #{idCircuito}
+	</select>
+	
+</mapper>

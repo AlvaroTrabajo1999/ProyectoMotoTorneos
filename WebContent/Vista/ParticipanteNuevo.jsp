@@ -40,7 +40,10 @@
 	
 		<div id="navigator">
 			<a href="Princial">Home</a>
+			<a href="Records">Records</a>
+			<a href="MultimediaGeneral">Multimedia</a>
 			<a href="Torneo">Torneo</a>
+			<a href="Register">Registro</a>
 		</div>
 	
 		<div id="body">
@@ -93,7 +96,7 @@
 					//comprobamos que tenga algun contenido, y pintamos segun tenga este contenido
 					if (motos != null){
 						for (Motocicleta m : motos){
-							out.print("<option value='"+m.getMATRICULA()+"'>"+m.getMarca()+"-"+m.getMATRICULA()+"</option>");
+							out.print("<option value='"+m.getMatricula()+"'>"+m.getMarca()+"-"+m.getMatricula()+"</option>");
 						}
 					}
 				%>

@@ -23,14 +23,13 @@ public class CrearTorneo extends HttpServlet {
 	//creamos el logger
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(CrearTorneo.class);
 	
-	
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
 			
 		} catch (Exception e) {
-			
+			//en caso de que salte algun error lo guardaremos en el logger:
+			logger.error("error en el controlador CrearTorneo");
 		} finally {
 			//reenviamos al servlet deseado
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/CrearTorneo.jsp");

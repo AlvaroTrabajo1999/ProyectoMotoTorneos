@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='modelo.dao.mapper.SesionMapper'>
+
+	<resultMap type='Usuario' id='Usuarios'>
+		<id property='ID' column='ID' />
+		<result property='nombre' column='nombre' />
+		<result property='apellidos' column='apellidos' />
+		<result property='usuario' column='usuario' />
+		<result property='contrasena' column='contrasena' />
+		<result property='piloto' column='piloto' />
+	</resultMap>
+	
+	<select id='getUsuarioByUser' resultMap='Usuarios'>
+		select * from usuario where usuario=#{nombreUsuario}
+	</select>
+	
+	<select id='existsUsuario' resultMap='Usuarios'>
+		select * from usuario where
+			usuario = #{usu} and contrasena = #{cont}
+	</select>
+	
+	<insert id="registerUsuario">
+		INSERT INTO 
+			usuario (nombre,apellidos,mail,usuario,contrasena) 
+		VALUES 
+			(#{usu.nombre},#{usu.apellidos},#{usu.mail},#{usu.usuario},#{usu.contrasena});
+	</insert>
+</mapper>
