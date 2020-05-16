@@ -53,10 +53,11 @@ public class Register extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
 		String mail = request.getParameter("mail");
+		int telefono = Integer.parseInt(request.getParameter("telefono"));
 		
 		if (sesionEJB.getUsuarioByUser(usuario) == null) {
 			if (contrasena.equals(confContrasena)) {
-				Usuario usu = new Usuario(nombre,apellidos,usuario,contrasena,mail);
+				Usuario usu = new Usuario(nombre,apellidos,usuario,contrasena,mail,telefono);
 				
 				sesionEJB.registerUsuario(usu);
 			} else {

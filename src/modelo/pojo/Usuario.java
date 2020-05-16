@@ -9,6 +9,7 @@ public class Usuario {
 	private String contrasena;
 	private String piloto;
 	private String mail;
+	private int telefono;
 	
 	//CONSTRUCTORES
 	
@@ -16,13 +17,14 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(String nombre, String apellidos, String usuario, String contrasena, String mail) {
+	public Usuario(String nombre, String apellidos, String usuario, String contrasena, String mail, int telefono) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.usuario = usuario;
 		this.contrasena = contrasena;
 		this.mail = mail;
+		this.telefono = telefono;
 	}
 
 	//GETTERS
@@ -54,6 +56,10 @@ public class Usuario {
 	public String getMail() {
 		return mail;
 	}
+	
+	public int getTelefono() {
+		return telefono;
+	}
 
 	//SETTERS
 
@@ -79,6 +85,10 @@ public class Usuario {
 	
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
 	}
 	
 }
