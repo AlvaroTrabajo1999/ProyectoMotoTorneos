@@ -10048,7 +10048,7 @@ img::-moz-selection {
   color: #fff;
   letter-spacing: 0.0625em;
 }
-#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+#mainNav .navbar-nav .nav-item, #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #fed136;
 }
 

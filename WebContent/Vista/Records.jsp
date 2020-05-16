@@ -1,61 +1,119 @@
 <%@page import="modelo.ejb.RecordsEjb"%>
 <%@page import="modelo.pojo.MejoresVueltasRecord"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>MoTorneos</title>
-		<link rel="stylesheet" type="text/css" href="Vista/General.css"/>
-	</head>
-	<body>
-	
-		<div id="header">
-			<img src="img/Logo.png" width="75">
-			<h1>Records</h1>
-		</div>
-	
-		<div id="navigator">
-			<a href="Princial">Home</a>
-			<a href="Records">Records</a>
-			<a href="MultimediaGeneral">Multimedia</a>
-			<a href="Torneo">Torneo</a>
-			<a href="Register">Registro</a>
-		</div>
-	
-		<div id="body">
-			<%
-				//llamamos al ejb que utilizaremos
-				RecordsEjb recordsEjb = new RecordsEjb();
-			
-				// tomamos las mejores vueltas registradas
-				ArrayList<MejoresVueltasRecord> mejoresVueltas = (ArrayList<MejoresVueltasRecord>) request.getAttribute("mejoresVueltas");
-			
-				//comprobamos que tenga algun contenido, y pintamos segun tenga este contenido
-				if (mejoresVueltas != null){
-					for (MejoresVueltasRecord m : mejoresVueltas){
-						out.print("<div>");
-						if (recordsEjb.getMultimediaCircuitoById(m.getId_circuito()) != null){
-							out.print("		<img src='"+recordsEjb.getMultimediaCircuitoById(m.getId_circuito()).getFotoZenital()+"' width='100'>");
-						}
-						out.print("		<h2>"+recordsEjb.getCircuitoById(m.getId_circuito()).getLocalidad()+"  "+m.getMejorVuelta()+"</h2>");
-						out.print("		<h3></h3>");
-						out.print("</div>");
-					}
-				} else {
-					out.print("<table>");
-					out.print("<tr><th>Identificador</th>  <th>Rondas</th>  <th>Circuito</th>  <th>Nombre</th></tr>");
-					out.print("<tr><td colspan='4'>En estos momentos no disponemos de estos datos</td></tr>");
-					out.print("</table>");
-				}
-			%>
-		</div>
-	
-		<div id="footer">
-			<pre>Alvaro Del Campo - 603 016 222</pre>
-		</div>
-	
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MoTorneos</title>
+        <link rel="icon" type="image/x-icon" href="Vista/assets/img/favicon.ico" />
+
+        <!--Iconos de Font Awesome-->
+        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+
+        <!--Family fonts de Google-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+        <!--CSS/Boostrap-->
+        <link href="Vista/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Register">Registro</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-heading">MoTorneos</div>
+                <div class="masthead-subheading">Records guardados por la aplicación</div>
+            </div>
+        </header>
+
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Mejores Marcas</h2>
+                    <h3 class="section-subheading text-muted">Te animamos a intentar mejorar estas marcas<br>¡ANIMO!</h3>
+                </div>
+                <ul class="timeline">
+                
+                	<%
+                	
+                		RecordsEjb recordsEjb = new RecordsEjb();
+                		ArrayList<MejoresVueltasRecord> mejoresVueltas = (ArrayList<MejoresVueltasRecord>) request.getAttribute("mejoresVueltas");
+                	
+                		if (mejoresVueltas != null){
+        					for (int i = 0; i < mejoresVueltas.size() ; i++){
+        						MejoresVueltasRecord actual = mejoresVueltas.get(i);
+        						
+								if (i % 2 == 0){
+	        						out.print("<li>");
+								} else {
+	        						out.print("<li class='timeline-inverted'>");
+								}
+								
+								if (recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()) != null){
+									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='"+recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()).getFotoZenital()+"'/></div>");
+								} else {
+									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='Vista/assets/img/logos/logoCircuito.jpg'/></div>");
+								}
+								
+        						out.print("<div class='timeline-panel'>");
+        						out.print("		<div class='timeline-heading'>");
+        						out.print("			<h4>"+recordsEjb.getCircuitoById(actual.getId_circuito()).getLocalidad()+"</h4>");
+        						out.print("			<h4 class='subheading'>Record General: "+actual.getMejorVuelta()+"</h4>");
+        						out.print("		</div>");
+       							out.print("		<div class='timeline-body'><p class='text-muted'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>");
+        						out.print("</div>");
+        						out.print("</li>");
+        					}
+        				}
+                		
+                	%>
+                	
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>Be Part<br/>Of Our<br/>Story!</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        
+        <!--Javascript-->
+        <script src="Vista/js/scripts.js"></script>
+    </body>
 </html>
