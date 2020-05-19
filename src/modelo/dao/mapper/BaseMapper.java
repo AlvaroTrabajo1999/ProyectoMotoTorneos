@@ -24,4 +24,5 @@ public interface BaseMapper {
 	public Piloto getPilotoFromDni(@Param("dni") String dni);
 	
 	public Circuito getCircuitoFromId(@Param("circuito") String circuito);
+
 }

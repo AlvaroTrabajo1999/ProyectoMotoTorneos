@@ -49,4 +49,5 @@ public class BaseEjb {
 		BaseDao dao = new BaseDao();
 		return dao.getCircuitoFromId(circuito);
 	}
+  
 }
