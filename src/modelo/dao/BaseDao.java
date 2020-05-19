@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 
 import modelo.dao.mapper.BaseMapper;
+import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
-import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
 
@@ -32,21 +32,31 @@ public class BaseDao {
 		}
 	}
 	
-	public Motocicleta getMotocicletaFromMatricula(String matricula){
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try {
-			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
-			return maper.getMotocicletaFromMatricula(matricula);
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
 	public ArrayList<Piloto> getPilotos(){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
 			return maper.getPilotos();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public ArrayList<Circuito> getCircuito(){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getCircuito();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public Motocicleta getMotocicletaFromMatricula(String matricula){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getMotocicletaFromMatricula(matricula);
 		} finally {
 			sqlSession.close();
 		}
@@ -62,34 +72,11 @@ public class BaseDao {
 		}
 	}
 	
-	public void insertParticipante(Participacion part) {
+	public Circuito getCircuitoFromId(String circuito){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
-			maper.insertParticipante(part);
-			sqlSession.commit();
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public void insertMotocicleta(Motocicleta moto) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try {
-			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
-			maper.insertMotocicleta(moto);
-			sqlSession.commit();
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public void insertPiloto(Piloto pilot) {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		try {
-			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
-			maper.insertPiloto(pilot);
-			sqlSession.commit();
+			return maper.getCircuitoFromId(circuito);
 		} finally {
 			sqlSession.close();
 		}

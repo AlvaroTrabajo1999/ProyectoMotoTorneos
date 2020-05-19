@@ -47,13 +47,19 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//tomamos los parametros del formulario
-		String usuario = request.getParameter("user");
-		String contrasena = request.getParameter("contrasena");
-		String confContrasena = request.getParameter("confirmacion");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
+		String contrasena = request.getParameter("contrasena");
+		String confContrasena = request.getParameter("confirmacion");
 		String mail = request.getParameter("mail");
+		String usuario = request.getParameter("user");
 		int telefono = Integer.parseInt(request.getParameter("telefono"));
+		
+		if (nombre.equals("") || apellidos.equals("") || contrasena.equals("") || confContrasena.equals("") || mail.equals("") || usuario.equals("") || telefono == 0) {
+			request.setAttribute("errorVacio", "algo");
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Register.jsp");
+			rs.forward(request, response);
+		}
 		
 		if (sesionEJB.getUsuarioByUser(usuario) == null) {
 			if (contrasena.equals(confContrasena)) {

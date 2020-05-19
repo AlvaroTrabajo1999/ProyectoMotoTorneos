@@ -6,8 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import modelo.dao.BaseDao;
+import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
-import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
 
@@ -25,14 +25,19 @@ public class BaseEjb {
 		return dao.getMotocicletas();
 	}
 	
-	public Motocicleta getMotocicletaFromMatricula(String matricula){
-		BaseDao dao = new BaseDao();
-		return dao.getMotocicletaFromMatricula(matricula);
-	}
-	
 	public ArrayList<Piloto> getPilotos(){
 		BaseDao dao = new BaseDao();
 		return dao.getPilotos();
+	}
+	
+	public ArrayList<Circuito> getCircuito(){
+		BaseDao dao = new BaseDao();
+		return dao.getCircuito();
+	}
+	
+	public Motocicleta getMotocicletaFromMatricula(String matricula){
+		BaseDao dao = new BaseDao();
+		return dao.getMotocicletaFromMatricula(matricula);
 	}
 	
 	public Piloto getPilotoFromDni(String dni){
@@ -40,18 +45,8 @@ public class BaseEjb {
 		return dao.getPilotoFromDni(dni);
 	}
 	
-	public void insertParticipante(Participacion part) {
+	public Circuito getCircuitoFromId(String circuito){
 		BaseDao dao = new BaseDao();
-		dao.insertParticipante(part);
-	}
-	
-	public void insertMotocicleta(Motocicleta moto) {
-		BaseDao dao = new BaseDao();
-		dao.insertMotocicleta(moto);
-	}
-	
-	public void insertPiloto(Piloto pilot) {
-		BaseDao dao = new BaseDao();
-		dao.insertPiloto(pilot);
+		return dao.getCircuitoFromId(circuito);
 	}
 }

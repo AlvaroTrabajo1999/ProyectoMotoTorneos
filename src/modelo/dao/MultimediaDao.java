@@ -40,4 +40,34 @@ public class MultimediaDao {
 			sqlSession.close();
 		}
 	}
+	
+	public MultimediaPiloto getMultimediaPilotoById(String piloto){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			MultimediaMapper maper = sqlSession.getMapper(MultimediaMapper.class);
+			return maper.getMultimediaPilotoById(piloto);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public MultimediaCircuito getMultimediaCircuitoById(String circuito){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			MultimediaMapper maper = sqlSession.getMapper(MultimediaMapper.class);
+			return maper.getMultimediaCircuitoById(circuito);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public MultimediaMotocicleta getMultimediaMotocicletasById(String moto){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			MultimediaMapper maper = sqlSession.getMapper(MultimediaMapper.class);
+			return maper.getMultimediaMotocicletasById(moto);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

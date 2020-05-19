@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
+import modelo.ejb.BaseEjb;
 import modelo.ejb.MultimediaEjb;
-import modelo.pojo.MultimediaCircuito;
-import modelo.pojo.MultimediaMotocicleta;
-import modelo.pojo.MultimediaPiloto;
+import modelo.pojo.Circuito;
+import modelo.pojo.Motocicleta;
+import modelo.pojo.Piloto;
 
 /**
  * Servlet implementation class MultimediaGeneral
@@ -31,25 +32,27 @@ public class MultimediaGeneral extends HttpServlet {
     
 	@EJB
 	MultimediaEjb multimediaEjb;
+	@EJB
+	BaseEjb baseEjb;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			
-			ArrayList<MultimediaCircuito> multimediaCircuito = multimediaEjb.getMultimediaCircuitos();
-			ArrayList<MultimediaMotocicleta> multimediaMoto = multimediaEjb.getMultimediaMotocicletas();
-			ArrayList<MultimediaPiloto> multimediaPiloto = multimediaEjb.getMultimediaPilotos();
-
-			request.setAttribute("multimediaCircuito", multimediaCircuito);
-			request.setAttribute("multimediaMoto", multimediaMoto);
-			request.setAttribute("multimediaPiloto", multimediaPiloto);
+			
 			
 		} catch (Exception e) {
 			//en caso de que salte algun error lo guardaremos en el logger:
 			logger.error("error en el controlador Multimedia General");
 		} finally {
-			//reenviamos al servlet deseado
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/MultimediaGeneral.jsp");
-			rs.forward(request, response);
+			
+			if (request.getParameter("imagenes") != null) {
+				request.setAttribute("datos", request.getParameter("imagenes"));
+				doPost(request, response);
+			} else {
+				//reenviamos al servlet deseado
+				RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/MultimediaGeneral.jsp");
+				rs.forward(request, response);
+			}
 		}
 
 	}
@@ -57,6 +60,38 @@ public class MultimediaGeneral extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String datos = (String) request.getAttribute("datos");
+		request.setAttribute("datosTipo", datos);
+		
+		if (datos.equals("motos")) {
+			
+			ArrayList<Motocicleta> multimedia = null;
+			if (baseEjb.getMotocicletas() != null) {
+				multimedia = baseEjb.getMotocicletas();
+			}
+			request.setAttribute("datos", multimedia);
+			
+		} else if (datos.equals("circuitos")) {
+			
+			ArrayList<Circuito> multimedia = null;
+			if (baseEjb.getCircuito() != null) {
+				multimedia = baseEjb.getCircuito();
+			}
+			request.setAttribute("datos", multimedia);
+			
+		} else {
+			
+			ArrayList<Piloto> multimedia = null;
+			if (baseEjb.getPilotos() != null) {
+				multimedia = baseEjb.getPilotos();
+			}
+			request.setAttribute("datos", multimedia);
+			
+		}
+		
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/MultimediaGeneral.jsp");
+		rs.forward(request, response);
 		
 	}
 

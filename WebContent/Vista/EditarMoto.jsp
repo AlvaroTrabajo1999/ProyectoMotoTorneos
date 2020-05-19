@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="modelo.pojo.Motocicleta"%>
 <%@page import="modelo.pojo.Usuario"%>
 <html>
     <head>
@@ -52,39 +53,42 @@
             </div>
         </header>
 
+		<%
+			Motocicleta moto = (Motocicleta) request.getAttribute("moto");
+		%>
+
          <div class="page-wrapper p-t-130 font-poppins">
             <div class="wrapper wrapper--w680">
                 <div class="card card-4">
                     <div class="card-body">
-                        <h2 class="title">Formulario De Identificación</h2>
-                        <form method="POST" action="Login">
+                        <h2 class="title">Editar Motocicleta</h2>
+                        <form method="POST" action="EditarMoto">
                             <div class="row row-space">
-	                            <%
-									String errorLogin = (String) request.getAttribute("errorEmpty");
-								
-		                            if (errorLogin != null){
-										out.print("<div class='col'>");
-										out.print("		<div class='input-group'>");
-										out.print("			<label class='label'>Se han detectado campos vacios / erroneos</label>");
-										out.print("		</div>");
-										out.print("</div>");
-									}
-								%>
                                 <div class="col">
                                     <div class="input-group">
-                                        <label class="label">Usuario</label>
-                                        <input class="input--style-4" type="text" name="user" required>
+                                        <label class="label">Matricula</label>
+                                        <input class="input--style-4" type="text" name="matricula" value="<%out.print(moto.getMatricula());%>" required>
                                     </div>
                                 </div>
+                            </div>
+                          	<div class="row row-space">
                                 <div class="col">
                                     <div class="input-group">
-                                        <label class="label">Contraseña</label>
-                                        <input class="input--style-4" type="text" name="contrasena" required>
+                                        <label class="label">Marca</label>
+                                        <input class="input--style-4" type="text" name="marca" value="<%out.print(moto.getMarca());%>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="label">Tubo de escape</label>
+                                        <input class="input--style-4" type="text" name="escape" value="<%out.print(moto.getTuboEscape());%>" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="p-t-15">
-                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Identificarse</button>
+                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Editar</button>
                             </div>
                         </form>
                     </div>

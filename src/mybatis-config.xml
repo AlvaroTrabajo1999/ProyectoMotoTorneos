@@ -34,6 +34,7 @@
 		<mapper resource='modelo/dao/mapper/RecordsMapper.xml' />
 		<mapper resource='modelo/dao/mapper/SesionMapper.xml' />
 		<mapper resource='modelo/dao/mapper/MultimediaMapper.xml' />
+		<mapper resource='modelo/dao/mapper/AnadirMapper.xml' />
 	</mappers>
 	
 </configuration>

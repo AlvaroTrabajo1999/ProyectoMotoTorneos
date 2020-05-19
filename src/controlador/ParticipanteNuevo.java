@@ -82,7 +82,6 @@ public class ParticipanteNuevo extends HttpServlet {
 			pilotoFinal.setApellido(request.getParameter("apellido"));
 			pilotoFinal.setEdad(Integer.parseInt(request.getParameter("edad")));
 			pilotoFinal.setPeso(Float.parseFloat(request.getParameter("peso")));
-			pilotoFinal.setSexo(request.getParameter("sexo"));
 			pilotoFinal.setAltura(Float.parseFloat(request.getParameter("altura")));
 			
 			baseEjb.insertPiloto(pilotoFinal);
