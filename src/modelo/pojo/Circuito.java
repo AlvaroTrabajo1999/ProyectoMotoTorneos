@@ -4,8 +4,8 @@ public class Circuito {
 
 	private int ID;
 	private String localidad;
-	private int distancia;
-	private int recta;
+	private float distancia;
+	private float recta;
 	
 	//CONSTRUCTORES
 	
@@ -13,9 +13,8 @@ public class Circuito {
 		
 	}
 	
-	public Circuito(int iD, String localidad, int distancia, int recta) {
+	public Circuito(String localidad, float distancia, float recta) {
 		super();
-		ID = iD;
 		this.localidad = localidad;
 		this.distancia = distancia;
 		this.recta = recta;
@@ -31,29 +30,25 @@ public class Circuito {
 		return localidad;
 	}
 
-	public int getDistancia() {
+	public float getDistancia() {
 		return distancia;
 	}
 
-	public int getRecta() {
+	public float getRecta() {
 		return recta;
 	}
 
 	//SETTERS
-	
-	public void setID(int iD) {
-		ID = iD;
-	}
 
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
 	}
 
-	public void setDistancia(int distancia) {
+	public void setDistancia(float distancia) {
 		this.distancia = distancia;
 	}
 
-	public void setRecta(int recta) {
+	public void setRecta(float recta) {
 		this.recta = recta;
 	}
 	

@@ -7,7 +7,6 @@ public class Piloto {
 	private String apellido;
 	private int edad;
 	private float peso;
-	private String sexo;
 	private float altura;
 	
 	//CONSTUCTORES
@@ -16,14 +15,13 @@ public class Piloto {
 		
 	}
 	
-	public Piloto(String dNI, String nombre, String apellido, int edad, float peso, String sexo, float altura) {
+	public Piloto(String dNI, String nombre, String apellido, int edad, float peso, float altura) {
 		super();
 		DNI = dNI;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.peso = peso;
-		this.sexo = sexo;
 		this.altura = altura;
 	}
 
@@ -47,10 +45,6 @@ public class Piloto {
 
 	public float getPeso() {
 		return peso;
-	}
-
-	public String getSexo() {
-		return sexo;
 	}
 
 	public float getAltura() {
@@ -77,10 +71,6 @@ public class Piloto {
 
 	public void setPeso(float peso) {
 		this.peso = peso;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
 	}
 
 	public void setAltura(float altura) {

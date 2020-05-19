@@ -16,6 +16,21 @@
 	</select>
 	
 	
+	<resultMap type='Circuito' id='CircuitoResult'>
+		<id property='ID' column='ID' />
+		<result property='localidad' column='localidad' />
+		<result property='distancia' column='distancia' />
+		<result property='recta' column='recta' />
+	</resultMap>
+	
+	<select id='getCircuito' resultMap='CircuitoResult'>
+		select * from circuito;
+	</select>
+	
+	<select id='getCircuitoFromId' resultMap='CircuitoResult'>
+		select * from circuito where ID = #{circuito};
+	</select>
+	
 	
 	<resultMap type='Motocicleta' id='MotocicletaResult'>
 		<id property='matricula' column='matricula' />
@@ -39,7 +54,6 @@
 		<result property='apellido' column='apellido' />
 		<result property='edad' column='edad' />
 		<result property='peso' column='peso' />
-		<result property='sexo' column='sexo' />
 		<result property='altura' column='altura' />
 	</resultMap>
 	
@@ -50,30 +64,5 @@
 	<select id='getPilotoFromDni' resultMap='PilotoResult'>
 		select * from piloto where DNI = #{dni};
 	</select>
-	
-	
-	
-	
-	
-	<insert id="insertParticipante">
-		insert into
-			participacion(id_moto,id_piloto)
-		values
-			(#{id_moto},#{id_piloto});
-	</insert>
-	
-	<insert id="insertMotocicleta">
-		INSERT INTO 
-			motocicleta (matricula,marca,tuboEscape) 
-		VALUES 
-			(#{moto.matricula},#{moto.marca},#{moto.tuboEscape});
-	</insert>
-	
-	<insert id="insertPiloto">
-		INSERT INTO 
-			piloto (DNI,nombre,apellido,edad,peso,sexo,altura) 
-		VALUES 
-			(#{DNI},#{nombre},#{apellido},#{edad},#{peso},#{sexo},#{altura});
-	</insert>
 
 </mapper>

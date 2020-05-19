@@ -1,3 +1,4 @@
+<%@page import="modelo.pojo.Usuario"%>
 <%@page import="modelo.ejb.RecordsEjb"%>
 <%@page import="modelo.pojo.MejoresVueltasRecord"%>
 <%@page import="java.util.ArrayList"%>
@@ -32,7 +33,16 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Register">Registro</a></li>
+                        <%
+	                        HttpSession sesion = request.getSession(false);
+                        	Usuario user = (Usuario) sesion.getAttribute("usuario");
+                        
+                        	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        	} else {
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        	}
+                        %>
                     </ul>
                 </div>
             </div>
@@ -69,7 +79,7 @@
 								}
 								
 								if (recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()) != null){
-									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='"+recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()).getFotoZenital()+"'/></div>");
+									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='"+recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()).getFoto1()+"'/></div>");
 								} else {
 									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='Vista/assets/img/logos/logoCircuito.jpg'/></div>");
 								}

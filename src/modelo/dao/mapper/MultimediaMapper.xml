@@ -13,6 +13,10 @@
 		select * from multimedia_circuito
 	</select>
 	
+	<select id='getMultimediaCircuitoById' resultMap='MultimediaCircuitoMap'>
+		select * from multimedia_circuito where circuito = #{circuito};
+	</select>
+	
 	
 	<resultMap type='MultimediaMotocicleta' id='MultimediaMotocicletaMap'>
 		<id property='motocicleta' column='motocicleta' />
@@ -25,6 +29,10 @@
 		select * from multimedia_motocicleta
 	</select>
 	
+	<select id='getMultimediaMotocicletasById' resultMap='MultimediaCircuitoMap'>
+		select * from multimedia_motocicleta where motocicleta = #{moto};
+	</select>
+	
 	
 	<resultMap type='MultimediaPiloto' id='MultimediaPilotoMap'>
 		<id property='piloto' column='piloto' />
@@ -34,6 +42,10 @@
 	
 	<select id='getMultimediaPilotos' resultMap='MultimediaPilotoMap'>
 		select * from multimedia_piloto
+	</select>
+	
+	<select id='getMultimediaPilotoById' resultMap='MultimediaCircuitoMap'>
+		select * from multimedia_piloto where piloto = #{piloto};
 	</select>
 	
 </mapper>

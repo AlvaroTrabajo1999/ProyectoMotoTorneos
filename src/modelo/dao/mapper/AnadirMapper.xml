@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='modelo.dao.mapper.AnadirMapper'>
+
+	<insert id="insertParticipante">
+		insert into
+			participacion(id_moto,id_piloto)
+		values
+			(#{id_moto},#{id_piloto});
+	</insert>
+	
+	<insert id="insertMotocicleta">
+		INSERT INTO 
+			motocicleta (matricula,marca,tuboEscape) 
+		VALUES 
+			(#{moto.matricula},#{moto.marca},#{moto.tuboEscape});
+	</insert>
+	
+	<insert id="insertPiloto">
+		INSERT INTO 
+			piloto (DNI,nombre,apellido,edad,peso,altura) 
+		VALUES 
+			(#{pilot.DNI},#{pilot.nombre},#{pilot.apellido},#{pilot.edad},#{pilot.peso},#{pilot.altura});
+	</insert>
+	
+	<insert id="insertCircuito">
+		INSERT INTO 
+			circuito (localidad,distancia,recta) 
+		VALUES 
+			(#{circuito.localidad}, #{circuito.distancia}, #{circuito.recta});
+	</insert>
+	
+</mapper>

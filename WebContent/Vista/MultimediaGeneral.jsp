@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<%@page import="modelo.pojo.Piloto"%>
+<%@page import="modelo.pojo.Circuito"%>
+<%@page import="modelo.pojo.Motocicleta"%>
+<%@page import="modelo.pojo.MultimediaPiloto"%>
+<%@page import="modelo.pojo.MultimediaCircuito"%>
+<%@page import="modelo.pojo.MultimediaMotocicleta"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.pojo.Usuario"%>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -28,7 +36,16 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Register">Registro</a></li>
+                        <%
+	                        HttpSession sesion = request.getSession(false);
+                        	Usuario user = (Usuario) sesion.getAttribute("usuario");
+                        
+                        	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        	} else {
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        	}
+                        %>
                     </ul>
                 </div>
             </div>
@@ -50,12 +67,11 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4"
-                                ><div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            <a class="portfolio-link" href="MultimediaGeneral?imagenes=motos">
+                           		<div class="portfolio-hover">
+                                	<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="Vista/assets/img/portfolio/04-thumbnail.jpg" alt=""
-                            /></a>
+                                <img class="img-fluid" src="Vista/assets/img/moto/MotoLogo.png"/></a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Motocicletas</div>
                                 <div class="portfolio-caption-subheading text-muted">Branding</div>
@@ -64,12 +80,11 @@
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5"
+                            <a class="portfolio-link" href="MultimediaGeneral?imagenes=circuitos"
                                 ><div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="Vista/assets/img/portfolio/05-thumbnail.jpg" alt=""
-                            /></a>
+                                <img class="img-fluid" src="Vista/assets/img/circuito/CircuitoLogo.png"/></a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Circuitos</div>
                                 <div class="portfolio-caption-subheading text-muted">Website Design</div>
@@ -78,12 +93,11 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6"
+                            <a class="portfolio-link" href="MultimediaGeneral?imagenes=pilotos"
                                 ><div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="Vista/assets/img/portfolio/06-thumbnail.jpg" alt=""
-                            /></a>
+                                <img class="img-fluid" src="Vista/assets/img/piloto/PilotoLogo.png"/></a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Pilotos</div>
                                 <div class="portfolio-caption-subheading text-muted">Photography</div>
@@ -93,6 +107,133 @@
                 </div>
             </div>
         </section>
+        
+        <%
+        
+        	String TiposDatos = (String) request.getAttribute("datosTipo");
+        	
+        	if (TiposDatos != null){
+            	
+        		out.print("<section class='page-section bg-light'>");
+        		
+        		out.print("	<div class='container'>");
+        		out.print("		<div class='text-center'>");
+        		out.print("			<h2 class='section-heading text-uppercase'>Multimedia Especifica</h2>");
+       			out.print("		</div>");
+        		out.print("		<div class='row'>");
+            	
+            	if (TiposDatos.equals("motos")){
+            		ArrayList<Motocicleta> motocicletas = (ArrayList<Motocicleta>) request.getAttribute("datos");
+            		
+            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+            		out.print("		<div class='portfolio-item'>");
+            		out.print("			<a class='portfolio-link' href='AnadirMoto'>");
+            		out.print("				<div class='portfolio-hover'>");
+            		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+            		out.print("				</div>");
+            		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenMas.png'/>");
+           			out.print("			</a>");
+            		out.print("			<div class='portfolio-caption'>");
+            		out.print("				<div class='portfolio-caption-heading'>Añadir Motocicleta</div>");
+            		out.print("			</div>");
+            		out.print("		</div>");
+            		out.print("</div>");
+
+            		if (motocicletas != null){
+            			for (Motocicleta m : motocicletas){
+                    		out.print("	<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+                    		out.print("		<div class='portfolio-item'>");
+                    		out.print("			<a class='portfolio-link' href='FichaMoto?id="+m.getMatricula()+"'>");
+                    		out.print("				<div class='portfolio-hover'>");
+                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+                    		out.print("				</div>");
+                    		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                   			out.print("			</a>");
+                    		out.print("			<div class='portfolio-caption'>");
+                    		out.print("				<div class='portfolio-caption-heading'>Matricula: "+m.getMatricula()+"</div>");
+                    		out.print("			</div>");
+                    		out.print("		</div>");
+                    		out.print("	</div>");
+                		}
+            		}
+            		
+            	} else if (TiposDatos.equals("circuitos")){
+            		ArrayList<Circuito> Multimedia = (ArrayList<Circuito>) request.getAttribute("datos");
+            		
+            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+            		out.print("		<div class='portfolio-item'>");
+            		out.print("			<a class='portfolio-link' href='AnadirCircuito'>");
+            		out.print("				<div class='portfolio-hover'>");
+            		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+            		out.print("				</div>");
+            		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenMas.png'/>");
+           			out.print("			</a>");
+            		out.print("			<div class='portfolio-caption'>");
+            		out.print("				<div class='portfolio-caption-heading'>Añadir Circuito</div>");
+            		out.print("			</div>");
+            		out.print("		</div>");
+            		out.print("</div>");
+
+            		if (Multimedia != null){
+            			for (Circuito c : Multimedia){
+                    		out.print("	<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+                    		out.print("		<div class='portfolio-item'>");
+                    		out.print("			<a class='portfolio-link' href='FichaCircuito?id="+c.getID()+"'>");
+                    		out.print("				<div class='portfolio-hover'>");
+                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+                    		out.print("				</div>");
+                    		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                   			out.print("			</a>");
+                    		out.print("			<div class='portfolio-caption'>");
+                    		out.print("				<div class='portfolio-caption-heading'>Localidad: "+c.getLocalidad()+"</div>");
+                    		out.print("			</div>");
+                    		out.print("		</div>");
+                    		out.print("	</div>");
+                		}
+            		}
+            	} else {
+            		ArrayList<Piloto> Multimedia = (ArrayList<Piloto>) request.getAttribute("datos");
+            		
+            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+            		out.print("		<div class='portfolio-item'>");
+            		out.print("			<a class='portfolio-link' href='AnadirPiloto'>");
+            		out.print("				<div class='portfolio-hover'>");
+            		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+            		out.print("				</div>");
+            		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenMas.png'/>");
+           			out.print("			</a>");
+            		out.print("			<div class='portfolio-caption'>");
+            		out.print("				<div class='portfolio-caption-heading'>Añadir Piloto</div>");
+            		out.print("			</div>");
+            		out.print("		</div>");
+            		out.print("</div>");
+
+            		if (Multimedia != null){
+            			for (Piloto p : Multimedia){
+                    		out.print("	<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+                    		out.print("		<div class='portfolio-item'>");
+                    		out.print("			<a class='portfolio-link' href='FichaPiloto?id="+p.getDNI()+"'>");
+                    		out.print("				<div class='portfolio-hover'>");
+                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+                    		out.print("				</div>");
+                    		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                   			out.print("			</a>");
+                    		out.print("			<div class='portfolio-caption'>");
+                    		out.print("				<div class='portfolio-caption-heading'>"+p.getNombre()+" "+p.getApellido()+"</div>");
+                    		out.print("			</div>");
+                    		out.print("		</div>");
+                    		out.print("	</div>");
+                		}
+            		}
+            	}
+            	
+        		out.print("		</div>");
+        		out.print("	</div>");
+        		out.print("</section>");
+        		
+        	}
+
+        %>
 
         <footer class="footer py-4">
             <div class="container">

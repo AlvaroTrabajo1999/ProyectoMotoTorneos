@@ -11,6 +11,8 @@
 		<result property='usuario' column='usuario' />
 		<result property='contrasena' column='contrasena' />
 		<result property='piloto' column='piloto' />
+		<result property='mail' column='mail' />
+		<result property='telefono' column='telefono' />
 	</resultMap>
 	
 	<select id='getUsuarioByUser' resultMap='Usuarios'>
@@ -24,8 +26,8 @@
 	
 	<insert id="registerUsuario">
 		INSERT INTO 
-			usuario (nombre,apellidos,mail,usuario,contrasena) 
+			usuario (nombre,apellidos,mail,usuario,contrasena,telefono) 
 		VALUES 
-			(#{usu.nombre},#{usu.apellidos},#{usu.mail},#{usu.usuario},#{usu.contrasena});
+			(#{usu.nombre},#{usu.apellidos},#{usu.mail},#{usu.usuario},#{usu.contrasena},#{usu.telefono});
 	</insert>
 </mapper>

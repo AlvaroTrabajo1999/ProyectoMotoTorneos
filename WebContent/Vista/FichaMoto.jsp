@@ -1,5 +1,9 @@
+<%@page import="modelo.ejb.MultimediaEjb"%>
+<%@page import="modelo.pojo.MultimediaMotocicleta"%>
+<%@page import="modelo.pojo.Motocicleta"%>
 <%@page import="modelo.pojo.Usuario"%>
-<%@page import="modelo.pojo.Torneo"%>
+<%@page import="modelo.ejb.RecordsEjb"%>
+<%@page import="modelo.pojo.MejoresVueltasRecord"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +24,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
-        <!-- Main CSS-->
+        <!--CSS/Boostrap-->
         <link href="Vista/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
@@ -50,58 +54,45 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-heading">MoTorneos</div>
-                <div class="masthead-subheading">¡Comprueba todos tus torneoss creados!</div>
+                <div class="masthead-subheading">Records guardados por la aplicación</div>
             </div>
         </header>
 
-        <section class="page-section" id="services">
+        <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Torneos</h2>
-                    <h3 class="section-subheading text-muted">Revisa todos tus torneos y añade mas</h3>
+                	<%
+                		Motocicleta moto = (Motocicleta) request.getAttribute("Moto");
+                		if (moto != null){
+                			out.print("<h2 class='section-heading text-uppercase'>Motocicleta</h2>");
+                		} else {
+                			out.print("<h2 class='section-heading text-uppercase'>Ha ocurrido un error porfavor vuelva a la pagina principal</h2>");
+                		}
+                	%>
                 </div>
-                <table id="mytable" class="table table-bordred table-striped">
-
-                    <thead>
-                    <th>Nombre</th>
-                    <th>Participantes</th>
-                    <th>Circcuito</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    </thead>
-
-                    <tbody>
-	                    <%
-							// tomamos el atributo de los torneos:
-							ArrayList<Torneo> torneos = (ArrayList<Torneo>) request.getAttribute("torneos");
-						
-							//comprobamos que tenga algun contenido, y pintamos segun tenga este contenido
-							if (torneos != null){
-								for (Torneo t : torneos){
-									out.print("<tr>");
-									out.print("		<td>"+t.getNombre()+"</td>");
-									out.print("		<td>"+t.getRondas()+"</td>");
-									out.print("		<td>"+t.getId_circuito()+"</td>");
-									out.print("		<td><button class='btn btn-primary btn-xs'><i class='fas fa-edit'></i></button></td>");
-									out.print("		<td><button class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></button></td>");
-									out.print("</tr>");
-								}
-							} else {
-								out.print("<tr>");
-								out.print("		<td>Sin Datos</td>");
-								out.print("		<td>0</td>");
-								out.print("		<td>Sin Datos</td>");
-								out.print("		<td><button class='btn btn-primary btn-xs'><i class='fas fa-edit'></i></button></td>");
-								out.print("		<td><button class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></button></td>");
-								out.print("</tr>");
-							}
-						%>
-                        <tr>
-                            <td colspan="5"><button class="btn btn-secondary btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" style="width: 100%" ><i class="fas fa-plus"></i></button></td>
-                        </tr>
-                    </tbody>
-
-                </table>
+                <div class="swiper-container main-slider" id="myCarousel">
+                	<%
+                		if (moto != null){
+                			MultimediaMotocicleta multimedia = (MultimediaMotocicleta) request.getAttribute("multimediaMoto");
+                			
+		            		out.print("<div class='row'>");
+		            		out.print("	<div class='col mt-3'>");
+		            		if (multimedia != null){
+		            			out.print("		<img src='Vista/assets/img/moto/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
+		            		} else {
+		            			out.print("		<img src='Vista/assets/img/logos/ImagenInterrogacion.png' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
+		            		}
+		            		out.print("	</div>");
+		            		out.print("	<table class='col mt-3 table' style='display: inline-block;'>");
+		            		out.print("		<tr><td><h3>Matricula: </h3></td><td><h3>"+moto.getMatricula()+"</h3></td></tr>");
+		            		out.print("		<tr><td><h3>Marca: </h3></td><td><h3>"+moto.getMarca()+"</h3></td></tr>");
+		            		out.print("		<tr><td><h3>Tubo de escape: </h3></td><td><h3>"+moto.getTuboEscape()+"</h3></td></tr>");
+		            		out.print("		<tr><td colspan='2'><a href='EditarMoto?id="+moto.getMatricula()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
+		            		out.print("	</table>");
+		            		out.print("</div>");
+                		}
+                	%>
+				</div>
             </div>
         </section>
 
@@ -121,9 +112,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
+        
         <!--Javascript-->
         <script src="Vista/js/scripts.js"></script>
-
     </body>
 </html>

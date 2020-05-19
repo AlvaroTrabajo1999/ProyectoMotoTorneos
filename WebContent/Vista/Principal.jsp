@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="modelo.pojo.Usuario"%>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -28,7 +29,16 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Register">Registro</a></li>
+                        <%
+	                        HttpSession sesion = request.getSession(false);
+                        	Usuario user = (Usuario) sesion.getAttribute("usuario");
+                        
+                        	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        	} else {
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        	}
+                        %>
                     </ul>
                 </div>
             </div>
@@ -45,7 +55,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Servicios</h2>
-                    <h3 class="section-subheading text-muted">Con tan solo registrarse en nuestra pÃ¡gin podras disfrutar de nuestra herramienta de creaciÃ³n de torneos, ademas de la informacion y la multimedia de circuitos y demÃ¡s.</h3>
+                    <h3 class="section-subheading text-muted">Con tan solo registrarse en nuestra págin podras disfrutar de nuestra herramienta de creación de torneos, ademas de la informacion y la multimedia de circuitos y demás.</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -61,7 +71,7 @@
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-trophy fa-stack-1x fa-inverse"></i></span>
                         <h4 class="my-3">Torneos</h4>
-                        <p class="text-muted">Crear tus propios torneos para competir con tus amigos y guardar los progresos en vuestra conducciÃ³n</p>
+                        <p class="text-muted">Crear tus propios torneos para competir con tus amigos y guardar los progresos en vuestra conducción</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +140,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright Â© MoTorneos 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                     </div>

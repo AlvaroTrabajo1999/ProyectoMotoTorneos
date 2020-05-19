@@ -41,4 +41,9 @@ public class SesionEJB {
 		return dao.getUsuarioByUser(user);
 	}
 	
+	public void loginUsuario(HttpSession session, Usuario usuario) {
+		if (session != null) {
+			session.setAttribute("usuario", usuario);
+		}
+	}
 }
