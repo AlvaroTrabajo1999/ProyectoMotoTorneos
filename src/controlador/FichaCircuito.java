@@ -33,20 +33,27 @@ public class FichaCircuito extends HttpServlet {
 	@EJB
 	MultimediaEjb multimediaEjb;
 	
+	/**
+	 * do get, tomamos los datos del circuito deseado y su multimedia y lo enviamos al jsp deseado
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//tomamos el id del circuito
 		int circuitoid = Integer.parseInt(request.getParameter("id"));
 		
 		try {
+			//sacamos de la base de datos el circuito y su multimedia
 			Circuito circuito = baseEjb.getCircuitoFromId(circuitoid);
 			MultimediaCircuito multimediaCircuito = multimediaEjb.getMultimediaCircuitoById(circuitoid);
+			
+			//ponemos los datos obtenidos en atributos
 			request.setAttribute("circuito", circuito);
 			request.setAttribute("multimediaCircuito", multimediaCircuito);
 		} catch (Exception e) {
 			//en caso de que salte algun error lo guardaremos en el logger:
-			logger.error("error en el controlador Principal");
+			logger.error("error en el controlador do get de ficha circuito al tratar de obtener el circuito y su multimedia, causa: " + e.getCause());
 		} finally {
-			//reenviamos al servlet deseado
+			//reenviamos al jsp deseado
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/FichaCircuito.jsp");
 			rs.forward(request, response);
 		}

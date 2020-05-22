@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='modelo.dao.mapper.EditarMapper'>
+	
+	<update id="updateMoto">
+		UPDATE 
+			motocicleta 
+		SET 
+			marca = #{moto.marca}, 
+			tuboEscape =  #{moto.tuboEscape}
+		WHERE 
+			matricula = #{moto.matricula};
+	</update>
+	
+	<update id="updateMultimediaMoto">
+		UPDATE 
+			multimedia_motocicleta 
+		SET 
+			foto1 = #{multimedia.foto1},
+			foto2 = #{multimedia.foto2},
+			foto3 = #{multimedia.foto3},
+			foto4 = #{multimedia.foto4}, 
+			foto5 = #{multimedia.foto5}
+		 WHERE 
+			motocicleta = #{multimedia.motocicleta};
+	</update>
+	
+	
+	<update id="updatePiloto">
+		UPDATE 
+			piloto
+		SET 
+			nombre = #{piloto.nombre}, 
+			apellido = #{piloto.apellido}, 
+			edad = #{piloto.edad}, 
+			peso = #{piloto.peso}, 
+			altura =  #{piloto.altura}
+		WHERE 
+			DNI = #{piloto.DNI};
+	</update>
+	
+	<update id="updateMultimediaPiloto">
+		UPDATE 
+			multimedia_piloto
+		SET 
+			foto1 = #{multimedia.foto1},
+			foto2 = #{multimedia.foto2},
+			foto3 = #{multimedia.foto3},
+			foto4 = #{multimedia.foto4}, 
+			foto5 = #{multimedia.foto5}
+		 WHERE 
+			piloto = #{multimedia.piloto};
+	</update>
+	
+	
+	<update id="updateCircuito">
+		UPDATE 
+			circuito
+		SET
+			localidad = #{circuito.localidad},
+			 distancia = #{circuito.distancia},
+			 recta = #{circuito.recta}
+		 WHERE 
+		 	ID = #{circuito.ID};
+	</update>
+	
+	<update id="updateMultimediaCircuito">
+		UPDATE 
+			multimedia_circuito
+		SET 
+			foto1 = #{multimedia.foto1},
+			foto2 = #{multimedia.foto2},
+			foto3 = #{multimedia.foto3},
+			foto4 = #{multimedia.foto4}, 
+			foto5 = #{multimedia.foto5}
+		 WHERE 
+			circuito = #{multimedia.circuito};
+	</update>
+</mapper>

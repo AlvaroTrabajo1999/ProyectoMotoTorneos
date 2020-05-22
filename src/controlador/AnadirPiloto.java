@@ -22,32 +22,30 @@ import modelo.pojo.Piloto;
 @WebServlet("/AnadirPiloto")
 public class AnadirPiloto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	//creamos el logger
-	private static final Logger logger = (Logger) LoggerFactory.getLogger(AnadirPiloto.class);
 	
 	@EJB
 	AnadirEjb anadirEjb;
 	
+	//creamos el logger
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(AnadirPiloto.class);
+	
+	/**
+	 * do get, simplemente reenvia a otro servlet
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
-			
-		} catch (Exception e) {
-			//en caso de que salte algun error lo guardaremos en el logger:
-			logger.error("error en el controlador Multimedia General");
-		} finally {
-			//reenviamos al servlet deseado
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/AnadirPiloto.jsp");
-			rs.forward(request, response);
-		}
+		//reenviamos al jsp de añadir piloto
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/AnadirPiloto.jsp");
+		rs.forward(request, response);
 		
 	}
 
-	
-	
+	/**
+	 * do post, toma los datos del formulario e inserta en la base de datos el nuevo piloto, finalmente reenvia a otro serlet
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//tomamos los datos del formulario 
 		String dni = request.getParameter("dni");
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
@@ -55,12 +53,20 @@ public class AnadirPiloto extends HttpServlet {
 		float altura = Float.parseFloat(request.getParameter("altura"));
 		int edad = Integer.parseInt(request.getParameter("edad"));
 		
+		//creamos un piloto con los datos anteriormente recolectados
 		Piloto piloto = new Piloto(dni, nombre, apellido, edad, peso, altura);
 		
-		anadirEjb.insertPiloto(piloto);
-		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Principal.jsp");
-		rs.forward(request, response);
+		try {
+			//insertamos en la base de datos el piloto
+			anadirEjb.insertPiloto(piloto);
+		} catch (Exception e) {
+			//en caso de que salte algun error lo guardaremos en el logger:
+			logger.error("error en el controlador do post de añadir circuito al tratar  de insertar el corcuito, causa: " + e.getCause());
+		} finally {
+			//reenviamos a otro servlet
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/MultimediaGeneral?imagenes=pilotos");
+			rs.forward(request, response);
+		}
 		
 	}
 
