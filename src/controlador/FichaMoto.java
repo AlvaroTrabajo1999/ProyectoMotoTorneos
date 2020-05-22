@@ -42,7 +42,7 @@ public class FichaMoto extends HttpServlet {
 		String Matricula = request.getParameter("id");
 		
 		try {
-			//tomamos los datos de la moto y su multimedia de la base de datos
+			//tomamos los datos de la moto y su multimedia de la base de datos holas
 			Motocicleta moto = baseEjb.getMotocicletaFromMatricula(Matricula);
 			MultimediaMotocicleta multimediaMoto = multimediaEjb.getMultimediaMotocicletasById(Matricula);
 			

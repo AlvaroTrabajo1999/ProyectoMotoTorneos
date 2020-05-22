@@ -23,7 +23,7 @@ public class SubirImagen extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//reenviamos al jsp de añadir moto
+		//reenviamos al jsp de añadir moto holas
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/index.jsp");
 		rs.forward(request, response);
 		
