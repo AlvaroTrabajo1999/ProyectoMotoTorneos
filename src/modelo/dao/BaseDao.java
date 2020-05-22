@@ -9,6 +9,7 @@ import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
+import modelo.pojo.Usuario;
 
 public class BaseDao {
 
@@ -72,7 +73,7 @@ public class BaseDao {
 		}
 	}
 	
-	public Circuito getCircuitoFromId(String circuito){
+	public Circuito getCircuitoFromId(int circuito){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
@@ -81,5 +82,14 @@ public class BaseDao {
 			sqlSession.close();
 		}
 	}
-
+	
+	public Usuario getUsuario(int id){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getUsuario(id);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

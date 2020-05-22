@@ -1681,6 +1681,24 @@ pre code {
   margin-bottom: 1rem;
   color: #212529;
 }
+.tableUsu th{
+  text-align: center;
+  border-bottom: 1px solid black
+}
+.tableUsu th h3{
+  line-height: 2em;
+  margin-top: 2em
+}
+.tableUsu td{
+   width: 50%;
+}
+.derecho h3{
+   text-align: right;
+   margin-right: 40px;
+}
+.lineaTopUsuario h3{
+   border-top: 0;
+}
 .table th,
 .table td {
   padding: 0.75rem;

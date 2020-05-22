@@ -29,7 +29,7 @@
 		select * from multimedia_motocicleta
 	</select>
 	
-	<select id='getMultimediaMotocicletasById' resultMap='MultimediaCircuitoMap'>
+	<select id='getMultimediaMotocicletasById' resultMap='MultimediaMotocicletaMap'>
 		select * from multimedia_motocicleta where motocicleta = #{moto};
 	</select>
 	

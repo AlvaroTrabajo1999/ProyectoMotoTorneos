@@ -19,6 +19,14 @@ public class Circuito {
 		this.distancia = distancia;
 		this.recta = recta;
 	}
+	
+	public Circuito(int ID, String localidad, float distancia, float recta) {
+		super();
+		this.ID = ID;
+		this.localidad = localidad;
+		this.distancia = distancia;
+		this.recta = recta;
+	}
 
 	//GETTERS
 	

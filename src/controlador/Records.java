@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
+import modelo.ejb.BaseEjb;
 import modelo.ejb.RecordsEjb;
-import modelo.pojo.MejoresVueltasRecord;
+import modelo.pojo.Circuito;
 
 /**
  * Servlet implementation class Records
@@ -29,15 +30,17 @@ public class Records extends HttpServlet {
 	
 	@EJB
 	RecordsEjb RecordsEjb;
+	@EJB
+	BaseEjb baseEjb;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
 			//guardamos en un array todos los datos necesarios
-			ArrayList<MejoresVueltasRecord> mejoresVueltas = RecordsEjb.getMejoresVueltasRecords();
+			ArrayList<Circuito> circuitos = baseEjb.getCircuitos();
 			
 			//ponemos los torneos que hemos guardado como un Atributo de la sesion:
-			request.setAttribute("mejoresVueltas", mejoresVueltas);
+			request.setAttribute("circuitos", circuitos);
 		} catch (Exception e) {
 			//en caso de que salte algun error lo guardaremos en el logger:
 			logger.error("error en el controlador Records");
@@ -46,10 +49,6 @@ public class Records extends HttpServlet {
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Records.jsp");
 			rs.forward(request, response);
 		}
-		
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 

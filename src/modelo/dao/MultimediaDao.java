@@ -51,7 +51,7 @@ public class MultimediaDao {
 		}
 	}
 	
-	public MultimediaCircuito getMultimediaCircuitoById(String circuito){
+	public MultimediaCircuito getMultimediaCircuitoById(int circuito){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			MultimediaMapper maper = sqlSession.getMapper(MultimediaMapper.class);

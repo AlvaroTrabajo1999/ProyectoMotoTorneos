@@ -1,10 +1,6 @@
-<%@page import="modelo.ejb.MultimediaEjb"%>
 <%@page import="modelo.pojo.MultimediaMotocicleta"%>
 <%@page import="modelo.pojo.Motocicleta"%>
 <%@page import="modelo.pojo.Usuario"%>
-<%@page import="modelo.ejb.RecordsEjb"%>
-<%@page import="modelo.pojo.MejoresVueltasRecord"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,7 +37,7 @@
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
                         	} else {
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
                         	}
@@ -54,7 +50,7 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-heading">MoTorneos</div>
-                <div class="masthead-subheading">Records guardados por la aplicación</div>
+                <div class="masthead-subheading">Revisa los datos de tus motocicletas</div>
             </div>
         </header>
 

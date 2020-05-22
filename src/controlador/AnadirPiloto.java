@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
 import modelo.ejb.AnadirEjb;
-import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
 
 /**
@@ -53,7 +52,6 @@ public class AnadirPiloto extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		float peso = Float.parseFloat(request.getParameter("peso"));
-		String sexo = request.getParameter("sexo");
 		float altura = Float.parseFloat(request.getParameter("altura"));
 		int edad = Integer.parseInt(request.getParameter("edad"));
 		

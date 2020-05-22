@@ -61,7 +61,14 @@ public class MultimediaGeneral extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String datos = (String) request.getAttribute("datos");
+		String datos = "";
+		
+		if (request.getParameter("imagenes") != null) {
+			datos = request.getParameter("imagenes");
+		} else {
+			datos = (String) request.getAttribute("datos");
+		}
+		
 		request.setAttribute("datosTipo", datos);
 		
 		if (datos.equals("motos")) {
@@ -75,8 +82,8 @@ public class MultimediaGeneral extends HttpServlet {
 		} else if (datos.equals("circuitos")) {
 			
 			ArrayList<Circuito> multimedia = null;
-			if (baseEjb.getCircuito() != null) {
-				multimedia = baseEjb.getCircuito();
+			if (baseEjb.getCircuitos() != null) {
+				multimedia = baseEjb.getCircuitos();
 			}
 			request.setAttribute("datos", multimedia);
 			

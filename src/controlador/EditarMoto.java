@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
-import modelo.ejb.AnadirEjb;
 import modelo.ejb.BaseEjb;
+import modelo.ejb.EditarEjb;
 import modelo.ejb.MultimediaEjb;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.MultimediaMotocicleta;
@@ -33,6 +33,8 @@ public class EditarMoto extends HttpServlet {
 	BaseEjb baseEjb;
 	@EJB
 	MultimediaEjb multimediaEjb;
+	@EJB
+	EditarEjb editarEjb;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -61,11 +63,19 @@ public class EditarMoto extends HttpServlet {
 		String marca = request.getParameter("marca");
 		String escape = request.getParameter("escape");
 		
+		if (Matricula == null || marca == null || escape == null) {
+			request.setAttribute("error", "error");
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/EditarMoto.jsp");
+			rs.forward(request, response);
+		}
+		
 		Motocicleta moto = new Motocicleta(Matricula, marca, escape);
 		
+		editarEjb.updateMoto(moto);
 		
+		//FALTA LA POSIBILIDAD DE EDITAR MULTIMEDIA
 		
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Principal.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/MultimediaGeneral?imagenes=motos");
 		rs.forward(request, response);
 		
 	}

@@ -35,7 +35,7 @@ public class FichaCircuito extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String circuitoid = request.getParameter("id");
+		int circuitoid = Integer.parseInt(request.getParameter("id"));
 		
 		try {
 			Circuito circuito = baseEjb.getCircuitoFromId(circuitoid);
