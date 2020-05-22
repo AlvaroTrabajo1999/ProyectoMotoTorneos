@@ -20,5 +20,5 @@ public interface MultimediaMapper {
 
 	public MultimediaMotocicleta getMultimediaMotocicletasById(@Param("moto") String moto);
 
-	public MultimediaCircuito getMultimediaCircuitoById(@Param("circuito") String circuito);
+	public MultimediaCircuito getMultimediaCircuitoById(@Param("circuito") int circuito);
 }

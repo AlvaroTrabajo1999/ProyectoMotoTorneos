@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="modelo.pojo.MultimediaMotocicleta"%>
 <%@page import="modelo.pojo.Motocicleta"%>
 <%@page import="modelo.pojo.Usuario"%>
 <html>
@@ -36,7 +37,7 @@
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
                         	} else {
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
                         	}
@@ -49,25 +50,38 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-heading">MoTorneos</div>
-                <div class="masthead-subheading">¡Unete a nosotros y comencemos algo mejor!</div>
+                <div class="masthead-subheading">¿Algo ha cambiado? Actualizalo</div>
             </div>
         </header>
 
 		<%
 			Motocicleta moto = (Motocicleta) request.getAttribute("moto");
+			MultimediaMotocicleta multimedia = (MultimediaMotocicleta) request.getAttribute("multimedia");
 		%>
 
-         <div class="page-wrapper p-t-130 font-poppins">
+         <div class="page-wrapper p-t-130 p-b-100 font-poppins">
             <div class="wrapper wrapper--w680">
                 <div class="card card-4">
                     <div class="card-body">
-                        <h2 class="title">Editar Motocicleta</h2>
+                        <h2 class="title">Editar Motocicleta - <%out.print(moto.getMatricula());%></h2>
                         <form method="POST" action="EditarMoto">
+                        	<%
+								String error = (String) request.getAttribute("error");
+							
+	                            if (error != null){
+									out.print("<div class='row row-space'>");
+									out.print("	<div class='col'>");
+									out.print("		<div class='input-group'>");
+									out.print("			<label class='label'>Se han detectado campos vacios / erroneos</label>");
+									out.print("		</div>");
+									out.print("	</div>");
+									out.print("</div>");
+								}
+							%>
                             <div class="row row-space">
                                 <div class="col">
                                     <div class="input-group">
-                                        <label class="label">Matricula</label>
-                                        <input class="input--style-4" type="text" name="matricula" value="<%out.print(moto.getMatricula());%>" required>
+                                        <input class="input--style-4" type="hidden" name="matricula" value="<%out.print(moto.getMatricula());%>" required>
                                     </div>
                                 </div>
                             </div>
@@ -78,8 +92,6 @@
                                         <input class="input--style-4" type="text" name="marca" value="<%out.print(moto.getMarca());%>" required>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row row-space">
                                 <div class="col">
                                     <div class="input-group">
                                         <label class="label">Tubo de escape</label>
@@ -87,94 +99,93 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row row-space">
+                            	<div class="col-3">
+                            		<%
+                            			if (multimedia != null){
+                            				out.print("<img src=" + multimedia.getFoto1() + "/>");
+                            			} else {
+                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
+                            			}
+                            		%>
+                            	</div>
+                                <div class="col-9">
+                                    <div class="input-group col">
+                                        <label class="label">Foto 1</label>
+                                        <input class="input--style-4" type="file" name="foto1" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                            	<div class="col-3">
+                            		<%
+                            			if (multimedia != null){
+                            				out.print("<img src=" + multimedia.getFoto2() + "/>");
+                            			} else {
+                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
+                            			}
+                            		%>
+                            	</div>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <label class="label">Foto 2</label>
+                                        <input class="input--style-4" type="file" name="foto2" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                            	<div class="col-3">
+                            		<%
+                            			if (multimedia != null){
+                            				out.print("<img src=" + multimedia.getFoto3() + "/>");
+                            			} else {
+                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
+                            			}
+                            		%>
+                            	</div>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <label class="label">Foto 3</label>
+                                        <input class="input--style-4" type="file" name="foto3" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                            	<div class="col-3">
+                            		<%
+                            			if (multimedia != null){
+                            				out.print("<img src=" + multimedia.getFoto4() + "/>");
+                            			} else {
+                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
+                            			}
+                            		%>
+                            	</div>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <label class="label">Foto 4</label>
+                                        <input class="input--style-4" type="file" name="foto4" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                            	<div class="col-3">
+                            		<%
+                            			if (multimedia != null){
+                            				out.print("<img src=" + multimedia.getFoto5() + "/>");
+                            			} else {
+                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
+                            			}
+                            		%>
+                            	</div>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <label class="label">Foto 5</label>
+                                        <input class="input--style-4" type="file" name="foto5" >
+                                    </div>
+                                </div>
+                            </div>
                             <div class="p-t-15">
                                 <button class="btnForm btn--radius-2 btn--blue" type="submit">Editar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="page-wrapper p-b-100 font-poppins">
-            <div class="wrapper wrapper--w680">
-                <div class="card card-4">
-                    <div class="card-body">
-                        <h2 class="title">Formulario De Registro</h2>
-                        <form method="POST" action="Register">
-                            <div class="row row-space">
-                            	<%
-									String errorDatos =  (String) request.getAttribute("errorVacio");
-			
-									if (errorDatos != null){
-										out.print("<div class='row row-space'>");
-										out.print("		<div class='col'>");
-										out.print("			<div class='input-group'>");
-										out.print("				<label class='label'>Se han detectado campos vacios</label>");
-										out.print("			</div>");
-										out.print("		</div>");
-										out.print("</div>");
-									}
-								%>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Nombre</label>
-                                        <input class="input--style-4" type="text" name="nombre" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Apellido</label>
-                                        <input class="input--style-4" type="text" name="apellidos" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Contraseña</label>
-                                        <input class="input--style-4" type="text" name="contrasena" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Confirmar contraseña</label>
-                                        <input class="input--style-4" type="text" name="confirmacion" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Email</label>
-                                        <input class="input--style-4" type="email" name="mail" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                                <div class="col">
-                                    <div class="input-group">
-	                                    <%
-											String errorRegistro =  (String) request.getAttribute("errorRegistro");
-					
-											if (errorRegistro != null){
-												out.print("<label class='label text-danger'>Usuario ya existente*</label>");
-											} else {
-												out.print("<label class='label'>Usuario</label>");
-											}
-										%>
-                                        <input class="input--style-4" type="text" name="user" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Telefono movil</label>
-                                        <input class="input--style-4" type="text" name="telefono" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-t-15">
-                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Registrarse</button>
                             </div>
                         </form>
                     </div>

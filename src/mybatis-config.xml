@@ -14,7 +14,7 @@
 		<typeAlias type='modelo.pojo.MultimediaCircuito' alias='MultimediaCircuito'></typeAlias>
 		<typeAlias type='modelo.pojo.MultimediaMotocicleta' alias='MultimediaMotocicleta'></typeAlias>
 		<typeAlias type='modelo.pojo.Usuario' alias='Usuario'></typeAlias>
-		<typeAlias type='modelo.pojo.MejoresVueltasRecord' alias='MejoresVueltasRecord'></typeAlias>
+		<typeAlias type='modelo.pojo.MejorVueltaCircuito' alias='MejorVueltaCircuito'></typeAlias>
 	</typeAliases>
 	
 	<environments default='development'>
@@ -35,6 +35,7 @@
 		<mapper resource='modelo/dao/mapper/SesionMapper.xml' />
 		<mapper resource='modelo/dao/mapper/MultimediaMapper.xml' />
 		<mapper resource='modelo/dao/mapper/AnadirMapper.xml' />
+		<mapper resource='modelo/dao/mapper/EditarMapper.xml' />
 	</mappers>
 	
 </configuration>

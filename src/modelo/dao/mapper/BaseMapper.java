@@ -8,6 +8,7 @@ import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
+import modelo.pojo.Usuario;
 
 public interface BaseMapper {
 
@@ -23,5 +24,7 @@ public interface BaseMapper {
 	
 	public Piloto getPilotoFromDni(@Param("dni") String dni);
 	
-	public Circuito getCircuitoFromId(@Param("circuito") String circuito);
+	public Circuito getCircuitoFromId(@Param("circuito") int circuito);
+	
+	public Usuario getUsuario(@Param("id") int id);
 }

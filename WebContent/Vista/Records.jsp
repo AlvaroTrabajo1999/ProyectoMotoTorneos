@@ -1,6 +1,8 @@
+<%@page import="modelo.ejb.MultimediaEjb"%>
+<%@page import="modelo.pojo.Circuito"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="modelo.ejb.RecordsEjb"%>
-<%@page import="modelo.pojo.MejoresVueltasRecord"%>
+<%@page import="modelo.pojo.MejorVueltaCircuito"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,14 +36,14 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
-	                        HttpSession sesion = request.getSession(false);
-                        	Usuario user = (Usuario) sesion.getAttribute("usuario");
-                        
-                        	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
-                        	} else {
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
-                        	}
+                        	HttpSession sesion = request.getSession(false);
+                            Usuario user = (Usuario) sesion.getAttribute("usuario");
+                                                
+                           	if (user != null){
+                           		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                           	} else {
+                           		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                           	}
                         %>
                     </ul>
                 </div>
@@ -62,44 +64,47 @@
                     <h3 class="section-subheading text-muted">Te animamos a intentar mejorar estas marcas<br>¡ANIMO!</h3>
                 </div>
                 <ul class="timeline">
-                
-                	<%
-                	
-                		RecordsEjb recordsEjb = new RecordsEjb();
-                		ArrayList<MejoresVueltasRecord> mejoresVueltas = (ArrayList<MejoresVueltasRecord>) request.getAttribute("mejoresVueltas");
-                	
-                		if (mejoresVueltas != null){
-        					for (int i = 0; i < mejoresVueltas.size() ; i++){
-        						MejoresVueltasRecord actual = mejoresVueltas.get(i);
-        						
-								if (i % 2 == 0){
-	        						out.print("<li>");
-								} else {
-	        						out.print("<li class='timeline-inverted'>");
-								}
-								
-								if (recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()) != null){
-									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='"+recordsEjb.getMultimediaCircuitoById(actual.getId_circuito()).getFoto1()+"'/></div>");
-								} else {
-									out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='Vista/assets/img/logos/logoCircuito.jpg'/></div>");
-								}
-								
-        						out.print("<div class='timeline-panel'>");
-        						out.print("		<div class='timeline-heading'>");
-        						out.print("			<h4>"+recordsEjb.getCircuitoById(actual.getId_circuito()).getLocalidad()+"</h4>");
-        						out.print("			<h4 class='subheading'>Record General: "+actual.getMejorVuelta()+"</h4>");
-        						out.print("		</div>");
-       							out.print("		<div class='timeline-body'><p class='text-muted'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>");
-        						out.print("</div>");
-        						out.print("</li>");
-        					}
-        				}
-                		
-                	%>
+                <%
+                	RecordsEjb recordsEjb = new RecordsEjb();
+            		MultimediaEjb multimediaEjb = new MultimediaEjb();
+               		ArrayList<Circuito> circuitos = (ArrayList<Circuito>) request.getAttribute("circuitos");
+              	
+              		if (circuitos != null){
+      					for (int i = 0; i < circuitos.size() ; i++){
+      						Circuito actual = circuitos.get(i);
+      						
+							if (i % 2 == 0){
+       							out.print("<li>");
+							} else {
+       							out.print("<li class='timeline-inverted'>");
+							}
+				
+							if (multimediaEjb.getMultimediaCircuitoById(actual.getID()) != null){
+								out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='"+multimediaEjb.getMultimediaCircuitoById(actual.getID()).getFoto1()+"'/></div>");
+							} else {
+								out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='Vista/assets/img/logos/logoCircuito.jpg'/></div>");
+							}
+				
+      						out.print("<div class='timeline-panel'>");
+      						out.print("		<div class='timeline-heading'>");
+      						out.print("			<h4>"+actual.getLocalidad()+"</h4>");
+      						if (recordsEjb.getMejorVueltaCircuitoById(actual.getID()) != null){
+      							out.print("			<h4 class='subheading'>Record General: "+recordsEjb.getMejorVueltaCircuitoById(actual.getID()).getMejorVuelta()+"</h4>");
+      						} else {
+      							out.print("			<h4 class='subheading'>Record General: NA</h4>");
+      						}
+      						
+      						out.print("		</div>");
+     						out.print("		<div class='timeline-body'><p class='text-muted'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>");
+      						out.print("</div>");
+      						out.print("</li>");
+      					}
+      				}
+               	%>
                 	
                     <li class="timeline-inverted">
                         <div class="timeline-image">
-                            <h4>Be Part<br/>Of Our<br/>Story!</h4>
+                            <h4>No Existen<br/>Mas<br/>Datos</h4>
                         </div>
                     </li>
                 </ul>

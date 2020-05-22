@@ -64,4 +64,20 @@
 	<select id='getPilotoFromDni' resultMap='PilotoResult'>
 		select * from piloto where DNI = #{dni};
 	</select>
+	
+	
+	<resultMap type='Usuario' id='UsuarioResult'>
+		<id property='ID' column='ID' />
+		<result property='nombre' column='nombre' />
+		<result property='apellidos' column='apellidos' />
+		<result property='usuario' column='usuario' />
+		<result property='contrasena' column='contrasena' />
+		<result property='mail' column='mail' />
+		<result property='telefono' column='telefono' />
+		<result property='piloto' column='piloto' />
+	</resultMap>
+	
+	<select id='getUsuario' resultMap='UsuarioResult'>
+		select * from usuario where ID = #{id};
+	</select>
 </mapper>

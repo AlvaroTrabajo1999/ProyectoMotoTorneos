@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import modelo.dao.BaseDao;
 import modelo.dao.MultimediaDao;
-import modelo.pojo.Motocicleta;
 import modelo.pojo.MultimediaCircuito;
 import modelo.pojo.MultimediaMotocicleta;
 import modelo.pojo.MultimediaPiloto;
@@ -36,7 +34,7 @@ public class MultimediaEjb {
 		return dao.getMultimediaPilotoById(piloto);
 	}
 	
-	public MultimediaCircuito getMultimediaCircuitoById(String circuito){
+	public MultimediaCircuito getMultimediaCircuitoById(int circuito){
 		MultimediaDao dao = new MultimediaDao();
 		return dao.getMultimediaCircuitoById(circuito);
 	}

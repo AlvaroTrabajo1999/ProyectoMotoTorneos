@@ -10,6 +10,7 @@ import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
+import modelo.pojo.Usuario;
 
 @Stateless
 @LocalBean
@@ -30,7 +31,7 @@ public class BaseEjb {
 		return dao.getPilotos();
 	}
 	
-	public ArrayList<Circuito> getCircuito(){
+	public ArrayList<Circuito> getCircuitos(){
 		BaseDao dao = new BaseDao();
 		return dao.getCircuito();
 	}
@@ -45,8 +46,13 @@ public class BaseEjb {
 		return dao.getPilotoFromDni(dni);
 	}
 	
-	public Circuito getCircuitoFromId(String circuito){
+	public Circuito getCircuitoFromId(int circuito){
 		BaseDao dao = new BaseDao();
 		return dao.getCircuitoFromId(circuito);
+	}
+	
+	public Usuario getUsuario(int id){
+		BaseDao dao = new BaseDao();
+		return dao.getUsuario(id);
 	}
 }

@@ -35,7 +35,7 @@
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
                         	} else {
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
                         	}
@@ -52,7 +52,7 @@
             </div>
         </header>
 
-         <div class="page-wrapper p-t-130 font-poppins">
+         <div class="page-wrapper p-t-130 p-b-100 font-poppins">
             <div class="wrapper wrapper--w680">
                 <div class="card card-4">
                     <div class="card-body">
