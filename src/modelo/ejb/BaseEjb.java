@@ -55,4 +55,5 @@ public class BaseEjb {
 		BaseDao dao = new BaseDao();
 		return dao.getUsuario(id);
 	}
+
 }

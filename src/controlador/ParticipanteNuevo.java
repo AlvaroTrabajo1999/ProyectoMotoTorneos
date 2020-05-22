@@ -65,6 +65,7 @@ public class ParticipanteNuevo extends HttpServlet {
 		}
 		
 		//Creamos las variables que seran el piloto y su moto definitivas
+
 		Piloto pilotoFinal = new Piloto();
 		Motocicleta motoFinal = new Motocicleta();
 
@@ -75,6 +76,7 @@ public class ParticipanteNuevo extends HttpServlet {
 		String MotoFormulario = request.getParameter("MotoFormulario");
 		
 		//Comprobamos si quiere un piloto ya existente o uno nuevo
+
 		if (PilotoFormulario.equals("crearPiloto")) {
 			
 			pilotoFinal.setDNI(request.getParameter("dni"));
@@ -93,8 +95,22 @@ public class ParticipanteNuevo extends HttpServlet {
 				logger.error("error en el controlador ParticipadorNuevo, en el post al tomar un piloto por su dni");
 			}
 		}
+	
+		//Comprobamos si quiere una moto ya existente o una nueva
+		if (MotoFormulario == "MotoFormulario") {
+			
+		} else {
+			motoFinal = baseEjb.getMotocicletaFromMatricula(MotoFormulario);
+		}
 		
 		
+		
+		if (motoFinal != null && pilotoFinal != null) {
+			part.setId_moto(motoFinal.getMATRICULA());
+			part.setId_piloto(pilotoFinal.getDNI());
+			
+			baseEjb.insertParticipante(part);
+		}
 		
 		//Comprobamos si quiere una moto ya existente o una nueva
 		if (MotoFormulario.equals("crearMoto")) {
