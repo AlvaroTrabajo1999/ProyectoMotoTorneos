@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import javax.servlet.http.Part;
  * Servlet implementation class SubirImagen
  */
 @WebServlet("/SubirImagen")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class SubirImagen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -60,7 +62,7 @@ public class SubirImagen extends HttpServlet {
 
 		// Si es una imagen la mostramos
 		if (fileName.matches(".+\\.(jpg|png)"))
-		out.print("<img src=\"Imagenes/" + fileName + "\" />");
+		out.print("<img src=\"Vista/assets/img/moto/" + fileName + "\" />");
 		
 	}
 
