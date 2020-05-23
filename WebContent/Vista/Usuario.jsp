@@ -1,8 +1,5 @@
-<%@page import="modelo.pojo.MultimediaMotocicleta"%>
-<%@page import="modelo.pojo.Motocicleta"%>
-<%@page import="modelo.pojo.Usuario"%>
-<%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="modelo.pojo.Usuario"%>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -50,53 +47,68 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-heading">MoTorneos</div>
-                <div class="masthead-subheading">Revisa los datos de tus motocicletas</div>
+                <div class="masthead-subheading">¡Por una comunidad con competitividad sana!</div>
             </div>
         </header>
 
-        <section class="page-section" id="about">
+        <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                	<%
-                		Motocicleta moto = (Motocicleta) request.getAttribute("Moto");
-                		if (moto != null){
-                			out.print("<h2 class='section-heading text-uppercase'>Motocicleta</h2>");
-                		} else {
-                			out.print("<h2 class='section-heading text-uppercase'>Ha ocurrido un error porfavor vuelva a la pagina principal</h2>");
-                		}
-                	%>
+                    <h2 class="section-heading text-uppercase">Usuario <a href="EditarUsuario?id=<%out.print(user.getID());%>"><button class='btn btn-secondary btn-xs'><i class='fas fa-edit'></i></button></a></h2>
+                    <h3 class="section-subheading text-muted">Aqui puedes ver y editar tus datos e inclusive asignarte un piloto</h3>
                 </div>
-                <div class="swiper-container main-slider" id="myCarousel">
-                	<%
-                		if (moto != null){
-                			MultimediaMotocicleta multimedia = (MultimediaMotocicleta) request.getAttribute("multimediaMoto");
-                			
-		            		out.print("<div class='row'>");
-		            		out.print("	<div class='col mt-3'>");
-		            		if (multimedia != null){
-		            			out.print("		<img src='Vista/assets/img/moto/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
-		            		} else {
-		            			out.print("		<img src='Vista/assets/img/logos/ImagenInterrogacion.png' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
-		            		}
-		            		out.print("	</div>");
-		            		out.print("	<table class='col mt-3 table' style='display: inline-block;'>");
-		            		out.print("		<tr><td><h3>Matricula: </h3></td><td><h3>"+moto.getMatricula()+"</h3></td></tr>");
-		            		out.print("		<tr><td><h3>Marca: </h3></td><td><h3>"+moto.getMarca()+"</h3></td></tr>");
-		            		out.print("		<tr><td><h3>Tubo de escape: </h3></td><td><h3>"+moto.getTuboEscape()+"</h3></td></tr>");
-		            		out.print("		<tr><td><h3>Multimedia: </h3></td><td><h3><a href='SubirImagen?id="+moto.getMatricula()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
-		            		out.print("		<tr><td colspan='2'><a href='EditarMoto?id="+moto.getMatricula()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
-		            		out.print("	</table>");
-		            		out.print("</div>");
-                		}
-                	%>
-				</div>
-			</div>
+                <%
+                if (user.getPiloto() == null){
+                	out.print("<div class='row'>");
+               		out.print("	<div class='col'>");
+                	out.print("		<table class='col mt-3 table tableUsu' style='width: 100%'>");
+            		out.print("			<tr><th colspan='2' style='border-top: 0'><h3 class='text-uppercase'>Datos Personales</h3></th></tr>");
+            		out.print("			<tr><td class='derecho'><h3>Nombre: </h3></td><td><h3>"+user.getNombre()+"</h3></td></tr>");
+            		out.print("			<tr><td class='derecho'><h3>Apellido: </h3></td><td><h3>"+user.getApellidos()+"</h3></td></tr>");
+            		out.print("			<tr><th colspan='2'><h3 class='text-uppercase'>Datos Del Usuario</h3></th></tr>");
+            		out.print("			<tr><td class='derecho'><h3>Usuario: </h3></td><td><h3>"+user.getUsuario()+"</h3></td></tr>");
+            		out.print("			<tr><th colspan='2'><h3 class='text-uppercase'>Metodos De Contacto</h3></th></tr>");
+            		out.print("			<tr><td class='derecho'><h3>Mail: </h3></td><td><h3>"+user.getMail()+"</h3></td></tr>");
+            		out.print("			<tr><td class='derecho'><h3>Telefono: </h3></td><td><h3>"+user.getTelefono()+"</h3></td></tr>");
+            		out.print("			<tr><th colspan='2'><h3 class='text-uppercase'>Piloto Asociado</h3></th></tr>");
+            		out.print("			<tr><td class='derecho'><h3>Piloto: </h3></td><td><h3>Sin piloto asociado</h3></td></tr>");
+            		out.print("			<tr><td colspan='2'><a href='EditarUsuario?id="+user.getID()+"'><button class='btn btn-secondary btn-xs' style='width: 100%; line-height: 2em; margin-top: 20px;'><i class='fas fa-edit'></i></button></a></td></tr>");
+            		out.print("		</table>");
+                	out.print("	</div>");
+                	out.print("</div>");
+                } else {
+                	out.print("<div class='row'>");
+                	out.print("	<div class='col'>");
+                	out.print("");
+                	out.print("");
+                	out.print("");
+                	out.print("");
+                	out.print("");
+                	out.print("	</div>");
+                	out.print("</div>");
+                }
+                %>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div class="portfolio-item">
+							<img src='Vista/assets/img/moto/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8 col-sm-6 mb-4 mb-sm-0">
+                        <div class="portfolio-item">
+                            <h1>holas</h1>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
         </section>
 
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright Â© MoTorneos 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
                     </div>

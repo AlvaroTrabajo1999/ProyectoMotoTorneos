@@ -35,7 +35,7 @@ public class ParticipanteNuevo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			
+			//hi
 			//guardamos en un array todas las motos disponibles y pilotos:
 			ArrayList<Motocicleta> motos = baseEjb.getMotocicletas();
 			ArrayList<Piloto> pilotos = baseEjb.getPilotos();
