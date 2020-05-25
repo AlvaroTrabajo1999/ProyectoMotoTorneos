@@ -78,4 +78,12 @@
 		 WHERE 
 			circuito = #{multimedia.circuito};
 	</update>
+	
+	
+	<delete id="borrarTorneo">
+		DELETE FROM 
+			torneo
+		WHERE 
+			ID = #{torneo};
+	</delete>
 </mapper>

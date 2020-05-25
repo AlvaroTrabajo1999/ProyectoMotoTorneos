@@ -26,4 +26,9 @@ public class EditarEjb {
 		EditarDao dao = new EditarDao();
 		dao.updateCircuito(circuito);
 	}
+	
+	public void borrarTorneo(int torneo) {
+		EditarDao dao = new EditarDao();
+		dao.borrarTorneo(torneo);
+	}
 }

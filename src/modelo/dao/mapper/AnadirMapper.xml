@@ -32,4 +32,25 @@
 			(#{circuito.localidad}, #{circuito.distancia}, #{circuito.recta});
 	</insert>
 	
+	<insert id="insertTorneo">
+		INSERT INTO 
+			torneo (participantes,id_circuito,nombre) 
+		VALUES 
+			(#{torneo.participantes},#{torneo.id_circuito},#{torneo.nombre});
+	</insert>
+	
+	<insert id="insertCarrera">
+		INSERT INTO 
+			carrera (id_torneo,nivel,ronda) 
+		VALUES 
+			(#{carrera.id_torneo},#{carrera.nivel},#{carrera.ronda});
+	</insert>
+	
+	<insert id="insertParticipacion">
+		INSERT INTO 
+			participacion (id_moto,id_piloto,id_carrera) 
+		VALUES 
+			(#{part.id_moto},#{part.id_piloto},#{part.id_carrera});
+	</insert>
+	
 </mapper>

@@ -1,107 +1,141 @@
-<%@page import="modelo.pojo.Participacion"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="modelo.pojo.Circuito"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.pojo.Usuario"%>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Crear Torneo</title>
-		<link rel="stylesheet" type="text/css" href="Vista/General.css"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script>
-			$(document).ready(function(){
-				
-				for (var i = 0; i < 4; i++) {
-	        		$("#listaParticipantes").append('<li><a href="ParticipanteNuevo">Añadir/Crear Participante</a></li>');
-				}
-				
-			  	$("#numeroRondas").change(function(){
-			  		var valor = $(this).val();
-			  		switch (valor) {
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MoTorneos</title>
+        <link rel="icon" type="image/x-icon" href="Vista/assets/img/favicon.ico" />
 
-			        case "4":
-		        		$("#listaParticipantes").empty();
-			        	for (var i = 0; i < valor; i++) {
-		        			$("#listaParticipantes").append('<li><input type="submit" value="Añadir/Crear Participante" formaction="ParticipanteNuevo"></li>');
-// 			        		$("#listaParticipantes").append('<li><a href="ParticipanteNuevo">Añadir/Crear Participante</a></li>');
-						}
-			          break;
+        <!--Iconos de Font Awesome-->
+        <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
 
-			        case "8":
-		        		$("#listaParticipantes").empty();
-			        	for (var i = 0; i < valor; i++) {
-			        		$("#listaParticipantes").append('<li><a href="ParticipanteNuevo">Añadir/Crear Participante</a></li>');
-						}
-			          break;
+        <!--Family fonts de Google-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
-			        case "16":
-		        		$("#listaParticipantes").empty();
-			        	for (var i = 0; i < valor; i++) {
-			        		$("#listaParticipantes").append('<li><a href="ParticipanteNuevo">Añadir/Crear Participante</a></li>');
-						}
-			          break;
+        <!--CSS/Boostrap-->
+        <link href="Vista/css/main.css" rel="stylesheet" media="all">
+        <link href="Vista/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
+                        <%
+	                        HttpSession sesion = request.getSession(false);
+                        	Usuario user = (Usuario) sesion.getAttribute("usuario");
+                        
+                        	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        	} else {
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        	}
+                        %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-			      }
-			  	});
-			});
-		</script>
-	</head>
-	<body>
-	
-		<div id="header">
-			<h1>Crear Torneos</h1>
-		</div>
-	
-		<div id="navigator">
-			<a href="Princial">Home</a>
-			<a href="Records">Records</a>
-			<a href="MultimediaGeneral">Multimedia</a>
-			<a href="Torneo">Torneo</a>
-			<a href="Register">Registro</a>
-		</div>
-	
-		<div id="body">
-			<form action="CrearTorneo" method="post">
-				<fieldset>
-					<legend>Crear Torneo</legend>
-					
-					<lablel>Nombre del Torneo</lablel>
-					<input type="text" placeholder="Nombre Torneo"><br><br>
-					
-					<label>Rondas:</label>
-					<select id="numeroRondas">
-						<option value="4" selected="selected">4</option>
-						<option value="8">8</option>
-						<option value="16">16</option>
-					</select><br><br>
-					
-					<label>Participantes:</label>
-					<ul id="listaParticipantes">
-						
-					</ul><br><br>
-					
-					<input type="submit" value="Crear">
-				</fieldset>
-			</form>
-			
-			
-			<%
-				ArrayList<Participacion> participantesLista = (ArrayList<Participacion>) request.getAttribute("participantesTotales");
-				
-				if (participantesLista != null){
-					for (int i = 0; i < participantesLista.size(); i++) {
-						out.print("<p>"+participantesLista.get(i).getId_piloto()+"</p>");
-					}
-				}
-			%>
-			
-			
-		</div>
-	
-		<div id="footer">
-			<pre>Alvaro Del Campo - 603 016 222</pre>
-		</div>
-	
-	</body>
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-heading">MoTorneos</div>
+                <div class="masthead-subheading">�Creemos un nuevo torneo juntos!</div>
+            </div>
+        </header>
+
+		<%
+			ArrayList<Circuito> circuitos = (ArrayList<Circuito>) request.getAttribute("circuitos");
+		%>
+
+        <div class="page-wrapper p-t-130 font-poppins">
+            <div class="wrapper wrapper--w680">
+                <div class="card card-4">
+                    <div class="card-body">
+                        <h2 class="title">Crear Torneo</h2>
+                        <form method="POST" action="CrearTorneo">
+                            <div class="row row-space">
+                            	<%
+									String error = (String) request.getAttribute("error");
+								
+		                            if (error != null){
+										out.print("<div class='col'>");
+										out.print("		<div class='input-group'>");
+										out.print("			<label class='label'>El nombre ya no esta disponible</label>");
+										out.print("		</div>");
+										out.print("</div>");
+									}
+								%>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="label">Nombre</label>
+                                        <input class="input--style-4" type="text" name="nombre" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-space">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="label">Participantes</label>
+                                        <select name="participantes">
+                                        	<option value="4">4</option>
+                                        	<option value="8">8</option>
+                                        	<option value="16">16</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="label">Circuito</label>
+                                        <select name="circuito">
+                                        	<%
+                                        		if (circuitos != null){
+                                        			for(Circuito c : circuitos){
+                                        				out.print("<option value='"+c.getID()+"'>"+c.getLocalidad()+"</option>");
+                                        			}
+                                        		}
+                                        	%>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-t-15">
+                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left">Copyright � MoTorneos 2020</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        
+        <!--Javascript-->
+        <script src="Vista/js/scripts.js"></script>
+    </body>
 </html>
