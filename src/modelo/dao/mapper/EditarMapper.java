@@ -13,5 +13,6 @@ public interface EditarMapper {
 	public Integer updatePiloto(@Param("piloto") Piloto piloto);
 
 	public Integer updateCircuito(@Param("circuito") Circuito circuito);
-	
+
+	public Integer borrarTorneo(@Param("torneo") int torneo);
 }

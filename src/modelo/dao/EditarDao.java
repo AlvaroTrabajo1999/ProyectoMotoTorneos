@@ -42,4 +42,15 @@ public class EditarDao {
 		}
 	}
 	
+	public void borrarTorneo(int torneo) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			EditarMapper maper = sqlSession.getMapper(EditarMapper.class);
+			maper.borrarTorneo(torneo);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 }

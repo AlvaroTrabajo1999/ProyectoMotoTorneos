@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import modelo.pojo.Carrera;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
@@ -27,4 +28,10 @@ public interface BaseMapper {
 	public Circuito getCircuitoFromId(@Param("circuito") int circuito);
 	
 	public Usuario getUsuario(@Param("id") int id);
+	
+	public Torneo getTorneoByName(@Param("nombre") String nombre);
+	
+	public Torneo getTorneoById(@Param("id") int id);
+	
+	public ArrayList<Carrera> getCarrerasByTorneo(@Param("torneo") int torneo);
 }

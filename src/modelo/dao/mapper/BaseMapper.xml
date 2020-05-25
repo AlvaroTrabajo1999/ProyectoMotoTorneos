@@ -6,13 +6,21 @@
 
 	<resultMap type='Torneo' id='TorneoResult'>
 		<id property='ID' column='ID' />
-		<result property='rondas' column='rondas' />
+		<result property='participantes' column='participantes' />
 		<result property='id_circuito' column='id_circuito' />
 		<result property='nombre' column='nombre' />
 	</resultMap>
 	
 	<select id='getTorneos' resultMap='TorneoResult'>
 		select * from torneo;
+	</select>
+	
+	<select id='getTorneoByName' resultMap='TorneoResult'>
+		select * from torneo where nombre = #{nombre};
+	</select>
+	
+	<select id='getTorneoById' resultMap='TorneoResult'>
+		select * from torneo where ID = #{id};
 	</select>
 	
 	
@@ -30,6 +38,7 @@
 	<select id='getCircuitoFromId' resultMap='CircuitoResult'>
 		select * from circuito where ID = #{circuito};
 	</select>
+	
 	
 	
 	<resultMap type='Motocicleta' id='MotocicletaResult'>
@@ -66,18 +75,20 @@
 	</select>
 	
 	
-	<resultMap type='Usuario' id='UsuarioResult'>
+	
+	<resultMap type='Carrera' id='CarreraResult'>
 		<id property='ID' column='ID' />
-		<result property='nombre' column='nombre' />
-		<result property='apellidos' column='apellidos' />
-		<result property='usuario' column='usuario' />
-		<result property='contrasena' column='contrasena' />
-		<result property='mail' column='mail' />
-		<result property='telefono' column='telefono' />
-		<result property='piloto' column='piloto' />
+		<result property='id_torneo' column='id_torneo' />
+		<result property='nivel' column='nivel' />
+		<result property='ronda' column='ronda' />
 	</resultMap>
 	
-	<select id='getUsuario' resultMap='UsuarioResult'>
-		select * from usuario where ID = #{id};
+	<select id='getCarrerasByTorneo' resultMap='CarreraResult'>
+		select 
+			* 
+		from 
+			carrera 
+		where 
+			id_torneo = #{torneo};
 	</select>
 </mapper>

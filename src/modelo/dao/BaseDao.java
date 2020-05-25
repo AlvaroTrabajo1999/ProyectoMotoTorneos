@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 
 import modelo.dao.mapper.BaseMapper;
+import modelo.pojo.Carrera;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
@@ -88,6 +89,36 @@ public class BaseDao {
 		try {
 			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
 			return maper.getUsuario(id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public Torneo getTorneoByName(String nombre){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getTorneoByName(nombre);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public Torneo getTorneoById(int id){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getTorneoById(id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public ArrayList<Carrera> getCarrerasByTorneo(int torneo){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getCarrerasByTorneo(torneo);
 		} finally {
 			sqlSession.close();
 		}

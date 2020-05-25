@@ -3,7 +3,7 @@ package modelo.pojo;
 public class Torneo {
 
 	private int ID;
-	private int rondas;
+	private int participantes;
 	private int id_circuito;
 	private String nombre;
 	
@@ -13,10 +13,9 @@ public class Torneo {
 		
 	}
 	
-	public Torneo(int iD, int rondas, int id_circuito, String nombre) {
+	public Torneo(int participantes, int id_circuito, String nombre) {
 		super();
-		ID = iD;
-		this.rondas = rondas;
+		this.participantes = participantes;
 		this.id_circuito = id_circuito;
 		this.nombre = nombre;
 	}
@@ -27,8 +26,8 @@ public class Torneo {
 		return ID;
 	}
 
-	public int getRondas() {
-		return rondas;
+	public int getParticipantes() {
+		return participantes;
 	}
 
 	public int getId_circuito() {
@@ -45,8 +44,8 @@ public class Torneo {
 		ID = iD;
 	}
 
-	public void setRondas(int rondas) {
-		this.rondas = rondas;
+	public void setParticipantes(int rondas) {
+		this.participantes = rondas;
 	}
 
 	public void setId_circuito(int id_circuito) {

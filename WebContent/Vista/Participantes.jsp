@@ -1,3 +1,5 @@
+<%@page import="modelo.pojo.Piloto"%>
+<%@page import="modelo.pojo.Motocicleta"%>
 <%@page import="modelo.pojo.Usuario"%>
 <%@page import="modelo.pojo.Torneo"%>
 <%@page import="java.util.ArrayList"%>
@@ -57,47 +59,68 @@
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Torneos</h2>
-                    <h3 class="section-subheading text-muted">Revisa todos tus torneos y añade mas</h3>
+                    <h2 class="section-heading text-uppercase">Participantes</h2>
+                    <h3 class="section-subheading text-muted">Añade los participantes de tu torneo</h3>
                 </div>
+                <form method="post" action="Participantes">
+	                <table id="mytable" class="table table-bordred table-striped text-center">
+	                    <thead>
+		                    <th>Piloto Participante</th>
+		                    <th>Moto Asignada</th>
+	                    </thead>
+		
+	                    <tbody>
+		                    <%
+								// tomamos el atributo de los torneos:
+								Torneo torneo = (Torneo) request.getAttribute("torneo");
+								ArrayList<Motocicleta> motos = (ArrayList<Motocicleta>) request.getAttribute("motos");
+								ArrayList<Piloto> pilotos = (ArrayList<Piloto>) request.getAttribute("pilotos");
+							
+		                    	int participantes = torneo.getParticipantes();
+							
+		                    	for (int i = 0; i < participantes; i++){
+		                    		out.print("<tr>");
+									out.print("		<td>");
+	                    			out.print("		<select name='pilotos_"+i+"'>");
+	                    			out.print("		<option value='0'>selecciona un piloto</option>");
+	                    			for (int j = 0; j < pilotos.size(); j++){
+		                    			out.print("		<option value='"+pilotos.get(j).getDNI()+"'>"+pilotos.get(j).getNombre() + " " + pilotos.get(j).getApellido() +"</option>");
+	                    			}
+	                    			out.print("		</select>");
+	                    			out.print("		</td>");
+	                    			
+	                    			out.print("		<td>");
+	                    			out.print("		<select name='motos_"+i+"'>");
+	                    			out.print("		<option value='0'>selecciona una moto</option>");
+	                    			for (int j = 0; j < motos.size(); j++){
+		                    			out.print("		<option value='"+motos.get(j).getMatricula()+"'>" + motos.get(j).getMatricula() + "</option>");
+	                    			}
+	                    			out.print("		</select>");
+	                    			out.print("		</td>");							
+									out.print("</tr>");
+		                    	}
+							%>
+	                        <tr>
+	                            <td colspan="5"><a href="CrearTorneo"><input type="submit" class="btn btn-secondary btn-xs" style="width: 100%" value="Añadir Participantes"></input></a></td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+                   	<input type="hidden" value="<%out.print(torneo.getID());%>" name="torneo">
+                </form>
+                
+                <br><br><br>
+                
                 <table id="mytable" class="table table-bordred table-striped">
 
-                    <thead>
-                    <th>Nombre</th>
-                    <th>Participantes</th>
-                    <th>Circcuito</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <thead class="text-center">
+	                    <th>Crear Piloto</th>
+	                    <th>Crear Moto</th>
                     </thead>
 
                     <tbody>
-	                    <%
-							// tomamos el atributo de los torneos:
-							ArrayList<Torneo> torneos = (ArrayList<Torneo>) request.getAttribute("torneos");
-						
-							//comprobamos que tenga algun contenido, y pintamos segun tenga este contenido
-							if (torneos != null){
-								for (Torneo t : torneos){
-									out.print("<tr>");
-									out.print("		<td>"+t.getNombre()+"</td>");
-									out.print("		<td>"+t.getParticipantes()+"</td>");
-									out.print("		<td>"+t.getId_circuito()+"</td>");
-									out.print("		<td><a href=''><button class='btn btn-primary btn-xs'><i class='fas fa-edit'></i></button></a></td>");
-									out.print("		<td><a href='BorrarTorneo?id="+t.getID()+"'><button class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></button></a></td>");
-									out.print("</tr>");
-								}
-							} else {
-								out.print("<tr>");
-								out.print("		<td>Sin Datos</td>");
-								out.print("		<td>0</td>");
-								out.print("		<td>Sin Datos</td>");
-								out.print("		<td><button class='btn btn-primary btn-xs'><i class='fas fa-edit'></i></button></td>");
-								out.print("		<td><button class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></button></td>");
-								out.print("</tr>");
-							}
-						%>
                         <tr>
-                            <td colspan="5"><a href="CrearTorneo"><button class="btn btn-secondary btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" style="width: 100%" ><i class="fas fa-plus"></i></button></a></td>
+                            <td><a href="AnadirPiloto"><button class='btn btn-primary btn-xs' style='width: 100%'><i class='fas fa-plus'></i></button></a></td>
+                            <td><a href="AnadirMoto"><button class='btn btn-primary btn-xs' style='width: 100%'><i class='fas fa-plus'></i></button></a></td>
                         </tr>
                     </tbody>
 

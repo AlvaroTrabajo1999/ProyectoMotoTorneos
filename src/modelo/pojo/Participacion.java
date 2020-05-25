@@ -22,6 +22,12 @@ public class Participacion {
 		this.id_carrera = id_carrera;
 		this.mejorVuelta = mejorVuelta;
 	}
+	
+	public Participacion(String id_moto, String id_piloto) {
+		super();
+		this.id_moto = id_moto;
+		this.id_piloto = id_piloto;
+	}
 
 	//GETTERS
 	

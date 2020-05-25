@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import modelo.dao.BaseDao;
+import modelo.pojo.Carrera;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
@@ -55,5 +56,19 @@ public class BaseEjb {
 		BaseDao dao = new BaseDao();
 		return dao.getUsuario(id);
 	}
-
+	
+	public Torneo getTorneoByName(String nombre){
+		BaseDao dao = new BaseDao();
+		return dao.getTorneoByName(nombre);
+	}
+	
+	public Torneo getTorneoById(int id){
+		BaseDao dao = new BaseDao();
+		return dao.getTorneoById(id);
+	}
+	
+	public ArrayList<Carrera> getCarrerasByTorneo(int torneo){
+		BaseDao dao = new BaseDao();
+		return dao.getCarrerasByTorneo(torneo);
+	}
 }
