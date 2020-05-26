@@ -32,18 +32,20 @@
                 <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
-                        	HttpSession sesion = request.getSession(false);
-                            Usuario user = (Usuario) sesion.getAttribute("usuario");
-                                                
-                           	if (user != null){
-                           		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
-                           	} else {
-                           		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
-                           	}
+                        	//si el usuario esta logueado mostrara un nav o otro
+	                        HttpSession sesion = request.getSession(false);
+                        	Usuario user = (Usuario) sesion.getAttribute("usuario");
+                        
+                        	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
+                        	} else {
+                        		response.sendRedirect("Principal");
+                        	}
                         %>
                     </ul>
                 </div>
@@ -65,26 +67,33 @@
                 </div>
                 <ul class="timeline">
                 <%
+                	//creamos los ejb que necesitaremos
                 	RecordsEjb recordsEjb = new RecordsEjb();
             		MultimediaEjb multimediaEjb = new MultimediaEjb();
+            		
+            		//tomamos los circuitos
                		ArrayList<Circuito> circuitos = (ArrayList<Circuito>) request.getAttribute("circuitos");
               	
+            		//y por cada circuito tenemos un record
               		if (circuitos != null){
       					for (int i = 0; i < circuitos.size() ; i++){
       						Circuito actual = circuitos.get(i);
       						
+      						//se ponen uno a la derecha y uno a la izquierda
 							if (i % 2 == 0){
        							out.print("<li>");
 							} else {
        							out.print("<li class='timeline-inverted'>");
 							}
 				
+    						//si tieene multimedia se pondra este, por el contrario se pondra una imagen por defecto
 							if (multimediaEjb.getMultimediaCircuitoById(actual.getID()) != null){
 								out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='"+multimediaEjb.getMultimediaCircuitoById(actual.getID()).getFoto1()+"'/></div>");
 							} else {
 								out.print("<div class='timeline-image'><img class='rounded-circle img-fluid' src='Vista/assets/img/logos/logoCircuito.jpg'/></div>");
 							}
 				
+    						//rellenamos con los datos necesarios
       						out.print("<div class='timeline-panel'>");
       						out.print("		<div class='timeline-heading'>");
       						out.print("			<h4>"+actual.getLocalidad()+"</h4>");

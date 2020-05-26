@@ -6,7 +6,12 @@ import modelo.dao.mapper.RecordsMapper;
 import modelo.pojo.MejorVueltaCircuito;
 
 public class RecordsDao {
-
+	
+	/**
+	 * obtenemos la mejor vuelta de un circuito mediante su identificador
+	 * @param id : identificador del circuito
+	 * @return
+	 */
 	public MejorVueltaCircuito getMejorVueltaCircuitoById(int id){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {

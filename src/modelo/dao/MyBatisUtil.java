@@ -16,6 +16,7 @@ import ch.qos.logback.classic.Logger;
 public class MyBatisUtil {
 	private static SqlSessionFactory factory;
 
+	//creamos el logger
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(MyBatisUtil.class);
 	
 	private MyBatisUtil() {

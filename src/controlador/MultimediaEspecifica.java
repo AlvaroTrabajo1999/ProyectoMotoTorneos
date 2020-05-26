@@ -32,12 +32,16 @@ public class MultimediaEspecifica extends HttpServlet {
 	@EJB
 	MultimediaEjb multimediaEjb;
 	
+	/**
+	 * do get, toma el tipo de multimedia que se requiere, y lo toma de la base de datos
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			
+			//toma el tipo de dato que se necesita
 			String tipoMultimedia = request.getParameter("especifico");
 			
+			//comprueba que dato se necesita y toma de la base de datos esto y lo añade como atributo
 			if (tipoMultimedia.equals("circuito")) {
 				ArrayList<MultimediaCircuito> multimediaCircuito = multimediaEjb.getMultimediaCircuitos();
 				request.setAttribute("multimedia", multimediaCircuito);
@@ -51,9 +55,9 @@ public class MultimediaEspecifica extends HttpServlet {
 			
 		} catch (Exception e) {
 			//en caso de que salte algun error lo guardaremos en el logger:
-			logger.error("error en el controlador Multimedia General");
+			logger.error("error en el controlador do get de Multimedia general al tomar las diferentes multimedias, causa: " + e.getCause());
 		} finally {
-			//reenviamos al servlet deseado
+			//reenviamos al jsp deseado
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/MultimediaGeneral.jsp");
 			rs.forward(request, response);
 		}

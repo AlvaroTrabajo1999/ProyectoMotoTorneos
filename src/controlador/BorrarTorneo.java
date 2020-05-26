@@ -28,11 +28,16 @@ public class BorrarTorneo extends HttpServlet {
 	@EJB
 	EditarEjb editarEjb;
 	
+	/**
+	 * do get, toma una id de un torneo y borra este de la base de datos
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//tomamos la id del torneo que deseamos borrar
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		try {
+			//y intentamos borrar el torneo asociado de la base de datos
 			editarEjb.borrarTorneo(id);
 		} catch (Exception e) {
 			//en caso de que salte algun error lo guardaremos en el logger:

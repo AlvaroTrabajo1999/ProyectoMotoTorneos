@@ -12,6 +12,10 @@ import modelo.pojo.Torneo;
 
 public class AnadirDao {
 
+	/**
+	 * inserta en la base de datos el participante proporcionado
+	 * @param part : participante proporcionado
+	 */
 	public void insertParticipante(Participacion part) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -23,6 +27,10 @@ public class AnadirDao {
 		}
 	}
 	
+	/**
+	 * inserta en la base de datos una motocicleta
+	 * @param moto : motocicleta que se desea añadir a la base de datos
+	 */
 	public void insertMotocicleta(Motocicleta moto) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -34,6 +42,10 @@ public class AnadirDao {
 		}
 	}
 	
+	/**
+	 * inserta en la base de datos un piloto
+	 * @param pilot : piloto a insertar
+	 */
 	public void insertPiloto(Piloto pilot) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -45,6 +57,10 @@ public class AnadirDao {
 		}
 	}
 	
+	/**
+	 * inserta un circuito en la base de datos
+	 * @param circuito : circuito que se desea insertar 
+	 */
 	public void insertCircuito(Circuito circuito) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -56,6 +72,10 @@ public class AnadirDao {
 		}
 	}
 	
+	/**
+	 * inserta un torneo en la base de datos
+	 * @param torneo : torneo que se desea insertar
+	 */
 	public void insertTorneo(Torneo torneo) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -67,6 +87,10 @@ public class AnadirDao {
 		}
 	}
 	
+	/**
+	 * inserta en una carrera en la base de datos
+	 * @param carrera : carrera que se desea insertar
+	 */
 	public void insertCarrera(Carrera carrera) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -78,6 +102,10 @@ public class AnadirDao {
 		}
 	}
 	
+	/**
+	 * inserta una participacion en la base de datos
+	 * @param participacion : participacion que se desea insertar
+	 */
 	public void insertParticipacion(Participacion participacion) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {

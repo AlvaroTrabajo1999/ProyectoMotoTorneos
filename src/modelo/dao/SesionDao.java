@@ -7,6 +7,11 @@ import modelo.pojo.Usuario;
 
 public class SesionDao {
 	
+	/**
+	 * obtiene un usuario mediante su nombre de usuario
+	 * @param user : nombre de usuario
+	 * @return
+	 */
 	public Usuario getUsuarioByUser(String user){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -17,6 +22,10 @@ public class SesionDao {
 		}
 	}
 	
+	/**
+	 * insera un usuario en la base de datos
+	 * @param usu : usuario a insertar
+	 */
 	public void registerUsuario(Usuario usu) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -28,6 +37,12 @@ public class SesionDao {
 		}
 	}
 	
+	/**
+	 * comprueba la existencia de un usuario mediante su nombre y contraseña
+	 * @param usu : nombre del usuario
+	 * @param cont : contraseña del usuario
+	 * @return
+	 */
 	public Usuario existsUsuario(String usu, String cont) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {

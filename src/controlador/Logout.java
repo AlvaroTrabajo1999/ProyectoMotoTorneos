@@ -23,7 +23,7 @@ public class Logout extends HttpServlet {
 	SesionEJB sesionesEJB;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * do get, toma la sesion y la cierra
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

@@ -29,17 +29,19 @@
                 <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
+                        	//si el usuario esta logueado mostrara un nav o otro
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
                         	} else {
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        		response.sendRedirect("Principal");
                         	}
                         %>
                     </ul>
@@ -58,6 +60,7 @@
             <div class="container">
                 <div class="text-center">
                 	<%
+                	 	//tomamos el circuito que se quiere editar
                 		Circuito circuito = (Circuito) request.getAttribute("circuito");
                 		if (circuito != null){
                 			out.print("<h2 class='section-heading text-uppercase'>Circuito</h2>");
@@ -69,8 +72,10 @@
                 <div class="swiper-container main-slider" id="myCarousel">
                 	<%
                 		if (circuito != null){
+                			//tomamos los datos de multimedia
                 			MultimediaCircuito multimedia = (MultimediaCircuito) request.getAttribute("multimediaCircuito");
                 			
+                			//y ponemos la imagen si la tiene
 		            		out.print("<div class='row'>");
 		            		out.print("	<div class='col mt-3'>");
 		            		if (multimedia != null){
@@ -79,10 +84,13 @@
 		            			out.print("		<img src='Vista/assets/img/logos/ImagenInterrogacion.png' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
 		            		}
 		            		out.print("	</div>");
+		            		
+		            		//creamos una tabla para los datos del circuito
 		            		out.print("	<table class='col mt-3 table' style='display: inline-block;'>");
 		            		out.print("		<tr><td><h3>Localidad: </h3></td><td><h3>"+circuito.getLocalidad()+"</h3></td></tr>");
 		            		out.print("		<tr><td><h3>Distancia: </h3></td><td><h3>"+circuito.getDistancia()+"</h3></td></tr>");
 		            		out.print("		<tr><td><h3>Maxima recta: </h3></td><td><h3>"+circuito.getRecta()+"</h3></td></tr>");
+		            		out.print("		<tr><td><h3>Multimedia: </h3></td><td><h3><a href='SubirImagen?id="+circuito.getID()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
 		            		out.print("		<tr><td colspan='2'><a href='EditarCircuito?id="+circuito.getID()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
 		            		out.print("	</table>");
 		            		out.print("</div>");
