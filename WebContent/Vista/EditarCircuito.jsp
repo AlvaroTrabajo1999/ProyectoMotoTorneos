@@ -29,17 +29,19 @@
                 <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
+                        	//si el usuario esta logueado mostrara un nav o otro
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
                         	} else {
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        		response.sendRedirect("Principal");
                         	}
                         %>
                     </ul>
@@ -55,6 +57,7 @@
         </header>
 
 		<%
+			//tomamos el circuito que se edita y su multimedia
 			Circuito circuito = (Circuito) request.getAttribute("circuito");
 			MultimediaCircuito multimedia = (MultimediaCircuito) request.getAttribute("multimedia");
 		%>
@@ -66,6 +69,7 @@
                         <h2 class="title">Editar Circuito - <%out.print(circuito.getLocalidad());%></h2>
                         <form method="POST" action="EditarCircuito" enctype="multipart/form-data">
                      	 	<%
+                     	 		//comprobamos que no haya ningun error
 								String error = (String) request.getAttribute("error");
 							
 	                            if (error != null){
@@ -77,6 +81,8 @@
 									out.print("	</div>");
 									out.print("</div>");
 								}
+	                            
+	                            //y rellenaremos los values de los inputs con los datos existentes
 							%>
                             <div class="row row-space">
                                 <div class="col">
@@ -104,91 +110,6 @@
                                     <div class="input-group">
                                         <label class="label">Mayor Recta</label>
                                         <input class="input--style-4" type="number" name="recta" step="any" min="0" value="<%out.print(circuito.getRecta());%>" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                            	<div class="col-3">
-                            		<%
-                            			if (multimedia != null){
-                            				out.print("<img src=" + multimedia.getFoto1() + "/>");
-                            			} else {
-                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
-                            			}
-                            		%>
-                            	</div>
-                                <div class="col-9">
-                                    <div class="input-group col">
-                                        <label class="label">Foto 1</label>
-                                        <input class="input--style-4" type="file" name="foto1" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                            	<div class="col-3">
-                            		<%
-                            			if (multimedia != null){
-                            				out.print("<img src=" + multimedia.getFoto2() + "/>");
-                            			} else {
-                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
-                            			}
-                            		%>
-                            	</div>
-                                <div class="col-9">
-                                    <div class="input-group">
-                                        <label class="label">Foto 2</label>
-                                        <input class="input--style-4" type="file" name="foto2" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                            	<div class="col-3">
-                            		<%
-                            			if (multimedia != null){
-                            				out.print("<img src=" + multimedia.getFoto3() + "/>");
-                            			} else {
-                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
-                            			}
-                            		%>
-                            	</div>
-                                <div class="col-9">
-                                    <div class="input-group">
-                                        <label class="label">Foto 3</label>
-                                        <input class="input--style-4" type="file" name="foto3" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                            	<div class="col-3">
-                            		<%
-                            			if (multimedia != null){
-                            				out.print("<img src=" + multimedia.getFoto4() + "/>");
-                            			} else {
-                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
-                            			}
-                            		%>
-                            	</div>
-                                <div class="col-9">
-                                    <div class="input-group">
-                                        <label class="label">Foto 4</label>
-                                        <input class="input--style-4" type="file" name="foto4" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space">
-                            	<div class="col-3">
-                            		<%
-                            			if (multimedia != null){
-                            				out.print("<img src=" + multimedia.getFoto5() + "/>");
-                            			} else {
-                            				out.print("<img src='Vista/assets/img/logos/ImagenMas.png' width='130'/>");
-                            			}
-                            		%>
-                            	</div>
-                                <div class="col-9">
-                                    <div class="input-group">
-                                        <label class="label">Foto 5</label>
-                                        <input class="input--style-4" type="file" name="foto5" >
                                     </div>
                                 </div>
                             </div>

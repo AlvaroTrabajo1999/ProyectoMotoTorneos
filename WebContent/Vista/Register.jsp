@@ -27,15 +27,17 @@
                 <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
+                        	//si el usuario esta logueado mostrara un nav o otro
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
                         	} else {
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
                         	}
@@ -60,6 +62,7 @@
                         <form method="POST" action="Login">
                             <div class="row row-space">
 	                            <%
+	                            	//comprobamos que no haya ningun error
 									String errorLogin = (String) request.getAttribute("errorEmpty");
 								
 		                            if (errorLogin != null){
@@ -100,6 +103,7 @@
                         <form method="POST" action="Register">
                             <div class="row row-space">
                             	<%
+                            		//comprobamos que no haya ningun error
 									String errorDatos =  (String) request.getAttribute("errorVacio");
 			
 									if (errorDatos != null){
@@ -151,6 +155,7 @@
                                 <div class="col">
                                     <div class="input-group">
 	                                    <%
+	                                    	//comprobamos que no haya errores
 											String errorRegistro =  (String) request.getAttribute("errorRegistro");
 					
 											if (errorRegistro != null){

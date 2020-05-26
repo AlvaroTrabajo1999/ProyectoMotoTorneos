@@ -33,6 +33,9 @@ public class Records extends HttpServlet {
 	@EJB
 	BaseEjb baseEjb;
 	
+	/**
+	 * do get, toma todos los circuitos de la base de datos y los pone como atributo, y reenvia al jsp deseado
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {

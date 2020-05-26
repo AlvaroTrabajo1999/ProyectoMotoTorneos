@@ -29,17 +29,19 @@
                 <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
+                        	//si el usuario esta logueado mostrara un nav o otro
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
                         	} else {
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        		response.sendRedirect("Principal");
                         	}
                         %>
                     </ul>
@@ -58,6 +60,7 @@
             <div class="container">
                 <div class="text-center">
                 	<%
+                		//tomamos la motocicleta, si esta es nula le decimos al usuario que ha cocurrido un error
                 		Motocicleta moto = (Motocicleta) request.getAttribute("Moto");
                 		if (moto != null){
                 			out.print("<h2 class='section-heading text-uppercase'>Motocicleta</h2>");
@@ -69,8 +72,10 @@
                 <div class="swiper-container main-slider" id="myCarousel">
                 	<%
                 		if (moto != null){
+                			//tomamos los datos de multimedia
                 			MultimediaMotocicleta multimedia = (MultimediaMotocicleta) request.getAttribute("multimediaMoto");
                 			
+                			//pintamos la imagen si la tiene
 		            		out.print("<div class='row'>");
 		            		out.print("	<div class='col mt-3'>");
 		            		if (multimedia != null){
@@ -79,6 +84,8 @@
 		            			out.print("		<img src='Vista/assets/img/logos/ImagenInterrogacion.png' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
 		            		}
 		            		out.print("	</div>");
+		            		
+		            		//pintamos una tabla con todos los datos relevantes
 		            		out.print("	<table class='col mt-3 table' style='display: inline-block;'>");
 		            		out.print("		<tr><td><h3>Matricula: </h3></td><td><h3>"+moto.getMatricula()+"</h3></td></tr>");
 		            		out.print("		<tr><td><h3>Marca: </h3></td><td><h3>"+moto.getMarca()+"</h3></td></tr>");

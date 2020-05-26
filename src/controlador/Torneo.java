@@ -26,6 +26,9 @@ public class Torneo extends HttpServlet {
 	@EJB
 	BaseEjb baseEjb;
 	
+	/**
+	 * do get, tomamos todos los torneos de la base de datos y los ponemos como atributo
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
@@ -44,14 +47,6 @@ public class Torneo extends HttpServlet {
 			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Torneo.jsp");
 			rs.forward(request, response);
 		}
-		
-	}
-
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 	}
 

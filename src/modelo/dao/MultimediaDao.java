@@ -11,6 +11,10 @@ import modelo.pojo.MultimediaPiloto;
 
 public class MultimediaDao {
 	
+	/**
+	 * obtiene toda la multimedia de los circuitos y lo guarda en un array list
+	 * @return
+	 */
 	public ArrayList<MultimediaCircuito> getMultimediaCircuitos(){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -20,7 +24,11 @@ public class MultimediaDao {
 			sqlSession.close();
 		}
 	}
-	
+
+	/**
+	 * obtiene toda la multimedia de las motocicletas y lo guarda en un array list
+	 * @return
+	 */
 	public ArrayList<MultimediaMotocicleta> getMultimediaMotocicletas(){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -30,7 +38,11 @@ public class MultimediaDao {
 			sqlSession.close();
 		}
 	}
-	
+
+	/**
+	 * obtiene toda la multimedia de los pilotos y lo guarda en un array list
+	 * @return
+	 */
 	public ArrayList<MultimediaPiloto> getMultimediaPilotos(){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -40,7 +52,11 @@ public class MultimediaDao {
 			sqlSession.close();
 		}
 	}
-	
+
+	/**
+	 * obtiene toda la multimedia de los pilotos filtrando por id de piloto
+	 * @return
+	 */
 	public MultimediaPiloto getMultimediaPilotoById(String piloto){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -50,7 +66,11 @@ public class MultimediaDao {
 			sqlSession.close();
 		}
 	}
-	
+
+	/**
+	 * obtiene toda la multimedia de los circuitos filtrando por id del circuito
+	 * @return
+	 */
 	public MultimediaCircuito getMultimediaCircuitoById(int circuito){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
@@ -60,7 +80,11 @@ public class MultimediaDao {
 			sqlSession.close();
 		}
 	}
-	
+
+	/**
+	 * obtiene toda la multimedia de las moto filtrando por id de piloto
+	 * @return
+	 */
 	public MultimediaMotocicleta getMultimediaMotocicletasById(String moto){
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {

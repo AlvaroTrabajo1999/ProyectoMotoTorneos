@@ -20,9 +20,13 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class SubirImagen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
+	//variable que guarda donde se subira la imagen
 	private static final String UPLOAD_DIRECTORY = "Vista/assets/img/moto";
 	
+	/**
+	 * do get, reenvia al servlet deseado
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//reenviamos al jsp de añadir moto holas
@@ -31,12 +35,13 @@ public class SubirImagen extends HttpServlet {
 		
 	}
 
+	/**
+	 * do post, comprueba el archivo que se ha subido y la añade a las base de datos
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
-		// Multipart RFC 7578
 
 		// Obtenemos una ruta en el servidor para guardar el archivo
 		String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;

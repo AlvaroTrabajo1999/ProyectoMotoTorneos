@@ -84,10 +84,6 @@ public class EditarCircuito extends HttpServlet {
 		//creamos el circuito para mandarlo a editar
 		Circuito circuito = new Circuito(id,localidad,distancia,recta);
 		
-		
-		
-		
-		
 		try {
 			//tratamos de editar el circuito
 			editarEjb.updateCircuito(circuito);

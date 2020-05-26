@@ -22,16 +22,14 @@ public class Usuario extends HttpServlet {
 	@EJB
 	BaseEjb baseEjb;
 	
+	/**
+	 * do get, reenviamos al servlet deseado
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//reenvia al jsp deseado
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/Usuario.jsp");
 		rs.forward(request, response);
-		
-	}
-
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 

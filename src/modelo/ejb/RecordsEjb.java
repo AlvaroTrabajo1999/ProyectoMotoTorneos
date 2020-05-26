@@ -10,6 +10,11 @@ import modelo.pojo.MejorVueltaCircuito;
 @LocalBean
 public class RecordsEjb {
 	
+	/**
+	 * obtenemos la mejor vuelta de un circuito mediante su identificador
+	 * @param id : identificador del circuito
+	 * @return
+	 */
 	public MejorVueltaCircuito getMejorVueltaCircuitoById(int id){
 		RecordsDao dao = new RecordsDao();
 		return dao.getMejorVueltaCircuitoById(id);

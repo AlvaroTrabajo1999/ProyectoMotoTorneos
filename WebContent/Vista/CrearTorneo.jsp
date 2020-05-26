@@ -29,17 +29,19 @@
                 <a class="navbar-brand js-scroll-trigger" href="Principal"><img src="Vista/assets/img/LogoTorneos.png" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Records">Records</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="MultimediaGeneral">Multimedia</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Torneo">Torneos</a></li>
                         <%
+                        	//si el usuario esta logueado mostrara un nav o otro
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
                         	if (user != null){
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
                         		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
+                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
                         	} else {
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
+                        		response.sendRedirect("Principal");
                         	}
                         %>
                     </ul>
@@ -55,6 +57,7 @@
         </header>
 
 		<%
+			//tomamos el arraylist con todos los circuitos de la base de datos
 			ArrayList<Circuito> circuitos = (ArrayList<Circuito>) request.getAttribute("circuitos");
 		%>
 
@@ -64,18 +67,21 @@
                     <div class="card-body">
                         <h2 class="title">Crear Torneo</h2>
                         <form method="POST" action="CrearTorneo">
-                            <div class="row row-space">
-                            	<%
+                        	<%
+                            		//comprobamos que no haya ningun error
 									String error = (String) request.getAttribute("error");
 								
 		                            if (error != null){
+										out.print("<div class='row row-space'>");
 										out.print("<div class='col'>");
 										out.print("		<div class='input-group'>");
 										out.print("			<label class='label'>El nombre ya no esta disponible</label>");
 										out.print("		</div>");
 										out.print("</div>");
+										out.print("</div>");
 									}
 								%>
+                            <div class="row row-space">
                                 <div class="col">
                                     <div class="input-group">
                                         <label class="label">Nombre</label>
@@ -99,6 +105,7 @@
                                         <label class="label">Circuito</label>
                                         <select name="circuito">
                                         	<%
+                                        		//metemos los diferentes circuitos en un select para que el usuario pueda seleccionar el circuito donde tomara curso su torneo
                                         		if (circuitos != null){
                                         			for(Circuito c : circuitos){
                                         				out.print("<option value='"+c.getID()+"'>"+c.getLocalidad()+"</option>");
