@@ -81,6 +81,8 @@
 		<result property='id_torneo' column='id_torneo' />
 		<result property='nivel' column='nivel' />
 		<result property='ronda' column='ronda' />
+		<result property='posicion' column='posicion' />
+		<result property='ganador' column='ganador' />
 	</resultMap>
 	
 	<select id='getCarrerasByTorneo' resultMap='CarreraResult'>
@@ -90,5 +92,83 @@
 			carrera 
 		where 
 			id_torneo = #{torneo};
+	</select>
+	
+	<select id='getCarreraEspecifica' resultMap='CarreraResult'>
+		select 
+			* 
+		from 
+			carrera 
+		where 
+			nivel = #{nivel} and 
+			ronda = #{ronda} and 
+			id_torneo = #{torneo};
+	</select>
+	
+	<select id='getCarreraById' resultMap='CarreraResult'>
+		select 
+			* 
+		from 
+			carrera 
+		where 
+			ID = #{id};
+	</select>
+	
+	<select id='getCarrerasTorneoRondas' resultMap='CarreraResult'>
+		select 
+			* 
+		from 
+			carrera 
+		where 
+			id_torneo = #{torneo} and 
+			ronda = #{ronda};
+	</select>
+	
+	
+	<resultMap type='Participacion' id='ParticipacionResult'>
+		<id property='ID' column='ID' />
+		<result property='id_moto' column='id_moto' />
+		<result property='id_piloto' column='id_piloto' />
+		<result property='id_carrera' column='id_carrera' />
+		<result property='mejorVuelta' column='mejorVuelta' />
+	</resultMap>
+	
+	<select id='getParticipacionesByIdCarrera' resultMap='ParticipacionResult'>
+		select 
+			*
+		from
+			participacion
+		where
+			id_carrera = #{carrera};
+	</select>
+	
+	<select id='getParticipacionById' resultMap='ParticipacionResult'>
+		select 
+			*
+		from
+			participacion
+		where
+			ID = #{id};
+	</select>
+	
+	
+	<resultMap type='Usuario' id='UsuarioResult'>
+		<id property='ID' column='ID' />
+		<result property='nombre' column='nombre' />
+		<result property='apellidos' column='apellidos' />
+		<result property='usuario' column='usuario' />
+		<result property='contrasena' column='contrasena' />
+		<result property='piloto' column='piloto' />
+		<result property='mail' column='mail' />
+		<result property='telefono' column='telefono' />
+	</resultMap>
+	
+	<select id='getUsuario' resultMap='UsuarioResult'>
+		select 
+			* 
+		from 
+			usuario 
+		where 
+			ID = #{id};
 	</select>
 </mapper>

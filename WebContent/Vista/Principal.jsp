@@ -31,16 +31,15 @@
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
-                        	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
-                        	} else {
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Register'>Registro</a></li>");
-                        	}
+                        	if (user == null){
+                        		response.sendRedirect("Principal");
+                        	} 
                         %>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -57,23 +56,23 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Servicios</h2>
-                    <h3 class="section-subheading text-muted">Con tan solo registrarse en nuestra págin podras disfrutar de nuestra herramienta de creación de torneos, ademas de la informacion y la multimedia de circuitos y demás.</h3>
+                    <h3 class="section-subheading text-muted">Con tan solo registrarse en nuestra página podrás disfrutar de nuestra herramienta de creación de torneos, ademas de la información y la multimedia de circuitos y demás.</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-clock fa-stack-1x fa-inverse"></i></span>
                         <h4 class="my-3">Records</h4>
-                        <p class="text-muted">Donde podras ver los records que se han ido guardando, tanto tuyos como el mejor del circuito.</p>
+                        <p class="text-muted">Donde podrás ver los records que se han ido guardando.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-images fa-stack-1x fa-inverse"></i></span>
                         <h4 class="my-3">Multimedia</h4>
-                        <p class="text-muted">Podras visualizar todas las imagenes de las motocicletas, circuitos y pilotos.</p>
+                        <p class="text-muted">Podrás visualizar todas las imagenes de las motocicletas, circuitos y pilotos.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-trophy fa-stack-1x fa-inverse"></i></span>
                         <h4 class="my-3">Torneos</h4>
-                        <p class="text-muted">Crear tus propios torneos para competir con tus amigos y guardar los progresos en vuestra conducción</p>
+                        <p class="text-muted">Crear tus propios torneos para competir con tus amigos y guardar los progresos en vuestra conducción.</p>
                     </div>
                 </div>
             </div>
@@ -88,15 +87,15 @@
                     <div class="col-lg">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="Vista/assets/img/team/Alvaro.PNG" alt="" />
-                            <h4>Alvaro Del Campo</h4>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                            <h4>Álvaro Del Campo</h4>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="Vista/assets/img/team/Tomas.jpg" alt="" />
-                            <h4>Tomas Ribot</h4>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                            <h4>Tomás Ribot</h4>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -144,7 +143,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
                 </div>

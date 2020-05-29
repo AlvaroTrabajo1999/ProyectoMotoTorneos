@@ -7,6 +7,7 @@ public class Carrera {
 	private int nivel;
 	private int ronda;
 	private int posicion;
+	private int ganador;
 	
 	//CONSTRUCTORES
 
@@ -22,6 +23,10 @@ public class Carrera {
 	}
 	
 	//GETTERS
+
+	public int getGanador() {
+		return ganador;
+	}
 
 	public int getID() {
 		return ID;
@@ -44,6 +49,10 @@ public class Carrera {
 	}
 	
 	//SETTERS
+
+	public void setGanador(int ganador) {
+		this.ganador = ganador;
+	}
 
 	public void setId_torneo(int id_torneo) {
 		this.id_torneo = id_torneo;

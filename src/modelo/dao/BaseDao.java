@@ -8,6 +8,7 @@ import modelo.dao.mapper.BaseMapper;
 import modelo.pojo.Carrera;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
+import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
 import modelo.pojo.Usuario;
@@ -170,6 +171,61 @@ public class BaseDao {
 		try {
 			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
 			return maper.getCarrerasByTorneo(torneo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public Carrera getCarreraById(int id){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getCarreraById(id);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public Carrera getCarreraEspecifica(int nivel, int ronda, int torneo){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getCarreraEspecifica(nivel, ronda, torneo);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public ArrayList<Carrera> getCarrerasTorneoRondas(int torneo,int ronda){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getCarrerasTorneoRondas(torneo, ronda);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	/**
+	 * toma las participaciones de una carrera mediante su identificador
+	 * @param carrera : identificador del circuito
+	 * @return
+	 */
+	public ArrayList<Participacion> getParticipacionesByIdCarrera(int carrera){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getParticipacionesByIdCarrera(carrera);
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public Participacion getParticipacionById(int id){
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			BaseMapper maper = sqlSession.getMapper(BaseMapper.class);
+			return maper.getParticipacionById(id);
 		} finally {
 			sqlSession.close();
 		}

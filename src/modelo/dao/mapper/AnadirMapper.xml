@@ -53,4 +53,24 @@
 			(#{part.id_moto},#{part.id_piloto},#{part.id_carrera});
 	</insert>
 	
+	<insert id="insertMultimediaMoto">
+		INSERT INTO 
+			multimedia_motocicleta (motocicleta, foto1) 
+		VALUES 
+			(#{moto}, #{foto});
+	</insert>
+	
+	<insert id="insertMultimediaCircuito">
+		INSERT INTO 
+			multimedia_circuito (circuito, foto1) 
+		VALUES 
+			(#{circuito}, #{foto});
+	</insert>
+	
+	<insert id="insertMultimediaPiloto">
+		INSERT INTO 
+			multimedia_piloto (piloto, foto1) 
+		VALUES 
+			(#{piloto}, #{foto});
+	</insert>
 </mapper>

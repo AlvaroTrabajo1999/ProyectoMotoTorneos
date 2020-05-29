@@ -1,9 +1,5 @@
-<%@page import="modelo.ejb.MultimediaEjb"%>
-<%@page import="modelo.pojo.MultimediaMotocicleta"%>
-<%@page import="modelo.pojo.Motocicleta"%>
-<%@page import="modelo.pojo.Usuario"%>
-<%@ page language="java" contentType="text/html; UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="modelo.pojo.Usuario"%>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -21,7 +17,8 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
-        <!--CSS/Boostrap-->
+        <!-- Main CSS-->
+        <link href="Vista/css/main.css" rel="stylesheet" media="all">
         <link href="Vista/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
@@ -52,62 +49,42 @@
         <header class="masthead">
             <div class="container">
                 <div class="masthead-heading">MoTorneos</div>
-                <div class="masthead-subheading">Revisa los datos de tus motocicletas</div>
+                <div class="masthead-subheading">¡Unete a nosotros y comencemos algo mejor!</div>
             </div>
         </header>
 
-        <section class="page-section" id="about">
-            <div class="container">
-                <div class="text-center">
-                	<%
-                		//tomamos la motocicleta, si esta es nula le decimos al usuario que ha cocurrido un error
-                		Motocicleta moto = (Motocicleta) request.getAttribute("Moto");
-                		if (moto != null){
-                			out.print("<h2 class='section-heading text-uppercase'>Motocicleta</h2>");
-                		} else {
-                			out.print("<h2 class='section-heading text-uppercase'>Ha ocurrido un error porfavor vuelva a la pagina principal</h2>");
-                		}
-                	%>
-                </div>
-                <div class="swiper-container main-slider" id="myCarousel">
-                	<%
-                		MultimediaEjb multimediaEjb = new MultimediaEjb();
-                		
-                		if (moto != null){
-                			//tomamos los datos de multimedia
-                			MultimediaMotocicleta multimedia = (MultimediaMotocicleta) request.getAttribute("multimediaMoto");
-                			
-                			//pintamos la imagen si la tiene
-		            		out.print("<div class='row'>");
-		            		out.print("	<div class='col mt-3'>");
-		            		if (multimedia != null){
-		            			out.print("		<img src='Vista/assets/img/moto/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
-		            		} else {
-		            			out.print("		<img src='Vista/assets/img/logos/ImagenInterrogacion.png' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
-		            		}
-		            		out.print("	</div>");
-		            		
-		            		//pintamos una tabla con todos los datos relevantes
-		            		out.print("	<table class='col mt-3 table' style='display: inline-block;'>");
-		            		out.print("		<tr><td><h3>Matricula: </h3></td><td><h3>"+moto.getMatricula()+"</h3></td></tr>");
-		            		out.print("		<tr><td><h3>Marca: </h3></td><td><h3>"+moto.getMarca()+"</h3></td></tr>");
-		            		out.print("		<tr><td><h3>Tubo de escape: </h3></td><td><h3>"+moto.getTuboEscape()+"</h3></td></tr>");
-		            		if (multimediaEjb.getMultimediaMotocicletasById(moto.getMatricula()) == null){
-			            		out.print("		<tr><td><h3>Multimedia: </h3></td><td><h3><a href='SubirImagenMoto?id="+moto.getMatricula()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
-		            		}
-		            		out.print("		<tr><td colspan='2'><a href='EditarMoto?id="+moto.getMatricula()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
-		            		out.print("	</table>");
-		            		out.print("</div>");
-                		}
-                	%>
-				</div>
-			</div>
-        </section>
+		<%
+			String circuito = (String) request.getAttribute("circuito");
+			sesion.setAttribute("circuito", circuito);
+		%>
 
-       	<footer class="footer py-4">
+         <div class="page-wrapper p-t-130 p-b-100 font-poppins">
+            <div class="wrapper wrapper--w680">
+                <div class="card card-4">
+                    <div class="card-body">
+                        <h2 class="title">Multimedia Circuito</h2>
+                        <form method="POST" action="SubirImagenCircuito" enctype="multipart/form-data">
+                            <div class="row row-space">
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="label">Imagen a subir</label>
+                                        <input class="input--style-4" type="file" name="fname" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-t-15">
+                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright Â© MoTorneos 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
@@ -120,8 +97,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        
+
         <!--Javascript-->
         <script src="Vista/js/scripts.js"></script>
+
     </body>
 </html>

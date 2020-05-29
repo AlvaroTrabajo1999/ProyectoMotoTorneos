@@ -80,6 +80,29 @@
 	</update>
 	
 	
+	<update id="updateUsuario">
+		UPDATE 
+			usuario
+		SET 
+			nombre = #{usuario.nombre}, 
+			apellidos = #{usuario.apellidos},
+			mail = #{usuario.mail}, 
+			usuario = #{usuario.usuario},
+			contrasena = #{usuario.contrasena},
+			telefono = #{usuario.telefono}
+		WHERE 
+			ID = #{usuario.ID};
+	</update>
+	
+	<update id="ganadorCarrera">
+		UPDATE 
+			carrera
+		SET 
+			ganador = #{participacion} 
+		WHERE 
+			ID = #{carrera};
+	</update>
+	
 	<delete id="borrarTorneo">
 		DELETE FROM 
 			torneo

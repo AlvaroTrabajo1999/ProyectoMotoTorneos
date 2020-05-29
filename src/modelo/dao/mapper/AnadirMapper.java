@@ -52,4 +52,28 @@ public interface AnadirMapper {
 	 * @param participacion : participacion que se desea insertar
 	 */
 	public Integer insertParticipacion(@Param("part") Participacion participacion);
+
+	/**
+	 * inserta en la base de datos la foto de una moto
+	 * @param moto : moto a la que se le inserta la imagen
+	 * @param foto : foto a insertar
+	 * @return
+	 */
+	public Integer insertMultimediaMoto(@Param("moto") String moto, @Param("foto") String foto);
+
+	/**
+	 * inserta en la base de datos la foto de un circuito
+	 * @param circuito : circuito al que se le inserta la imagen
+	 * @param foto : foto a insertar
+	 * @return
+	 */
+	public Integer insertMultimediaCircuito(@Param("circuito") int circuito, @Param("foto") String foto);
+
+	/**
+	 * inserta en la base de datos la foto de un piloto
+	 * @param piloto : piloto al que se le inserta la imagen
+	 * @param foto : foto a insertar
+	 * @return
+	 */
+	public Integer insertMultimediaPiloto(@Param("piloto") String piloto, @Param("foto") String foto);
 }

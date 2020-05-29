@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
+import modelo.pojo.Usuario;
 
 public interface EditarMapper {
 
@@ -31,4 +32,8 @@ public interface EditarMapper {
 	 * @param torneo : identificador del torneo
 	 */
 	public Integer borrarTorneo(@Param("torneo") int torneo);
+
+	public Integer updateUsuario(@Param("usuario") Usuario usuario);
+
+	public Integer ganadorCarrera(@Param("participacion") int participacion, @Param("carrera") int carrera);
 }

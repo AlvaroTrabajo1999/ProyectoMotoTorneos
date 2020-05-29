@@ -116,4 +116,52 @@ public class AnadirDao {
 			sqlSession.close();
 		}
 	}
+	
+	/**
+	 * inserta en la base de datos una imagen vinculada a una moto
+	 * @param moto : motocicleta a la que se le vincula la imagen
+	 * @param foto : imagen a vincular
+	 */
+	public void insertMultimediaMoto(String moto, String foto) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			AnadirMapper maper = sqlSession.getMapper(AnadirMapper.class);
+			maper.insertMultimediaMoto(moto, foto);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	/**
+	 * inserta en la base de datos una imagen vinculada a un circuito
+	 * @param circuito : circuito al que se le vincula la imagen
+	 * @param foto : imagen a vincular
+	 */
+	public void insertMultimediaCircuito(int circuito, String foto) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			AnadirMapper maper = sqlSession.getMapper(AnadirMapper.class);
+			maper.insertMultimediaCircuito(circuito, foto);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	/**
+	 * inserta en la base de datos una imagen vinculada a un piloto
+	 * @param piloto : piloto al que se le vincula la imagen
+	 * @param foto : imagen a vincular
+	 */
+	public void insertMultimediaPiloto(String piloto, String foto) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			AnadirMapper maper = sqlSession.getMapper(AnadirMapper.class);
+			maper.insertMultimediaPiloto(piloto, foto);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

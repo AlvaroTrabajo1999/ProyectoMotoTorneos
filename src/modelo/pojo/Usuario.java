@@ -27,8 +27,19 @@ public class Usuario {
 		this.telefono = telefono;
 	}
 
-	//GETTERS
+	public Usuario(int ID, String nombre, String apellidos, String usuario, String mail, String contrasena, int telefono) {
+		super();
+		this.ID = ID;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.usuario = usuario;
+		this.mail = mail;
+		this.contrasena = contrasena;
+		this.telefono = telefono;
+	}
 	
+	//GETTERS
+
 	public int getID() {
 		return ID;
 	}
