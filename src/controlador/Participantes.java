@@ -73,9 +73,10 @@ public class Participantes extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int nombreTorneo = Integer.parseInt(request.getParameter("torneo"));
+		
 		try {
 			//tomamos el nombre del torneo, con este sacamos el torneo completo y tras sacar el torneo sacamos sus participantes
-			int nombreTorneo = Integer.parseInt(request.getParameter("torneo"));
 			Torneo torneo = baseEjb.getTorneoById(nombreTorneo);
 			int participantes = torneo.getParticipantes();
 			
@@ -228,13 +229,13 @@ public class Participantes extends HttpServlet {
 
 				//creamos las carreras necesarias para dicho torneo y las asociamos con este
 				Carrera carreraOcta1 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta2 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta3 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta4 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta5 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta6 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta7 = new Carrera(torneo.getID(), 1, 4);
-				Carrera carreraOcta8 = new Carrera(torneo.getID(), 1, 4);
+				Carrera carreraOcta2 = new Carrera(torneo.getID(), 2, 4);
+				Carrera carreraOcta3 = new Carrera(torneo.getID(), 3, 4);
+				Carrera carreraOcta4 = new Carrera(torneo.getID(), 4, 4);
+				Carrera carreraOcta5 = new Carrera(torneo.getID(), 5, 4);
+				Carrera carreraOcta6 = new Carrera(torneo.getID(), 6, 4);
+				Carrera carreraOcta7 = new Carrera(torneo.getID(), 7, 4);
+				Carrera carreraOcta8 = new Carrera(torneo.getID(), 8, 4);
 				Carrera carreraCuart1 = new Carrera(torneo.getID(), 1, 3);
 				Carrera carreraCuart2 = new Carrera(torneo.getID(), 2, 3);
 				Carrera carreraCuart3 = new Carrera(torneo.getID(), 3, 3);
@@ -287,20 +288,20 @@ public class Participantes extends HttpServlet {
 						participaciones.get(7).setId_carrera(carreras.get(i).getID());
 					}
 					if (carreras.get(i).getNivel() == 4 && carreras.get(i).getRonda() == 4) {
-						participaciones.get(0).setId_carrera(carreras.get(i).getID());
-						participaciones.get(1).setId_carrera(carreras.get(i).getID());
+						participaciones.get(8).setId_carrera(carreras.get(i).getID());
+						participaciones.get(9).setId_carrera(carreras.get(i).getID());
 					}
 					if (carreras.get(i).getNivel() == 3 && carreras.get(i).getRonda() == 4) {
-						participaciones.get(2).setId_carrera(carreras.get(i).getID());
-						participaciones.get(3).setId_carrera(carreras.get(i).getID());
+						participaciones.get(10).setId_carrera(carreras.get(i).getID());
+						participaciones.get(11).setId_carrera(carreras.get(i).getID());
 					}
 					if (carreras.get(i).getNivel() == 2 && carreras.get(i).getRonda() == 4) {
-						participaciones.get(4).setId_carrera(carreras.get(i).getID());
-						participaciones.get(5).setId_carrera(carreras.get(i).getID());
+						participaciones.get(12).setId_carrera(carreras.get(i).getID());
+						participaciones.get(13).setId_carrera(carreras.get(i).getID());
 					}
 					if (carreras.get(i).getNivel() == 1 && carreras.get(i).getRonda() == 4) {
-						participaciones.get(6).setId_carrera(carreras.get(i).getID());
-						participaciones.get(7).setId_carrera(carreras.get(i).getID());
+						participaciones.get(14).setId_carrera(carreras.get(i).getID());
+						participaciones.get(15).setId_carrera(carreras.get(i).getID());
 					}
 				}
 				
@@ -315,8 +316,7 @@ public class Participantes extends HttpServlet {
 			//en caso de que salte algun error lo guardaremos en el logger:
 			logger.error("error en el controlador do post de participantes al crear todos los participantes y carreras, causa: " + e.getCause());
 		} finally {
-			RequestDispatcher rs = getServletContext().getRequestDispatcher("/FichaTorneo");
-			rs.forward(request, response);
+			response.sendRedirect("/MotoServidorRest/Torneo");
 		}
 		
 	}

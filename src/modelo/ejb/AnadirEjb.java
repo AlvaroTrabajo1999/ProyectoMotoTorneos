@@ -77,4 +77,35 @@ public class AnadirEjb {
 		AnadirDao dao = new AnadirDao();
 		dao.insertParticipacion(participacion);
 	}
+
+	/**
+	 * inserta en la base de datos una imagen de una moto
+	 * @param moto : moto a la que se le inserta la imagen
+	 * @param foto : foto a insertar
+	 */
+	public void insertMultimediaMoto(String moto , String foto) {
+		AnadirDao dao = new AnadirDao();
+		dao.insertMultimediaMoto(moto, foto);
+	}
+
+	/**
+	 * inserta en la base de datos una imagen de un circuito
+	 * @param circuito : circuito a la que se le inserta la imagen
+	 * @param foto : foto a insertar
+	 */
+	public void insertMultimediaCircuito(int circuito , String foto) {
+		AnadirDao dao = new AnadirDao();
+		dao.insertMultimediaCircuito(circuito, foto);
+	}
+
+	/**
+	 * inserta en la base de datos una imagen de una moto
+	 * @param moto : moto a la que se le inserta la imagen
+	 * @param foto : foto a insertar
+	 */
+	public void insertMultimediaPiloto(String piloto , String foto) {
+		AnadirDao dao = new AnadirDao();
+		dao.insertMultimediaPiloto(piloto, foto);
+	}
+
 }

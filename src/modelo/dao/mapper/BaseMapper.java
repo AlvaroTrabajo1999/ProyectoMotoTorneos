@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import modelo.pojo.Carrera;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
+import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
 import modelo.pojo.Usuario;
@@ -85,4 +86,20 @@ public interface BaseMapper {
 	 * @return
 	 */
 	public ArrayList<Carrera> getCarrerasByTorneo(@Param("torneo") int torneo);
+
+	public Carrera getCarreraById(@Param("id") int id);
+
+	public Carrera getCarreraEspecifica(@Param("nivel") int nivel, @Param("ronda") int ronda, @Param("torneo") int torneo);
+	
+	public ArrayList<Carrera> getCarrerasTorneoRondas(@Param("torneo") int torneo, @Param("ronda") int ronda);
+
+	/**
+	 * toma las participipaciones pertinentes de una carrera
+	 * @param carrera : circuito del que se quieren sacar sus participaciones
+	 * @return
+	 */
+	public ArrayList<Participacion> getParticipacionesByIdCarrera(@Param("carrera") int carrera);
+
+	public Participacion getParticipacionById(@Param("id") int id);
+
 }

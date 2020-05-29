@@ -7,6 +7,7 @@ import modelo.dao.EditarDao;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
+import modelo.pojo.Usuario;
 
 @Stateless
 @LocalBean
@@ -37,6 +38,16 @@ public class EditarEjb {
 	public void updateCircuito(Circuito circuito) {
 		EditarDao dao = new EditarDao();
 		dao.updateCircuito(circuito);
+	}
+	
+	public void updateUsuario(Usuario usuario) {
+		EditarDao dao = new EditarDao();
+		dao.updateUsuario(usuario);
+	}
+	
+	public void ganadorCarrera(int participacion, int carrera) {
+		EditarDao dao = new EditarDao();
+		dao.ganadorCarrera(participacion, carrera);
 	}
 	
 	/**

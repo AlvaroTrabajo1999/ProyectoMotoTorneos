@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,27 +12,45 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import modelo.ejb.AnadirEjb;
+import modelo.ejb.MultimediaEjb;
 
 /**
  * Servlet implementation class SubirImagen
  */
-@WebServlet("/SubirImagen")
+@WebServlet("/SubirImagenMoto")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
-public class SubirImagen extends HttpServlet {
+public class SubirImagenMoto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	//variable que guarda donde se subira la imagen
 	private static final String UPLOAD_DIRECTORY = "Vista/assets/img/moto";
+	
+	@EJB
+	AnadirEjb anadirEjb;
+	@EJB
+	MultimediaEjb multimediaEjb;
 	
 	/**
 	 * do get, reenvia al servlet deseado
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//reenviamos al jsp de añadir moto holas
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/index.jsp");
-		rs.forward(request, response);
+		String matriculaMoto = request.getParameter("id");
+		request.setAttribute("motocicleta", matriculaMoto);
+		
+		if (multimediaEjb.getMultimediaMotocicletasById(matriculaMoto) != null) {
+			//reenviamos al jsp de añadir moto holas
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/MultimediaGeneral?imagenes=motos");
+			rs.forward(request, response);
+		} else {
+			//reenviamos al jsp de añadir moto holas
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/Vista/SubirImagenMoto.jsp");
+			rs.forward(request, response);
+		}
 		
 	}
 
@@ -61,13 +80,20 @@ public class SubirImagen extends HttpServlet {
 			part.write(uploadPath + File.separator + fileName);
 		}
 
-		out.print("successfully uploaded");
-		out.print("<br />");
-		out.print("<bVistar />");
-
 		// Si es una imagen la mostramos
-		if (fileName.matches(".+\\.(jpg|png)"))
-		out.print("<img src=\"Vista/assets/img/moto/" + fileName + "\" />");
+		if (fileName.matches(".+\\.(jpg|png)")) {
+			HttpSession sesion = request.getSession(false);
+			String moto = (String) sesion.getAttribute("moto");
+			if (moto != null) {
+				anadirEjb.insertMultimediaMoto(moto, fileName);
+			} else {
+				
+			}
+		}
+		
+		//terminamos reenviando a otro servlet
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/MultimediaGeneral?imagenes=motos");
+		rs.forward(request, response);
 		
 	}
 

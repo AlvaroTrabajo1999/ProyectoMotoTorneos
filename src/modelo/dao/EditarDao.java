@@ -6,6 +6,7 @@ import modelo.dao.mapper.EditarMapper;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
+import modelo.pojo.Usuario;
 
 public class EditarDao {
 	
@@ -48,6 +49,30 @@ public class EditarDao {
 		try {
 			EditarMapper maper = sqlSession.getMapper(EditarMapper.class);
 			maper.updateCircuito(circuito);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	
+	public void updateUsuario(Usuario usuario) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			EditarMapper maper = sqlSession.getMapper(EditarMapper.class);
+			maper.updateUsuario(usuario);
+			sqlSession.commit();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	
+	public void ganadorCarrera(int participacion, int carrera) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			EditarMapper maper = sqlSession.getMapper(EditarMapper.class);
+			maper.ganadorCarrera(participacion, carrera);
 			sqlSession.commit();
 		} finally {
 			sqlSession.close();

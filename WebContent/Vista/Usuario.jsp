@@ -31,16 +31,15 @@
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
-                        	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
-                        	} else {
+                        	if (user == null){
                         		response.sendRedirect("Principal");
-                        	}
+                        	} 
                         %>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +55,7 @@
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Usuario <a href="EditarUsuario?id=<%out.print(user.getID());%>"><button class='btn btn-secondary btn-xs'><i class='fas fa-edit'></i></button></a></h2>
+                    <h2 class="section-heading text-uppercase">Usuario</h2>
                     <h3 class="section-subheading text-muted">Aqui puedes ver y editar tus datos e inclusive asignarte un piloto</h3>
                 </div>
                 <%
@@ -64,45 +63,23 @@
                 	out.print("<div class='row'>");
                		out.print("	<div class='col'>");
                 	out.print("		<table class='col mt-3 table tableUsu' style='width: 100%'>");
-            		out.print("			<tr><th colspan='2' style='border-top: 0'><h3 class='text-uppercase'>Datos Personales</h3></th></tr>");
-            		out.print("			<tr><td class='derecho'><h3>Nombre: </h3></td><td><h3>"+user.getNombre()+"</h3></td></tr>");
-            		out.print("			<tr><td class='derecho'><h3>Apellido: </h3></td><td><h3>"+user.getApellidos()+"</h3></td></tr>");
-            		out.print("			<tr><th colspan='2'><h3 class='text-uppercase'>Datos Del Usuario</h3></th></tr>");
-            		out.print("			<tr><td class='derecho'><h3>Usuario: </h3></td><td><h3>"+user.getUsuario()+"</h3></td></tr>");
-            		out.print("			<tr><th colspan='2'><h3 class='text-uppercase'>Metodos De Contacto</h3></th></tr>");
-            		out.print("			<tr><td class='derecho'><h3>Mail: </h3></td><td><h3>"+user.getMail()+"</h3></td></tr>");
-            		out.print("			<tr><td class='derecho'><h3>Telefono: </h3></td><td><h3>"+user.getTelefono()+"</h3></td></tr>");
-            		out.print("			<tr><th colspan='2'><h3 class='text-uppercase'>Piloto Asociado</h3></th></tr>");
-            		out.print("			<tr><td class='derecho'><h3>Piloto: </h3></td><td><h3>Sin piloto asociado</h3></td></tr>");
+            		out.print("			<tr><th colspan='2' style='border-top: 0'><h4 class='text-uppercase'>Datos Personales</h4></th></tr>");
+            		out.print("			<tr><td class='derecho'><h4>Nombre: </h4></td><td><h4>"+user.getNombre()+"</h4></td></tr>");
+            		out.print("			<tr><td class='derecho'><h4>Apellido: </h4></td><td><h4>"+user.getApellidos()+"</h4></td></tr>");
+            		out.print("			<tr><th colspan='2'><h4 class='text-uppercase'>Datos Del Usuario</h4></th></tr>");
+            		out.print("			<tr><td class='derecho'><h4>Usuario: </h4></td><td><h4>"+user.getUsuario()+"</h4></td></tr>");
+            		out.print("			<tr><th colspan='2'><h4 class='text-uppercase'>Metodos De Contacto</h4></th></tr>");
+            		out.print("			<tr><td class='derecho'><h4>Mail: </h4></td><td><h4>"+user.getMail()+"</h4></td></tr>");
+            		out.print("			<tr><td class='derecho'><h4>Telefono: </h4></td><td><h4>"+user.getTelefono()+"</h4></td></tr>");
+            		out.print("			<tr><th colspan='2'><h4 class='text-uppercase'>Piloto Asociado</h4></th></tr>");
+            		out.print("			<tr><td class='derecho'><h4>Piloto: </h4></td><td><h4>Sin piloto asociado</h4></td></tr>");
             		out.print("			<tr><td colspan='2'><a href='EditarUsuario?id="+user.getID()+"'><button class='btn btn-secondary btn-xs' style='width: 100%; line-height: 2em; margin-top: 20px;'><i class='fas fa-edit'></i></button></a></td></tr>");
             		out.print("		</table>");
                 	out.print("	</div>");
                 	out.print("</div>");
-                } else {
-                	out.print("<div class='row'>");
-                	out.print("	<div class='col'>");
-                	out.print("");
-                	out.print("");
-                	out.print("");
-                	out.print("");
-                	out.print("");
-                	out.print("	</div>");
-                	out.print("</div>");
                 }
                 %>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="portfolio-item">
-							<img src='Vista/assets/img/moto/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-8 col-sm-6 mb-4 mb-sm-0">
-                        <div class="portfolio-item">
-                            <h1>holas</h1>
-                        </div>
-                    </div>
-                </div>
+                
                 
             </div>
         </section>
@@ -112,7 +89,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
                 </div>

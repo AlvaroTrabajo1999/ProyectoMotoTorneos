@@ -9,6 +9,7 @@ import modelo.dao.BaseDao;
 import modelo.pojo.Carrera;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
+import modelo.pojo.Participacion;
 import modelo.pojo.Piloto;
 import modelo.pojo.Torneo;
 import modelo.pojo.Usuario;
@@ -121,5 +122,35 @@ public class BaseEjb {
 	public ArrayList<Carrera> getCarrerasByTorneo(int torneo){
 		BaseDao dao = new BaseDao();
 		return dao.getCarrerasByTorneo(torneo);
+	}
+
+	public Carrera getCarreraById(int id){
+		BaseDao dao = new BaseDao();
+		return dao.getCarreraById(id);
+	}
+
+	public Carrera getCarreraEspecifica(int nivel, int ronda, int torneo){
+		BaseDao dao = new BaseDao();
+		return dao.getCarreraEspecifica(nivel, ronda, torneo);
+	}
+	
+	public ArrayList<Carrera> getCarrerasTorneoRondas(int torneo,int ronda){
+		BaseDao dao = new BaseDao();
+		return dao.getCarrerasTorneoRondas(torneo, ronda);
+	}
+	
+	/**
+	 * toma todas las participaciones de una carrera 
+	 * @param carrera : id de la carrera
+	 * @return
+	 */
+	public ArrayList<Participacion> getParticipacionesByIdCarrera(int carrera){
+		BaseDao dao = new BaseDao();
+		return dao.getParticipacionesByIdCarrera(carrera);
+	}
+
+	public Participacion getParticipacionById(int id){
+		BaseDao dao = new BaseDao();
+		return dao.getParticipacionById(id);
 	}
 }

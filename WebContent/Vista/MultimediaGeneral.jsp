@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="modelo.ejb.MultimediaEjb"%>
 <%@page import="modelo.pojo.Piloto"%>
 <%@page import="modelo.pojo.Circuito"%>
 <%@page import="modelo.pojo.Motocicleta"%>
@@ -38,16 +39,15 @@
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
-                        	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
-                        	} else {
+                        	if (user == null){
                         		response.sendRedirect("Principal");
-                        	}
+                        	} 
                         %>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -117,6 +117,8 @@
         	//tomamos el valor que nos dira que tipo de datos pintaremos
         	String TiposDatos = (String) request.getAttribute("datosTipo");
         	
+        	MultimediaEjb multimediaEjb = new MultimediaEjb();
+        
         	//si los datos no son nulos
         	if (TiposDatos != null){
             	
@@ -156,12 +158,16 @@
                     		out.print("		<div class='portfolio-item'>");
                     		out.print("			<a class='portfolio-link' href='FichaMoto?id="+m.getMatricula()+"'>");
                     		out.print("				<div class='portfolio-hover'>");
-                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search'></i></div>");
+                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search fa-3x'></i></div>");
                     		out.print("				</div>");
-                    		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		if (multimediaEjb.getMultimediaMotocicletasById(m.getMatricula()) != null){
+                        		out.print("				<img class='img-fluid' src='Vista/assets/img/moto/"+multimediaEjb.getMultimediaMotocicletasById(m.getMatricula()).getFoto1()+"' />");
+                    		}else{
+                        		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		}
                    			out.print("			</a>");
                     		out.print("			<div class='portfolio-caption'>");
-                    		out.print("				<div class='portfolio-caption-heading'>Matricula: "+m.getMatricula()+"</div>");
+                    		out.print("				<div class='portfolio-caption-heading'>"+m.getMatricula()+"</div>");
                     		out.print("			</div>");
                     		out.print("		</div>");
                     		out.print("	</div>");
@@ -194,12 +200,16 @@
                     		out.print("		<div class='portfolio-item'>");
                     		out.print("			<a class='portfolio-link' href='FichaCircuito?id="+c.getID()+"'>");
                     		out.print("				<div class='portfolio-hover'>");
-                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search'></i></div>");
+                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search fa-3x'></i></div>");
                     		out.print("				</div>");
-                    		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		if (multimediaEjb.getMultimediaCircuitoById(c.getID()) != null){
+                        		out.print("				<img class='img-fluid' src='Vista/assets/img/circuito/"+multimediaEjb.getMultimediaCircuitoById(c.getID()).getFoto1()+"' />");
+                    		}else{
+                        		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		}
                    			out.print("			</a>");
                     		out.print("			<div class='portfolio-caption'>");
-                    		out.print("				<div class='portfolio-caption-heading'>Localidad: "+c.getLocalidad()+"</div>");
+                    		out.print("				<div class='portfolio-caption-heading'>"+c.getLocalidad()+"</div>");
                     		out.print("			</div>");
                     		out.print("		</div>");
                     		out.print("	</div>");
@@ -231,9 +241,13 @@
                     		out.print("		<div class='portfolio-item'>");
                     		out.print("			<a class='portfolio-link' href='FichaPiloto?id="+p.getDNI()+"'>");
                     		out.print("				<div class='portfolio-hover'>");
-                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search'></i></div>");
+                    		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search fa-3x'></i></div>");
                     		out.print("				</div>");
-                    		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		if (multimediaEjb.getMultimediaPilotoById(p.getDNI()) != null){
+                        		out.print("				<img class='img-fluid' src='Vista/assets/img/moto/"+multimediaEjb.getMultimediaPilotoById(p.getDNI()).getFoto1()+"' />");
+                    		}else{
+                        		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		}
                    			out.print("			</a>");
                     		out.print("			<div class='portfolio-caption'>");
                     		out.print("				<div class='portfolio-caption-heading'>"+p.getNombre()+" "+p.getApellido()+"</div>");
@@ -257,7 +271,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
                 </div>

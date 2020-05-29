@@ -1,3 +1,4 @@
+<%@page import="modelo.ejb.MultimediaEjb"%>
 <%@page import="modelo.pojo.MultimediaPiloto"%>
 <%@page import="modelo.pojo.Piloto"%>
 <%@page import="modelo.pojo.Usuario"%>
@@ -34,16 +35,15 @@
 	                        HttpSession sesion = request.getSession(false);
                         	Usuario user = (Usuario) sesion.getAttribute("usuario");
                         
-                        	if (user != null){
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>");
-                        		out.print("<li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>");
-                        	} else {
+                        	if (user == null){
                         		response.sendRedirect("Principal");
-                        	}
+                        	} 
                         %>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Records'>Records</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='MultimediaGeneral'>Multimedia</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Torneo'>Torneos</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Usuario'>Usuario</a></li>
+                        <li class='nav-item'><a class='nav-link js-scroll-trigger' href='Logout'>Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,6 +71,8 @@
                 </div>
                 <div class="swiper-container main-slider" id="myCarousel">
                 	<%
+                		MultimediaEjb multimediaEjb = new MultimediaEjb();
+                	
                 		if (piloto != null){
                				//se toma la multimedia del piloto
                 			MultimediaPiloto multimedia = (MultimediaPiloto) request.getAttribute("multimediaPiloto");
@@ -93,7 +95,9 @@
 		            		out.print("		<tr><td><h3>Edad: </h3></td><td><h3>"+piloto.getEdad()+"</h3></td></tr>");
 		            		out.print("		<tr><td><h3>Altura: </h3></td><td><h3>"+piloto.getAltura()+"</h3></td></tr>");
 		            		out.print("		<tr><td><h3>Peso: </h3></td><td><h3>"+piloto.getPeso()+"</h3></td></tr>");
-		            		out.print("		<tr><td><h3>Multimedia: </h3></td><td><h3><a href='SubirImagen?id="+piloto.getDNI()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
+		            		if (multimediaEjb.getMultimediaPilotoById(piloto.getDNI()) == null){
+			            		out.print("		<tr><td><h3>Multimedia: </h3></td><td><h3><a href='SubirImagenPiloto?id="+piloto.getDNI()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
+		            		}		            		
 		            		out.print("		<tr><td colspan='2'><a href='EditarPiloto?id="+piloto.getDNI()+"'><button class='btn btn-secondary btn-xs' style='width: 100%'><i class='fas fa-edit'></i></button></a></td></tr>");
 		            		out.print("	</table>");
 		            		out.print("</div>");
@@ -108,7 +112,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-left">Copyright © MoTorneos 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/home?lang=ES"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="https://es.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
                 </div>
