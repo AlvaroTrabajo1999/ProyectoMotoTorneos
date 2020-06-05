@@ -123,7 +123,7 @@
         	if (TiposDatos != null){
             	
         		// pintaremos una seccion nueva
-        		out.print("<section class='page-section bg-light'>");
+        		out.print("<section class='page-section bg-light' id='portfolioAlv'> ");
         		
         		out.print("	<div class='container'>");
         		out.print("		<div class='text-center'>");
@@ -136,11 +136,11 @@
             		//tomamos el arraylist en el que metemos todas las motos
             		ArrayList<Motocicleta> motocicletas = (ArrayList<Motocicleta>) request.getAttribute("datos");
             		
-            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0 pb-4'>");
             		out.print("		<div class='portfolio-item'>");
             		out.print("			<a class='portfolio-link' href='AnadirMoto'>");
             		out.print("				<div class='portfolio-hover'>");
-            		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+            		out.print("					<div class='portfolio-hover-content'></div>");
             		out.print("				</div>");
             		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenMas.png'/>");
            			out.print("			</a>");
@@ -178,11 +178,11 @@
             		//tomamos el arraylist en el que metemos todas los circuitos
             		ArrayList<Circuito> Multimedia = (ArrayList<Circuito>) request.getAttribute("datos");
             		
-            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0 pb-4'>");
             		out.print("		<div class='portfolio-item'>");
             		out.print("			<a class='portfolio-link' href='AnadirCircuito'>");
             		out.print("				<div class='portfolio-hover'>");
-            		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+            		out.print("					<div class='portfolio-hover-content'></div>");
             		out.print("				</div>");
             		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenMas.png'/>");
            			out.print("			</a>");
@@ -219,11 +219,11 @@
             		//tomamos el arraylist en el que metemos todas los pilotos
             		ArrayList<Piloto> Multimedia = (ArrayList<Piloto>) request.getAttribute("datos");
             		
-            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0'>");
+            		out.print("<div class='col-lg-4 col-sm-6 mb-4 mb-lg-0 pb-4'>");
             		out.print("		<div class='portfolio-item'>");
             		out.print("			<a class='portfolio-link' href='AnadirPiloto'>");
             		out.print("				<div class='portfolio-hover'>");
-            		out.print("					<div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div>");
+            		out.print("					<div class='portfolio-hover-content'></div>");
             		out.print("				</div>");
             		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenMas.png'/>");
            			out.print("			</a>");
