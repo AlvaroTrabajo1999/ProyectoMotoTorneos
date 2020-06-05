@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import modelo.ejb.AnadirEjb;
 import modelo.ejb.MultimediaEjb;
 
@@ -25,6 +28,9 @@ import modelo.ejb.MultimediaEjb;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 5)
 public class SubirImagenMoto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    
+	//creamos el logger
+	private static final Logger logger = (Logger) LoggerFactory.getLogger(SubirImagenMoto.class);
      
 	//variable que guarda donde se subira la imagen
 	private static final String UPLOAD_DIRECTORY = "Vista/assets/img/moto";
@@ -74,26 +80,34 @@ public class SubirImagenMoto extends HttpServlet {
 		// Lo utilizaremos para guardar el nombre del archivo
 		String fileName = null;
 
-		// Obtenemos el archivo y lo guardamos a disco
-		for (Part part : request.getParts()) {
-			fileName = getFileName(part);
-			part.write(uploadPath + File.separator + fileName);
-		}
-
-		// Si es una imagen la mostramos
-		if (fileName.matches(".+\\.(jpg|png)")) {
-			HttpSession sesion = request.getSession(false);
-			String moto = (String) sesion.getAttribute("moto");
-			if (moto != null) {
-				anadirEjb.insertMultimediaMoto(moto, fileName);
-			} else {
-				
+		try {
+			// Obtenemos el archivo y lo guardamos a disco
+			for (Part part : request.getParts()) {
+				fileName = getFileName(part);
+				part.write(uploadPath + File.separator + fileName);
 			}
+
+			// Si es una imagen la mostramos
+			if (fileName.matches(".+\\.(jpg|png)")) {
+				HttpSession sesion = request.getSession(false);
+				String moto = (String) sesion.getAttribute("moto");
+				if (moto != null) {
+					anadirEjb.insertMultimediaMoto(moto, fileName);
+				} else {
+					
+				}
+			}
+		} catch (Exception e) {
+			//en caso de que salte algun error lo guardaremos en el logger:
+			logger.error("error en el controlador SubirImagenMoto, al insertar la imagen, causa: " + e.getCause());
+		} finally {
+			//terminamos reenviando a otro servlet
+			RequestDispatcher rs = getServletContext().getRequestDispatcher("/MultimediaGeneral?imagenes=motos");
+			rs.forward(request, response);
 		}
 		
-		//terminamos reenviando a otro servlet
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/MultimediaGeneral?imagenes=motos");
-		rs.forward(request, response);
+		
+		
 		
 	}
 

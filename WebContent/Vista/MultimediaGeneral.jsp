@@ -243,10 +243,14 @@
                     		out.print("				<div class='portfolio-hover'>");
                     		out.print("					<div class='portfolio-hover-content'><i class='fas fa-search fa-3x'></i></div>");
                     		out.print("				</div>");
-                    		if (multimediaEjb.getMultimediaPilotoById(p.getDNI()) != null){
-                        		out.print("				<img class='img-fluid' src='Vista/assets/img/moto/"+multimediaEjb.getMultimediaPilotoById(p.getDNI()).getFoto1()+"' />");
-                    		}else{
-                        		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                    		try {
+                    			if (multimediaEjb.getMultimediaPilotoById(p.getDNI()) != null){
+                            		out.print("				<img class='img-fluid' src='Vista/assets/img/moto/"+multimediaEjb.getMultimediaPilotoById(p.getDNI()).getFoto1()+"' />");
+                        		}else{
+                            		out.print("				<img class='img-fluid' src='Vista/assets/img/logos/ImagenInterrogacion.png'/>");
+                        		}
+                    		} catch (Exception exception){
+                    			
                     		}
                    			out.print("			</a>");
                     		out.print("			<div class='portfolio-caption'>");

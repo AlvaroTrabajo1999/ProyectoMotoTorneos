@@ -67,7 +67,7 @@
                     <thead>
                     <th>Nombre</th>
                     <th>Participantes</th>
-                    <th>Circcuito</th>
+                    <th>Circuito</th>
                     <th>Edit</th>
                     <th>Delete</th>
                     </thead>

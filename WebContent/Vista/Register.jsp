@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="input-group">
-                                        <label class="label">Telefono movil</label>
+                                        <label class="label">Teléfono</label>
                                         <input class="input--style-4" type="text" name="telefono" required>
                                     </div>
                                 </div>

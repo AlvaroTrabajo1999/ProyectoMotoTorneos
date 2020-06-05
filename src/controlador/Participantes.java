@@ -316,7 +316,7 @@ public class Participantes extends HttpServlet {
 			//en caso de que salte algun error lo guardaremos en el logger:
 			logger.error("error en el controlador do post de participantes al crear todos los participantes y carreras, causa: " + e.getCause());
 		} finally {
-			response.sendRedirect("/MotoServidorRest/Torneo");
+			response.sendRedirect("/Torneo");
 		}
 		
 	}
