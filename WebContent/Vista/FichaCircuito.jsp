@@ -81,7 +81,7 @@
 		            		out.print("<div class='row'>");
 		            		out.print("	<div class='col mt-3'>");
 		            		if (multimedia != null){
-		            			out.print("		<img src='Vista/assets/img/moto/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
+		            			out.print("		<img src='Vista/assets/img/circuito/"+multimedia.getFoto1()+"' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
 		            		} else {
 		            			out.print("		<img src='Vista/assets/img/logos/ImagenInterrogacion.png' width='400' height='300' style='border: solid; border-radius: 20px'></img>");
 		            		}

@@ -67,7 +67,7 @@
                             <div class="row row-space">
                                 <div class="col">
                                     <div class="input-group">
-                                        <label class="label">Imagen a subir</label>
+                                        <label class="label">Imagen a subir (jpg|png)</label>
                                         <input class="input--style-4" type="file" name="fname" required>
                                     </div>
                                 </div>

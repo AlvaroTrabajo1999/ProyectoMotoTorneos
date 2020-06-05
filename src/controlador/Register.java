@@ -82,6 +82,8 @@ public class Register extends HttpServlet {
 			rs.forward(request, response);
 		}
 		
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Register");
+		rs.forward(request, response);
 		
 	}
 

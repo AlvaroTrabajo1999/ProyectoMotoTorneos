@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.POST;
 
 import org.slf4j.LoggerFactory;
@@ -17,8 +16,6 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
 import modelo.ejb.BaseEjb;
 import modelo.ejb.EditarEjb;
-import modelo.ejb.MultimediaEjb;
-import modelo.ejb.SesionEJB;
 import modelo.pojo.Usuario;
 
 /**
@@ -34,11 +31,7 @@ public class EditarUsuario extends HttpServlet {
 	@EJB
 	BaseEjb baseEjb;
 	@EJB
-	MultimediaEjb multimediaEjb;
-	@EJB
 	EditarEjb editarEjb;
-	@EJB
-	SesionEJB sesionEJB;
 	
 	/**
 	 * do get, tomamos el piloto y su multimedia deseada y finalmente reenviamos al jsp de editar piloto
@@ -95,7 +88,7 @@ public class EditarUsuario extends HttpServlet {
 			//en caso de que salte algun error lo guardaremos en el logger:
 			logger.error("error en el controlador do post de Editar piloto al tratar de modificar el piloto y su multimedia, causa: " + e.getCause());
 		} finally {
-			response.sendRedirect("/MotoServidorRest/Principal");
+			response.sendRedirect("/Principal");
 		}
 	
 	}

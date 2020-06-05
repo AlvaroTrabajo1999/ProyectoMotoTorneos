@@ -93,20 +93,15 @@
                         	<div class="row row-space">
                                 <div class="col">
                                     <div class="input-group">
-                                        <label class="label">Telefono</label>
+                                        <label class="label">Teléfono</label>
                                         <input class="input--style-4" type="number" name="telefono" value="<%out.print(usu.getTelefono());%>" required>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <label class="label">Usuario</label>
-                                        <input class="input--style-4" type="text" name="usuario" value="<%out.print(usu.getUsuario());%>" required>
+                                        <input class="input--style-4" type="hidden" name="usuario" value="<%out.print(usu.getUsuario());%>" required>
                                     </div>
                                 </div>
                             </div>
                         	
                             <div class="p-t-15">
-                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Identificarse</button>
+                                <button class="btnForm btn--radius-2 btn--blue" type="submit">Editar</button>
                             </div>
                         </form>
                     </div>

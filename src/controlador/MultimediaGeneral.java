@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.Logger;
 import modelo.ejb.BaseEjb;
-import modelo.ejb.MultimediaEjb;
 import modelo.pojo.Circuito;
 import modelo.pojo.Motocicleta;
 import modelo.pojo.Piloto;
@@ -30,8 +29,6 @@ public class MultimediaGeneral extends HttpServlet {
 	//creamos el logger
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(MultimediaGeneral.class);
     
-	@EJB
-	MultimediaEjb multimediaEjb;
 	@EJB
 	BaseEjb baseEjb;
 	
